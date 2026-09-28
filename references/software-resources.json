@@ -1,0 +1,197 @@
+{
+  "purpose": "Fontes adicionais de software consultadas em 2026-09-26. Documentação aberta; nenhuma integração ou licença de componente foi validada no produto.",
+  "resources": [
+    {
+      "id": "S001",
+      "name": "FullCalendar: agenda e calendário de eventos",
+      "provider": "FullCalendar",
+      "demo_url": "https://fullcalendar.io/docs",
+      "keywords": "calendar calendario agenda scheduler eventos fuso timezone",
+      "status": "DOCS_OPENED_RECHECK_BEFORE_USE"
+    },
+    {
+      "id": "S002",
+      "name": "React Aria: DatePicker",
+      "provider": "Adobe",
+      "demo_url": "https://react-aria.adobe.com/DatePicker",
+      "keywords": "date picker calendar calendario formulario forms input acessibilidade",
+      "status": "DOCS_OPENED_RECHECK_BEFORE_USE"
+    },
+    {
+      "id": "S003",
+      "name": "Carbon: Data Table",
+      "provider": "IBM",
+      "demo_url": "https://carbondesignsystem.com/components/data-table/usage/",
+      "keywords": "table tabela dados busca search filters filtros sorting pagination actions",
+      "status": "DOCS_OPENED_RECHECK_BEFORE_USE"
+    },
+    {
+      "id": "S004",
+      "name": "WAI ARIA: padrões de interação",
+      "provider": "W3C",
+      "demo_url": "https://www.w3.org/WAI/ARIA/apg/patterns/",
+      "keywords": "forms formulario combobox dialog modal menu navigation navegacao button botao keyboard teclado accessibility acessibilidade",
+      "status": "DOCS_OPENED_RECHECK_BEFORE_USE"
+    },
+    {
+      "id": "S005",
+      "name": "Fluent 2: interface de software",
+      "provider": "Microsoft",
+      "demo_url": "https://fluent2.microsoft.design/",
+      "keywords": "menu sidebar navegacao navigation forms formulario table tabela",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S006",
+      "name": "Cloudscape: recursos e operação",
+      "provider": "AWS",
+      "demo_url": "https://cloudscape.design/",
+      "keywords": "dashboard tabela filtros forms formulario software",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S007",
+      "name": "Primer: componentes de produto",
+      "provider": "GitHub",
+      "demo_url": "https://primer.style/",
+      "keywords": "table tabela list lista navigation menu",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S008",
+      "name": "Atlassian: tokens e fundamentos",
+      "provider": "Atlassian",
+      "demo_url": "https://atlassian.design/",
+      "keywords": "tokens design system tipografia espacamento",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S009",
+      "name": "Geist: design system",
+      "provider": "Vercel",
+      "demo_url": "https://vercel.com/geist",
+      "keywords": "tokens typography tipografia dark tema",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S010",
+      "name": "Nuxt UI: templates de aplicações",
+      "provider": "Nuxt",
+      "demo_url": "https://ui.nuxt.com/templates",
+      "keywords": "dashboard vue nuxt software templates menu chat editor",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S011",
+      "name": "Untitled UI: componentes públicos e PRO",
+      "provider": "Untitled UI",
+      "demo_url": "https://www.untitledui.com/react",
+      "keywords": "table tabela sidebar menu forms formulario",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S012",
+      "name": "Kibo UI: blocos de software",
+      "provider": "Kibo UI",
+      "demo_url": "https://www.kibo-ui.com/",
+      "keywords": "kanban gantt editor calendar calendario list lista",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S013",
+      "name": "ReUI: componentes e blocos",
+      "provider": "ReUI",
+      "demo_url": "https://reui.io/",
+      "keywords": "kanban timeline grid tabela data software",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S014",
+      "name": "Mantine UI: composições",
+      "provider": "Mantine",
+      "demo_url": "https://ui.mantine.dev/",
+      "keywords": "sidebar menu form formulario busca",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S015",
+      "name": "Tabler: aplicação e ícones",
+      "provider": "Tabler",
+      "demo_url": "https://tabler.io/",
+      "keywords": "dashboard admin tabela login icones",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S016",
+      "name": "Tremor: gráficos",
+      "provider": "Tremor",
+      "demo_url": "https://www.tremor.so/",
+      "keywords": "charts graficos dashboard analytics",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S017",
+      "name": "AI Elements: conversa IA",
+      "provider": "Vercel",
+      "demo_url": "https://elements.ai-sdk.dev/",
+      "keywords": "chat ia ai chatbot sources fontes composer",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S018",
+      "name": "assistant-ui: conversa IA",
+      "provider": "assistant-ui",
+      "demo_url": "https://www.assistant-ui.com/",
+      "keywords": "chat ia ai chatbot streaming",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S019",
+      "name": "Nuxt: calendário de aplicação",
+      "provider": "Nuxt",
+      "demo_url": "https://calendar-template.nuxt.dev/",
+      "keywords": "calendar calendario agenda month mes week semana",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S020",
+      "name": "Material: componentes e cores",
+      "provider": "Google",
+      "demo_url": "https://m3.material.io/",
+      "keywords": "colors cores tokens forms calendario navigation",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S021",
+      "name": "Spectrum: design system",
+      "provider": "Adobe",
+      "demo_url": "https://spectrum.adobe.com/",
+      "keywords": "tokens controls controles design system",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S022",
+      "name": "PatternFly: aplicações empresariais",
+      "provider": "Red Hat",
+      "demo_url": "https://www.patternfly.org/",
+      "keywords": "dashboard data table tabela navigation",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S023",
+      "name": "Google Labs: formato DESIGN.md",
+      "provider": "Google Labs",
+      "demo_url": "https://github.com/google-labs-code/design.md",
+      "keywords": "design.md formato especificacao",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    },
+    {
+      "id": "S024",
+      "name": "DESIGN.md: coleção comunitária",
+      "provider": "VoltAgent",
+      "demo_url": "https://github.com/VoltAgent/awesome-design-md",
+      "keywords": "design.md empresas inspiracao comunidade nao oficial",
+      "status": "RESEARCHED_SOURCE_RECHECK_COMPONENT_VERSION_LICENSE_AND_SCOPE"
+    }
+  ]
+}

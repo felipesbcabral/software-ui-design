@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Fixture inspect-ui</title>
+<style>
+  body { margin: 0; font: 14px/1.4 system-ui, sans-serif; background: #fff; color: #111; }
+  .shell { display: flex; }
+  nav { width: 240px; min-height: 100vh; background: #f4f4f5; }
+  main { flex: 1; }
+  .narrow { max-width: 640px; margin: 0 auto; }
+  .low { color: #bbb; }
+  .tiny { width: 16px; height: 16px; padding: 0; }
+  .nofocus:focus { outline: none; }
+  .wide { width: 3000px; height: 10px; }
+  [role="tooltip"] { position: absolute; background: #111; color: #fff; padding: 4px; display: none; }
+  .tip-host:hover + [role="tooltip"] { display: block; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav aria-label="Principal"><a href="#a">Início</a></nav>
+  <main>
+    <div class="narrow">
+      <p class="low">Texto com contraste baixo</p>
+      <button class="tiny" aria-label="Minúsculo"></button>
+      <button class="nofocus">Sem foco</button>
+      <button></button>
+      <input placeholder="Sem rótulo">
+      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=">
+      <button class="tip-host" aria-label="Arquivar"><svg width="20" height="20"></svg></button>
+      <span role="tooltip">Arquivar</span>
+      <table><tbody><tr><td>Linha 1</td></tr></tbody></table>
+      <table style="table-layout: fixed; width: 120px"><colgroup><col style="width:0"><col style="width:120px"></colgroup>
+        <tbody><tr><td style="overflow:hidden;padding:0">Título longo esmagado</td><td>Status</td></tr></tbody></table>
+      <div class="wide"></div>
+    </div>
+  </main>
+</div>
+</body>
+</html>
