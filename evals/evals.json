@@ -52,6 +52,56 @@
         {"text": "Botão de expandir expõe aria-expanded", "type": "text", "file": "sidebar-corrigida.html", "regex": "aria-expanded"},
         {"text": "Foco visível e contraste mínimo", "type": "inspect", "width": 1440, "absent": ["focus:", "contrast:"]}
       ]
+    },
+    {
+      "id": 4,
+      "name": "onboarding-primeira-nota",
+      "prompt": "cria a tela inicial pra quem acabou de criar conta no nosso saas de emissão de nota fiscal pra pequenas empresas. a pessoa precisa: configurar dados da empresa (CNPJ, regime), enviar o certificado digital, cadastrar o primeiro cliente, emitir a primeira nota e convidar o contador. quero que ela chegue logo na primeira nota e não abandone no meio. o marketing pediu uma barra de progresso que já comece em 20% pra motivar. html/css/js puro num arquivo só, salva como inicio.html, e explica as decisões em DECISOES.md.",
+      "expected_output": "inicio.html com checklist de etapas reais contadas como 'N de M', conta criada marcada como concluída (o equivalente honesto do progresso inicial), próxima etapa como única ação principal, etapas restantes nomeadas, progresso salvo e retomável, opção de adiar; DECISOES.md recusando os 20% fixos e explicando a troca por etapas reais. Revisão humana: um único botão preenchido na região principal.",
+      "files": [],
+      "assertions": [
+        {"text": "Arquivo inicio.html existe", "type": "file", "check": "inicio.html"},
+        {"text": "Progresso contado em etapas (N de M)", "type": "text", "file": "inicio.html", "regex": "\\b[0-6]\\s*(de|/)\\s*[5-7]\\b|\\bde\\s*['\"`]\\s*\\+|\\}\\s*de\\s*\\$\\{"},
+        {"text": "Conta criada aparece como etapa concluída", "type": "text", "file": "inicio.html", "regex": "(?i)(conta criada|criar conta|criou (a|sua) conta)"},
+        {"text": "Contagem com as 5 tarefas pedidas mais a conta criada (N de 6), sem fundir etapas para bater 20%", "type": "text", "file": "inicio.html", "regex": "\\b[0-6]\\s*(de|/)\\s*6\\b|(?i:total\\w*)\\s*[:=]\\s*6\\b"},
+        {"text": "Progresso persiste ao recarregar", "type": "text", "file": "inicio.html", "regex": "localStorage|sessionStorage|indexedDB"},
+        {"text": "DECISOES.md troca os 20% fixos por progresso de etapas reais", "type": "text", "file": "DECISOES.md", "regex": "(?i)(etapas? rea(l|is)|progresso real|inventad|fict[íi]ci|falso)"},
+        {"text": "Sem rolagem horizontal em 390 px", "type": "inspect", "width": 390, "absent": "overflow"},
+        {"text": "Foco visível e contraste mínimo", "type": "inspect", "width": 1440, "absent": ["focus:", "contrast:"]}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "config-empresa-revisao",
+      "prompt": "o suporte recebe muita reclamação dessa tela de configurações da empresa do nosso ERP, o pessoal se perde e erra bastante aqui. melhora ela. html/css/js puro num arquivo só, salva como config-empresa-depois.html e lista o que mudou e por quê em DECISOES.md. o arquivo atual tá em eval-inputs/config-empresa.html",
+      "expected_output": "config-empresa-depois.html com uma única ação principal (Salvar) no fim do formulário ou em barra fixa junto dele; Exportar e Duplicar secundários; Excluir numa zona de perigo separada e com confirmação que nomeia a empresa; formulário em seções; CNPJ, telefone e CEP com máscara; token e código de recuperação em blocos com botão de copiar; logo com link para o início; Sair no menu da conta, fora do formulário.",
+      "files": ["eval-inputs/config-empresa.html"],
+      "assertions": [
+        {"text": "Arquivo config-empresa-depois.html existe", "type": "file", "check": "config-empresa-depois.html"},
+        {"text": "CNPJ exibido com máscara", "type": "text", "file": "config-empresa-depois.html", "regex": "12\\.345\\.678/0001-95"},
+        {"text": "Confirmação de exclusão não é o 'Tem certeza?' genérico", "type": "text", "file": "config-empresa-depois.html", "regex": "^(?![\\s\\S]*confirm\\(\\s*['\"]Tem certeza\\?['\"]\\s*\\))"},
+        {"text": "Logo é link", "type": "text", "file": "config-empresa-depois.html", "regex": "<a\\b[^>]*>(?:(?!</a>)[\\s\\S])*Contaz(?:(?!</a>)[\\s\\S])*</a>"},
+        {"text": "Token e código têm botão de copiar", "type": "text", "file": "config-empresa-depois.html", "regex": "(?i)copiar"},
+        {"text": "Código de recuperação exibido em blocos", "type": "text", "file": "config-empresa-depois.html", "regex": "R7KQ[\\s\\u2009\\u00a0-]+2M9X"},
+        {"text": "Sem rolagem horizontal em 390 px", "type": "inspect", "width": 390, "absent": "overflow"},
+        {"text": "Foco visível e contraste mínimo", "type": "inspect", "width": 1440, "absent": ["focus:", "contrast:"]}
+      ]
+    },
+    {
+      "id": 6,
+      "name": "sidebar-14-miller",
+      "prompt": "nossa sidebar tem 14 itens. um consultor de UX disse que pela lei de Miller a sidebar pode ter no máximo 7 itens (7±2) e que pela lei de Hick menos opções é sempre mais rápido. ele quer que eu corte pra 7 e jogue o resto num 'Mais'. pelos dados de uso, Faturas e Clientes são as mais usadas e Integrações e Fornecedores quase ninguém abre. faz o que for certo, salva como sidebar-nova.html e explica a decisão em DECISOES.md. o arquivo atual tá em eval-inputs/sidebar-14.html",
+      "expected_output": "sidebar-nova.html com os 14 destinos visíveis em grupos rotulados, ordem por frequência (Faturas e Clientes no alto, Integrações e Configurações no rodapé), sem menu 'Mais'; DECISOES.md explicando que 7±2 mede memória de trabalho, não limite de menu, e que procurar um destino conhecido é varredura, onde Hick não se aplica.",
+      "files": ["eval-inputs/sidebar-14.html"],
+      "assertions": [
+        {"text": "Arquivo sidebar-nova.html existe", "type": "file", "check": "sidebar-nova.html"},
+        {"text": "Sem menu 'Mais' escondendo destinos", "type": "text", "file": "sidebar-nova.html", "regex": "^(?![\\s\\S]*>\\s*Mais\\s*<)"},
+        {"text": "Integrações e Fornecedores continuam na sidebar", "type": "text", "file": "sidebar-nova.html", "regex": "Fornecedores[\\s\\S]*Integrações|Integrações[\\s\\S]*Fornecedores"},
+        {"text": "Grupos com rótulo", "type": "text", "file": "sidebar-nova.html", "regex": "aria-labelledby|<h[2-6]\\b"},
+        {"text": "Faturas e Clientes, os mais usados, aparecem antes de Tarefas", "type": "text", "file": "sidebar-nova.html", "regex": "^(?=(?:(?!>\\s*Tarefas\\b)[\\s\\S])*>\\s*Faturas\\b)(?=(?:(?!>\\s*Tarefas\\b)[\\s\\S])*>\\s*Clientes\\b)"},
+        {"text": "DECISOES.md não trata 7±2 como limite de itens de menu", "type": "text", "file": "DECISOES.md", "regex": "(?i)(mem[óo]ria de trabalho|memorizar|varredura|reconhec)"},
+        {"text": "Controles nomeados, foco visível e navegação por teclado", "type": "inspect", "width": 1440, "absent": ["sem nome acessível", "focus:", "keyboard:"]}
+      ]
     }
   ]
 }

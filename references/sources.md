@@ -36,3 +36,17 @@ Essa comparação é qualitativa, baseada nos textos consultados. Não foi execu
 | [WCAG: reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html) | Adaptação com zoom e exceções para informação bidimensional |
 
 Abra a documentação atual do componente antes de adotá-lo. O catálogo original não foi revalidado inteiro nesta criação. A inspeção de uma documentação não prova que seu componente foi testado dentro do produto.
+
+## Leis de UX
+
+Consulta realizada em 28/09/2026 para [ux-laws.md](ux-laws.md). As definições seguem a Laws of UX; onde a pesquisa posterior contradiz a formulação popular, vale a pesquisa.
+
+| Fonte | Uso |
+|---|---|
+| [Laws of UX, Jon Yablonski](https://lawsofux.com/) | Definições e origem de Fitts, Hick, Jakob, Von Restorff, Goal gradient, Zeigarnik e Miller; aviso contra usar 7 ± 2 como limite de design |
+| [NN/g: Fitts's Law and Its Applications in UX](https://www.nngroup.com/articles/fitts-law/) | Distância, tamanho, rótulo junto do ícone, borda da tela só no desktop com mouse (Avrahami, 2015) |
+| [NN/g: Hick's Law, Designing Long Menu Lists](https://www.nngroup.com/videos/hicks-law-long-menus/) | Procurar item conhecido numa lista é varredura linear, fora do alcance da lei |
+| [NN/g: End of Web Design (22/07/2000)](https://www.nngroup.com/articles/end-of-web-design/) | Formulação original da lei de Jakob |
+| [Kivetz, Urminsky e Zheng (2006)](https://home.uchicago.edu/ourminsky/Goal-Gradient_Illusionary_Goal_Progress.pdf) | Cartão de 12 selos com 2 carimbados contra cartão de 10 vazio |
+| [Ghibellini e Meier (2025)](https://www.nature.com/articles/s41599-025-05000-w) | Meta-análise de 59 estudos: sem vantagem de memória para tarefa interrompida (razão 0,99); tendência de retomar confirmada |
+| [Cowan (2001)](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/44023F1147D4A1D44BDC0AD226838496/S0140525X01003922a.pdf/the-magical-number-4-in-short-term-memory-a-reconsideration-of-mental-storage-capacity.pdf) | Capacidade de cerca de 4 blocos, revisão do 7 ± 2 de Miller (1956) |

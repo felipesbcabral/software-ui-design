@@ -2,7 +2,7 @@
 
 Skill para projetar, redesenhar e revisar telas de software: SaaS, painel administrativo, dashboard, ERP, CRM e app interno. Ela escolhe componentes já revisados em vez de desenhar do zero, aplica valores de design systems oficiais e prova o resultado com medição e captura de tela.
 
-Funciona no Claude Code e no Codex. As instruções estão em português. Versão 2.0.0.
+Funciona no Claude Code e no Codex. As instruções estão em português. Versão 2.1.0.
 
 ## Instalar
 
@@ -53,7 +53,7 @@ O acervo com o código arquivado, as capturas e a licença de cada componente n�
 | Caminho | O que tem |
 |---|---|
 | `SKILL.md` | O fluxo em seis passos: contrato da tela, componentes, composição, implementação, prova e entrega |
-| `references/` | Escolha rápida de componentes, valores de partida com fonte, antipadrões, padrões de tela, navegação, linguagem visual, design systems e critérios de aceite |
+| `references/` | Escolha rápida de componentes, valores de partida com fonte, antipadrões, leis de UX aplicadas a software, padrões de tela, navegação, linguagem visual, design systems e critérios de aceite |
 | `scripts/` | `inspect-ui.mjs`, `find-resources.mjs` e os testes deles |
 | `evals/` | Cenários de avaliação com critérios verificáveis, para manter a skill |
 | `agents/openai.yaml` | Nome e descrição da skill no Codex |

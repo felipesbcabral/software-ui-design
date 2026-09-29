@@ -9,8 +9,9 @@ Lista para revisar uma tela antes de entregar. Cada item traz o sinal que denunc
 - Formulários e sobreposições
 - Cor, tipo e acabamento
 - Estados e feedback
-- Correto e genérico
 - Sinais de "cara de IA"
+- Correto e genérico
+- Leis de UX aplicadas errado ou esquecidas
 
 ## Espaço e largura
 
@@ -59,12 +60,24 @@ Lista para revisar uma tela antes de entregar. Cada item traz o sinal que denunc
 28. **Tela vazia sem próximo passo.** Troca: o que pode ser criado ou importado, conforme permissão, e um botão para isso.
 29. **Foco removido** (`outline: none`) sem substituto. `inspect-ui.mjs` acusa `focus`.
 
+## Sinais de "cara de IA"
+
+30. Gradiente roxo-azul em cards e botões, glassmorphism em tela de dados, emoji como ícone de navegação, títulos em Title Case, textos de marketing ("Supercharge your workflow") dentro do produto, cards com o mesmo peso para tudo, métricas falsas com setas verdes. Troca: a composição sóbria de produtos de referência (Linear, Vercel, GitHub, Stripe Dashboard, Atlassian): hierarquia por tipo e espaço, cor para significado.
+
 ## Correto e genérico
 
 31. **Rail recolhido como estado inicial no desktop.** Sinal: a primeira impressão é uma coluna de ícones. Troca: expandida a partir de 1280 px, rail por escolha da pessoa.
 32. **Login em cartão centralizado num SaaS.** Sinal: um cartão branco no meio de um fundo cinza, sem nada do produto. Troca: tela dividida com painel de marca e prévia do produto; cartão só em ferramenta interna.
 33. **Tela sem nenhum traço do produto.** Sinal: passaria por qualquer template. Troca: marca no shell, cor de destaque com critério, um detalhe com significado (avatar, status colorido, prévia de dados).
 
-## Sinais de "cara de IA"
+## Leis de UX aplicadas errado ou esquecidas
 
-30. Gradiente roxo-azul em cards e botões, glassmorphism em tela de dados, emoji como ícone de navegação, títulos em Title Case, textos de marketing ("Supercharge your workflow") dentro do produto, cards com o mesmo peso para tudo, métricas falsas com setas verdes. Troca: a composição sóbria de produtos de referência (Linear, Vercel, GitHub, Stripe Dashboard, Atlassian): hierarquia por tipo e espaço, cor para significado.
+Critérios completos, limites e fontes em [ux-laws.md](ux-laws.md).
+
+34. **Progresso moldado ao número pedido** (goal gradient). Sinal: a barra abre em 20% ou 50% porque etapas foram fundidas, divididas, inventadas ou tiradas da barra como "opcionais" para a conta fechar. Troca: um item por tarefa real, o que já foi feito conta como feito, "N de M" honesto e a troca registrada na entrega. Fundir o fluxo é permitido; a contagem não muda.
+35. **Checklist ou rascunho que zera ao recarregar** (Zeigarnik). Sinal: nenhum estado salvo; sair no meio perde o avanço. Troca: salvar a cada etapa e retomar no ponto exato.
+36. **Salvar só no topo de formulário longo, ou Excluir colado em Salvar** (Fitts). Sinal: texto do tipo "salve no botão lá em cima"; ação destrutiva vizinha da frequente. Troca: ação junto do último campo ou em barra fixa; destrutiva em zona separada.
+37. **Vários botões preenchidos na mesma região** (Von Restorff e Hick). Troca: um preenchido por região; o resto secundário ou em overflow.
+38. **Menu cortado em 7 "por causa da lei de Miller", ou destino mais usado enterrado no meio da lista** (Miller e Hick). Troca: todos os destinos em grupos rotulados; os mais usados no alto da sidebar, logo depois do Início, e não só no topo do próprio grupo; os raros no fim.
+39. **Convenção quebrada sem ganho** (Jakob). Sinal: logo que não leva ao início, Sair no meio do conteúdo, atalho próprio no lugar do esperado. Troca: a tabela de convenções de ux-laws.md.
+40. **Identificador longo sem separação** (Miller). Sinal: CNPJ, CEP, telefone ou código de recuperação corridos. Troca: exibição em blocos e botão de copiar.

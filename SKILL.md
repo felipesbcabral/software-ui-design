@@ -1,8 +1,8 @@
 ---
 name: software-ui-design
-description: "Projeta, redesenha e revisa telas de software (SaaS, painel admin, dashboard, ERP, CRM, app interno) reutilizando componentes prontos de um acervo com 300+ componentes revisados e capturados, mais design systems oficiais (Carbon, Cloudscape, Fluent, Primer, Atlassian, shadcn). Cobre sidebar e menu superior, tabelas e grids, formulários CRUD, busca, filtros, command palette, calendários, tooltips, popovers, modais, drawers, login, cadastro, esqueci senha, 2FA, configurações de conta, chat de IA, upload, loading, skeletons e estados vazios. Mede o resultado com um script de inspeção (largura usada, foco, contraste, tooltip no teclado). Use sempre que o pedido envolver uma tela de trabalho de software, mesmo sem a palavra design: 'essa tela tá feia', 'o menu não parece moderno', 'quero ver mais registros', 'cria a tela de configurações', 'melhora o painel'. Não use para landing page, site institucional ou peça de marketing."
+description: "Projeta, redesenha e revisa telas de software (SaaS, painel admin, dashboard, ERP, CRM, app interno) reutilizando componentes prontos de um acervo com 300+ componentes revisados e capturados, mais design systems oficiais (Carbon, Cloudscape, Fluent, Primer, Atlassian, shadcn). Cobre sidebar e menu superior, tabelas e grids, formulários CRUD, busca, filtros, command palette, calendários, tooltips, popovers, modais, drawers, login, cadastro, esqueci senha, 2FA, configurações de conta, chat de IA, upload, loading, skeletons, estados vazios, onboarding e leis de UX (Fitts, Hick, Miller). Mede o resultado com um script de inspeção (largura usada, foco, contraste, tooltip no teclado). Use sempre que o pedido envolver uma tela de trabalho de software, mesmo sem a palavra design: 'essa tela tá feia', 'o menu não parece moderno', 'quero ver mais registros', 'cria a tela de configurações', 'melhora o painel'. Não use para landing page, site institucional ou peça de marketing."
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # Software UI Design
@@ -73,6 +73,11 @@ Use os [valores de partida](references/defaults.md) quando o projeto não tiver 
 - **Sidebar escondida por padrão.** No desktop a partir de 1280 px a sidebar abre expandida, com grupos e nomes visíveis; o rail só com ícones fica para quando a pessoa recolhe (e a escolha é lembrada) ou para 1024 a 1279 px.
 - **Login e cadastro genéricos.** Em SaaS, use tela dividida no desktop a partir de 1024 px: formulário de um lado, painel de marca do outro com uma prévia real do produto (um card de saldo, uma lista, um gráfico feito com a própria UI, marcado como dados ilustrativos). Cartão centralizado só em ferramenta interna. No celular, só o formulário.
 - **Correto e sem identidade.** Passar em todas as checagens não basta: a tela precisa de pelo menos um traço do produto (marca no shell, cor de destaque com critério, um detalhe como avatar, status colorido ou prévia de dados). Compare a captura com Linear, Stripe ou Vercel antes de entregar.
+- **Tudo com o mesmo peso.** Vários botões preenchidos lado a lado, Salvar só no topo de um formulário longo, Excluir colado em Salvar. Um botão preenchido por região, junto de onde a tarefa termina; ação destrutiva em zona separada.
+- **Progresso inventado ou perdido.** Com pedido de barra que "já começa em X%", faça nesta ordem: (1) liste um item por tarefa do pedido, com as opcionais marcadas como opcionais e ainda na lista, mais o que já foi feito (conta criada); (2) só então calcule a barra como N de M. O número pedido não é meta: se não bater, a barra mostra N de M e a entrega registra a troca. Checklist salvo a cada etapa e retomável ao recarregar.
+- **Convenção quebrada.** Logo que não leva ao início, Sair fora do menu da conta, destino mais usado abaixo de outros sem uso conhecido, CNPJ ou código de recuperação sem separação. Siga a tabela de convenções e a ordem por uso.
+
+Ações, destaques, progresso, navegação e identificadores seguem as [leis de UX](references/ux-laws.md) (Fitts, Hick, Jakob, Von Restorff, Goal gradient, Zeigarnik, Miller). Cada lei traz a regra, o sinal de erro e o limite de uso: 7 ± 2 não limita itens de menu, e Hick não se aplica a procurar um destino conhecido.
 
 Para a direção visual (cor, tipo, tema escuro, acabamento), leia [visual-language.md](references/visual-language.md). Para comparar com empresas ou usar um DESIGN.md, leia [design-systems.md](references/design-systems.md): documento de marketing não vira regra de dashboard.
 
@@ -110,6 +115,7 @@ Use este modelo na resposta (ou no documento de decisões do projeto, se ele exi
 **Tela:** <arquivo ou rota> · <família e contrato em uma frase>
 **Componentes:** <IDs do acervo (ex.: 08-tabelas-grids-04) ou URL + commit> · <reuso de código ou adaptação de padrão> · <licença>
 **Valores:** <sidebar, altura de linha, espaço, tipo> · <token do projeto ou fonte de defaults.md>
+**Convenções:** <desvios da tabela de convenções de ux-laws.md e o motivo, ou "nenhum"> · <pedido trocado por uma lei, ex.: progresso fixo virou N de M>
 **Inspeção:** antes <achados> -> depois <achados>, larguras <1440, 768, 390>; capturas vistas: <sim/quais>
 **Testes:** <comandos e resultado>
 **Pendente:** <o que não foi verificado e por quê>
@@ -136,6 +142,7 @@ Conformidade técnica e qualidade visual são conclusões separadas; não afirme
 | Evidência e regras por família | [picks-menus-configuracoes-dashboards.md](references/picks-menus-configuracoes-dashboards.md), [picks-tabelas-busca-filtros.md](references/picks-tabelas-busca-filtros.md), [picks-formularios-login.md](references/picks-formularios-login.md), [picks-autenticacao.md](references/picks-autenticacao.md), [picks-sobreposicoes.md](references/picks-sobreposicoes.md), [picks-calendarios-quadros-graficos.md](references/picks-calendarios-quadros-graficos.md), [picks-icones-loading-feedback.md](references/picks-icones-loading-feedback.md), [picks-chat-ia-arquivos-colaboracao.md](references/picks-chat-ia-arquivos-colaboracao.md), [picks-cronogramas-comentarios-copiloto.md](references/picks-cronogramas-comentarios-copiloto.md) |
 | Números com fonte (sidebar, linha, espaço, tipo, alvo, breakpoints) | [defaults.md](references/defaults.md) |
 | O que evitar e como corrigir | [anti-patterns.md](references/anti-patterns.md) |
+| Leis de UX em software: regra, sinal de erro, limite e prova | [ux-laws.md](references/ux-laws.md) |
 | Família de tela e prova de aceite | [screen-patterns.md](references/screen-patterns.md) |
 | Largura, densidade, sidebar e responsividade | [layout-navigation.md](references/layout-navigation.md) |
 | Comportamento de controles, formulários, tabelas e datas | [components.md](references/components.md) |

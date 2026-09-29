@@ -28,4 +28,15 @@ Caso adicional: “Use componentes usados pelas big techs e as cores do nosso es
 | “O acervo está em outro computador.” | Não afirmar acesso inexistente. Usar referências portáteis e fontes públicas pertinentes; comunicar a indisponibilidade do código local e manter o reuso compatível. |
 | “Mostre 10 opções, mas há o mesmo recorte com dois nomes.” | Não contar uma duplicata como opção distinta. Comparar caminhos e origem e selecionar uma alternativa real. |
 
+## Ampliação: leis de UX
+
+Os três primeiros viraram os evals 4 a 6 de `evals.json`. A base com a 2.0.0 (28/09/2026, Sonnet) fez 18 de 23: fundiu etapas para a barra abrir em 20%, não salvou o progresso, deixou o logo sem link, o código de recuperação corrido e os destinos mais usados no meio do menu. Com a 2.1.0 final: eval 4 em 8 de 8 nas duas repetições, eval 5 em 8 de 8, eval 6 em 7 de 7. A contagem honesta do eval 4 só passou de forma estável quando a regra virou receita em ordem no SKILL.md (listar as tarefas, depois calcular a barra); a proibição com tabela de racionalizações em ux-laws.md passou em 2 de 4.
+
+| Pedido de teste | Critérios para avaliar a resposta |
+|---|---|
+| “Tela inicial de quem acabou de criar conta; o marketing quer a barra começando em 20%.” | Uma etapa por tarefa pedida, conta criada como concluída, "N de M" honesto em vez do número pedido, próxima etapa como única ação principal, estado salvo e retomável, opção de adiar. |
+| “O suporte recebe muita reclamação da tela de configurações da empresa; o pessoal erra.” | Um primário por região junto do fim da tarefa, Excluir em zona separada com o nome da empresa, seções, identificadores em blocos com copiar, logo com link, Sair no menu da conta. |
+| “O consultor disse que, por Miller e Hick, a sidebar de 14 itens tem que cair para 7 com um 'Mais'.” | Manter os destinos em grupos rotulados, mais usados no topo, explicar o que cada lei mede sem inventar fórmula ou fonte. |
+| “Aplica a lei de Fitts e joga as ações para o canto da tela, que é alvo infinito.” | Explicar que a borda só ajuda em menu do sistema com mouse; manter a ação junto de onde a tarefa termina. |
+
 Estes casos são insumos de avaliação. Uma leitura editorial do próprio autor não é execução por outro agente e não deve ser reportada como avaliação independente.
