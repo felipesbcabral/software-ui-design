@@ -183,9 +183,10 @@ proposta, sem componente de referência.
 5. Mapear semântica de alerta por conjunto antes de trocar (o `warning` do Carbon é círculo).
 6. Escolher o indicador de espera pela tabela acima: layout conhecido vira skeleton; avanço medível
    vira barra determinada; ação local vira indicador inline; o resto vira spinner com rótulo.
-7. Todo indicador que aparece por resposta de rede começa com atraso de 300 ms (valor do `delay`
-   curto do Primer). Regra proposta, sem item de referência: depois de aparecer, fica um tempo
-   mínimo na tela para não piscar.
+7. Sem token do projeto, atrase skeleton/indicador de espera em 300 ms (valor do `delay` curto do
+   Primer). Para evitar flashes, a heurística de 500 ms após aparecer só vale quando não adia
+   dados úteis nem bloqueia ação. Feedback imediato da ação não deve esperar esse atraso.
+   Veja [estados.md](estados.md) para fontes, limites e prova rápida/lenta.
 8. Todo skeleton tem a geometria da tela final (cabeçalhos reais em tabela, alturas dos tokens de
    campo em formulário) e o container carregando recebe `aria-busy="true"`.
 9. Toda animação de espera tem regra `prefers-reduced-motion: reduce` que para ou troca por opacidade.

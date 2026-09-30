@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR"><meta charset="utf-8"><title>Inspector regression fixture</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font:14px Arial;background:#fff;color:#111} main{padding:24px}
+button{min-height:32px;padding:4px 12px;color:inherit;background:transparent;border:1px solid currentColor}
+:focus-visible{outline:2px solid #1764c0;outline-offset:2px}
+.receipt{width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cta{width:80px;white-space:normal}.date{font-family:monospace;font-size:11px;border-radius:17px;background:rgb(240,240,240)}
+.motion{width:40px;height:40px;animation:bad 2s infinite;transition:width .8s}
+@keyframes bad{from{left:0}to{left:20px}} .motion{position:relative}
+@media(prefers-color-scheme:dark){body{background:#121212;color:#eee}.dark-contrast{color:#333}}
+</style>
+<main id="app"><h1>Configuração do profissional</h1>
+<p class="receipt">Desativado em 18 set às 17:05 por Dra. Marina</p>
+<p class="date">18 de setembro</p><p class="dark-contrast">Texto secundário no tema escuro</p>
+<button class="cta">Desativar profissional agora</button><div class="motion" aria-hidden="true"></div>
+<section id="result" aria-live="polite">Carregando os registros do profissional</section>
+</main>
+<script>
+if(location.hash==='#type-scale')for(let n=10;n<24;n++){const span=document.createElement('span');span.style.fontSize=n+'px';span.textContent='Tipo '+n+' ';document.querySelector('main').append(span)}
+if(location.hash==='#runtime')throw Error('Seeded runtime failure');
+if(location.hash==='#blank') document.querySelector('main').replaceChildren();
+else if(location.protocol!=='file:') fetch('/api/records').then(async r=>{if(!r.ok)throw Error('Não foi possível carregar');return r.json()}).then(items=>{
+document.querySelector('#result').innerHTML=items.length?'<ul>'+items.map(x=>'<li>'+x.name+'</li>').join('')+'</ul>':'Nenhum registro. Adicione um profissional';
+document.querySelector('#result').dataset.state=items.length?'loaded':'empty';
+}).catch(()=>{document.querySelector('#result').textContent='Não foi possível carregar. Tente novamente';document.querySelector('#result').dataset.state='error'});
+</script></html>

@@ -1,0 +1,19 @@
+{
+  "product": "Clínica demonstração",
+  "synthetic": true,
+  "tokens": {"bodyFont":"Arial, sans-serif","monoRoles":["hour","axis","shortcut"],"rowHeight":40,"radius":6,"motionStateMs":160,"motionLayerMs":200,"motionCurve":"cubic-bezier(.16, 1, .3, 1)"},
+  "professional": {"id":"p-1","name":"Marina Albuquerque de Vasconcelos","active":true,"appointments":2},
+  "inactiveProfessional": {"id":"p-2","name":"João de Oliveira","active":false,"receipt":"Desativado em 18 set às 17:05 por Dra. Marina"},
+  "rows": {"count":300,"namePattern":"Profissional {n} Albuquerque de Vasconcelos","specialties":["Clínica geral","Pediatria"],"inactiveEvery":5},
+  "form": {"name":"Marina Albuquerque de Vasconcelos","email":"marina@example.test","invalidEmail":"marina@","serverError":"Não foi possível salvar. Seus dados foram mantidos. Tente novamente."},
+  "longContent": {
+    "professionalName":"Marina Albuquerque de Vasconcelos Albuquerque de Vasconcelos",
+    "formName":"Marina Albuquerque de Vasconcelos Albuquerque de Vasconcelos",
+    "rowSuffix":" Albuquerque de Vasconcelos Albuquerque de Vasconcelos",
+    "applyToAllRows":true,
+    "receipt":"Desativado em 18 set às 17:05 por Dra. Marina Albuquerque de Vasconcelos Albuquerque de Vasconcelos"
+  },
+  "states": ["default","loading","empty","error","long"],
+  "viewports": [1440,768,390,320],
+  "themes": ["light","dark"]
+}

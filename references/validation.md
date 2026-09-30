@@ -63,3 +63,9 @@ Não use média de notas para ocultar bloqueadores. Perda de dados, caminho prin
 ## Entrega
 
 Informe o resultado concreto, os componentes reutilizados/adaptados, os testes executados e qualquer pendência relevante. Cole o output de comando quando o projeto exigir. Distinga revisão estrutural da skill, teste funcional do produto e julgamento visual; nenhum deles prova os demais.
+
+## Matriz obrigatória e acabamento
+
+Use [inspection.md](inspection.md) para sessão/mock e as opções do inspector; [estados.md](estados.md) para o contrato dos estados. Cubra os temas suportados e estados afetados em 1440, 768 e 390 px, acrescente 320 px para reflow quando aplicável. Preserve seletor esperado por estado e confira o conteúdo da captura. Sem sessão válida, mock de contrato ou estado comprovado, a linha correspondente fica pendente.
+
+Antes da prova, aplique [acabamento.md](acabamento.md): papéis de fonte, tokens, microinterações pertinentes, movimento reduzido e identidade observável. O relatório de consistência/motion traz heurísticas, com justificativas necessárias para exceções. Avaliação cega de aparência segue [visual-evaluation.md](../evals/visual-evaluation.md).

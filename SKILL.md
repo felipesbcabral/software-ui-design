@@ -1,8 +1,8 @@
 ---
 name: software-ui-design
-description: "Projeta, redesenha e revisa telas de software (SaaS, painel admin, dashboard, ERP, CRM, app interno) reutilizando componentes prontos de um acervo com 300+ componentes revisados e capturados, mais design systems oficiais (Carbon, Cloudscape, Fluent, Primer, Atlassian, shadcn). Cobre sidebar e menu superior, tabelas e grids, formulários CRUD, busca, filtros, command palette, calendários, tooltips, popovers, modais, drawers, login, cadastro, esqueci senha, 2FA, configurações de conta, chat de IA, upload, loading, skeletons, estados vazios, onboarding e leis de UX (Fitts, Hick, Miller). Mede o resultado com um script de inspeção (largura usada, foco, contraste, tooltip no teclado). Use sempre que o pedido envolver uma tela de trabalho de software, mesmo sem a palavra design: 'essa tela tá feia', 'o menu não parece moderno', 'quero ver mais registros', 'cria a tela de configurações', 'melhora o painel'. Não use para landing page, site institucional ou peça de marketing."
+description: "Cria, redesenha e revisa telas de trabalho de SaaS, painéis, ERP, CRM e apps internos. Prioriza o design system do projeto e componentes revisados; cobre densidade, estados, acabamento e padrões de interação. Inspeciona aplicações logadas com sessão ou mock, temas, estados, regras locais e capturas comparadas. Atua como acompanhante quando outra skill conduz a direção visual. Use para telas operacionais, inclusive pedidos de melhorar aparência ou mostrar mais registros. Não use para landing pages ou marketing."
 metadata:
-  version: "2.1.0"
+  version: "2.3.0"
 ---
 
 # Software UI Design
@@ -15,26 +15,29 @@ As instruções do projeto vencem esta skill: tokens, componentes, stack e regra
 
 Nenhuma cor, fonte, raio ou pacote de ícones é universal. Branco puro, tema escuro, Inter, fonte de sistema e Lucide são escolhas válidas quando justificadas.
 
+## Modo acompanhante
+
+Quando o projeto ou o usuário atribuir a direção a impeccable, design-taste-frontend, ui-ux-pro-max ou outra skill, use esta como acompanhante. A direção e a fundação continuam com a skill designada. Esta fornece contrato, densidade, padrões operacionais, matriz de estados, acabamento compatível e prova medida. Reutilize o workflow ativo; não abra um segundo redesign, não imponha preset nem peça nova escolha de marca. Leia referências só para a decisão atual. Sem diretiva concorrente, conduza o fluxo completo abaixo.
+
 ## Fluxo
 
-Copie este checklist na resposta e marque conforme avança. Numa correção pequena (um alinhamento, um estado), faça só os passos 1, 4 e 5 sobre o componente afetado.
+Registre o progresso no artefato adotado pelo projeto. Numa correção pequena, faça contrato local, implementação, acabamento pertinente e prova do componente afetado; reutilize seleções ainda válidas.
 
 ```
-- [ ] 1. Contrato da tela: tarefa, volume, família, largura, densidade, quem rola
-- [ ] 2. Componentes: projeto -> acervo (--recommended/--saved) -> pesquisa online
-- [ ] 3. Composição com valores de partida e sem antipadrões
-- [ ] 4. Implementação com os estados reais
-- [ ] 5. Prova: rodar `node <skill-dir>/scripts/inspect-ui.mjs <arquivo> --widths 1440,768,390` (Playwright já vem instalado), olhar as capturas, corrigir, repetir
-- [ ] 6. Entrega: o que mudou, IDs usados, saída da verificação, limites
+- [ ] Contrato, volume e matriz de temas/estados/larguras
+- [ ] Design system do projeto, componentes inspecionados e composição
+- [ ] Implementação funcional e acabamento compatível
+- [ ] Prova medida, capturas vistas, web-design-guidelines no código e correções verificadas
+- [ ] Entrega com evidências, identidade e limites
 ```
 
 ### 1. Contrato da tela
 
 Escreva em uma frase: quem usa, com que frequência, quanto dado, qual a ação principal. Exemplo: "Lista de tarefas usada todo dia, 325 registros, busca frequente e edição rápida sem sair da lista." Escolha a família em [screen-patterns.md](references/screen-patterns.md) e decida largura, densidade e região que rola com [layout-navigation.md](references/layout-navigation.md). Pergunte só o que mudaria a solução e não dá para descobrir no código.
 
-### 2. Componentes prontos
+### 2. Design system e componentes prontos
 
-Ordem: componente que o projeto já tem, depois o acervo, depois pesquisa online. Comece pela [escolha rápida](references/component-picks.md), que dá a primeira escolha por necessidade, o que corrigir e o que evitar. Para abrir a ficha, o código arquivado e a captura:
+Antes do acervo, procure DESIGN.md, tokens em CSS/tema, componentes compartilhados, variantes, ícones e harness visual do projeto. Registre fundação, papéis de fonte e temas suportados. Reutilize os componentes que cobrem a necessidade; consulte o acervo somente para lacunas ou comparação pertinente. Na entrega, cite o arquivo local e qual lacuna exigiu fonte externa. Ordem: projeto, acervo, pesquisa online. Comece pela [escolha rápida](references/component-picks.md), que dá a primeira escolha por necessidade, o que corrigir e o que evitar. Para abrir a ficha, o código arquivado e a captura:
 
 ```sh
 node <skill-dir>/scripts/find-resources.mjs --recommended "tabela"
@@ -58,7 +61,7 @@ As primeiras escolhas mais pedidas, para não começar do zero:
 | Ícones | `11-icones-05` (Lucide) |
 | Comentários / copiloto com etapas / Gantt | `19-colaboracao-atividade-11` / `06-chats-ia-20` / `16-quadros-cronogramas-17` |
 
-Para cada família que a tela usa (shell, tabela, filtro, formulário, sobreposição, estado), rode a busca antes de escrever código e anote o ID escolhido; esses IDs vão para a linha **Componentes** da entrega. O resultado vem ordenado pelo veredito da revisão (recomendado, adaptar, referência). Abra a ficha e a captura antes de escolher: busca não é inspeção. Os arquivos `picks-*.md` explicam cada veredito com evidência (linha de código, captura, interação). Reutilize ou adapte o código quando a stack for compatível; se não for, adapte o padrão aos componentes do projeto e diga o que foi aproveitado. Pesquise online quando o acervo não cobrir (as lacunas estão no fim da escolha rápida), quando a licença ou a versão precisarem de conferência, ou quando o usuário pedir. Confira a licença antes de copiar código. O acervo, os estudos e os DESIGN.md revisados estão descritos em [local-library.md](references/local-library.md).
+Para cada família afetada, inspecione primeiro a implementação do projeto. Quando faltar solução, rode a busca e anote o ID escolhido. Arquivos locais ou IDs inspecionados vão para a linha **Componentes** da entrega; não faça busca externa ritual quando o design system já cobre a tarefa. O resultado vem ordenado pelo veredito da revisão (recomendado, adaptar, referência). Abra a ficha e a captura antes de escolher: busca não é inspeção. Os arquivos `picks-*.md` explicam cada veredito com evidência (linha de código, captura, interação). Reutilize ou adapte o código quando a stack for compatível; se não for, adapte o padrão aos componentes do projeto e diga o que foi aproveitado. Pesquise online quando o acervo não cobrir (as lacunas estão no fim da escolha rápida), quando a licença ou a versão precisarem de conferência, ou quando o usuário pedir. Confira a licença antes de copiar código. O acervo, os estudos e os DESIGN.md revisados estão descritos em [local-library.md](references/local-library.md).
 
 ### 3. Composição
 
@@ -72,7 +75,7 @@ Use os [valores de partida](references/defaults.md) quando o projeto não tiver 
 - **Paleta apagada.** Superfícies com degraus claros, texto secundário com 4,5:1, cor de ação separada da cor de estado.
 - **Sidebar escondida por padrão.** No desktop a partir de 1280 px a sidebar abre expandida, com grupos e nomes visíveis; o rail só com ícones fica para quando a pessoa recolhe (e a escolha é lembrada) ou para 1024 a 1279 px.
 - **Login e cadastro genéricos.** Em SaaS, use tela dividida no desktop a partir de 1024 px: formulário de um lado, painel de marca do outro com uma prévia real do produto (um card de saldo, uma lista, um gráfico feito com a própria UI, marcado como dados ilustrativos). Cartão centralizado só em ferramenta interna. No celular, só o formulário.
-- **Correto e sem identidade.** Passar em todas as checagens não basta: a tela precisa de pelo menos um traço do produto (marca no shell, cor de destaque com critério, um detalhe como avatar, status colorido ou prévia de dados). Compare a captura com Linear, Stripe ou Vercel antes de entregar.
+- **Correto e sem identidade.** Passar nas checagens exige também uma revisão de aparência. Em criação/redesign, registre três traços observáveis nos papéis de fonte, ritmo/densidade e tratamento de ação/estado, conforme acabamento.md; em refinamento, preserve a identidade existente. Compare capturas com uma referência aprovada para a mesma família de tela.
 - **Tudo com o mesmo peso.** Vários botões preenchidos lado a lado, Salvar só no topo de um formulário longo, Excluir colado em Salvar. Um botão preenchido por região, junto de onde a tarefa termina; ação destrutiva em zona separada.
 - **Progresso inventado ou perdido.** Com pedido de barra que "já começa em X%", faça nesta ordem: (1) liste um item por tarefa do pedido, com as opcionais marcadas como opcionais e ainda na lista, mais o que já foi feito (conta criada); (2) só então calcule a barra como N de M. O número pedido não é meta: se não bater, a barra mostra N de M e a entrega registra a troca. Checklist salvo a cada etapa e retomável ao recarregar.
 - **Convenção quebrada.** Logo que não leva ao início, Sair fora do menu da conta, destino mais usado abaixo de outros sem uso conhecido, CNPJ ou código de recuperação sem separação. Siga a tabela de convenções e a ordem por uso.
@@ -83,18 +86,27 @@ Para a direção visual (cor, tipo, tema escuro, acabamento), leia [visual-langu
 
 ### 4. Implementação
 
-Siga [components.md](references/components.md) para o comportamento de cada controle. Implemente a tarefa principal e os estados que existem de fato: carregando, vazio, sem resultado, erro, sem permissão, salvando. Busca, filtro, ordenação e seleção operam sobre o mesmo conjunto. Dados digitados sobrevivem a falhas. Não acrescente gráfico, aba, atalho ou animação para preencher espaço. Use conteúdo representativo: nomes longos, volume real e todos os estados.
+Siga [components.md](references/components.md) para o comportamento de cada controle. Implemente a tarefa principal e os estados que existem de fato: carregando, vazio, sem resultado, erro, sem permissão, salvando. Use [estados.md](references/estados.md) para comportamento e prova; defina dados, gatilho e seletor esperado de cada estado antes de capturar. Busca, filtro, ordenação e seleção operam sobre o mesmo conjunto. Dados digitados sobrevivem a falhas. Não acrescente gráfico, aba, atalho ou animação para preencher espaço. Use conteúdo representativo: nomes longos, volume real e todos os estados.
 
-### 5. Prova
+### 5. Acabamento
 
-Renderize a tela e rode a inspeção. Ela salva capturas e aponta problemas mensuráveis:
+Use [acabamento.md](references/acabamento.md) para tokens de motion, microinterações e padrões como desfazer, atualização otimista, edição inline, atalhos e recibos. Aplique só os padrões que servem à tarefa. Confira papéis de fonte, alinhamento, hover/foco/ativo e interrupção de camadas. Em criação/redesign, registre três traços observáveis de identidade; em refinamento, registre os preservados, sem criar decoração para cumprir contagem. Para motion além dos tokens, use design-motion-principles e emil-design-eng quando disponíveis. Respeite a direção da skill principal no modo acompanhante.
+
+### 6. Prova
+
+Renderize a tela e rode a inspeção compartilhada, sem copiá-la para injetar sessão ou mocks. Leia [inspection.md](references/inspection.md) para setup, contrato de mock, regras do projeto e comparação. Ela salva a matriz em report.json e index.html e aponta problemas mensuráveis:
 
 ```sh
-node <skill-dir>/scripts/inspect-ui.mjs <url-ou-file://> --data-screen --widths 1440,768,390
+node <skill-dir>/scripts/inspect-ui.mjs <url-ou-file://> --data-screen --widths 1440,768,390 --color-scheme light,dark --reduced-motion no-preference,reduce
 ```
 
 | Achado | Significa | Correção típica |
 |---|---|---|
+| `blank` / `route-duplicate` | Região principal vazia ou igual à outra rota | Conferir montagem, sessão e seletor próprio da rota |
+| `truncated` / `cta-wrap` | Texto cortado no celular ou ação em duas linhas no desktop | Quebrar recibos; ajustar rótulo e largura da ação |
+| `rules` / `state` | Token/papel violado ou estado solicitado não apareceu | Corrigir regra do projeto ou fixture/seletor |
+| `consistency` | Quantidade de fontes, cores, raios ou sombras excede limite | Reutilizar tokens ou justificar variação |
+| `motion-*` | Duração longa, geometria animada ou movimento reduzido ignorado | Aplicar tokens, transform/opacidade e fallback |
 | `width-usage` | Tela de dados usando menos de 70% da área fora da navegação | Remover `max-width` do contêiner da lista |
 | `first-row` | Primeiro registro abaixo de 55% da altura | Compactar cabeçalho, filtros e resumo |
 | `overflow` | Página rola na horizontal | `min-width: 0`, rolagem dentro da tabela |
@@ -105,23 +117,27 @@ node <skill-dir>/scripts/inspect-ui.mjs <url-ou-file://> --data-screen --widths 
 | `tooltips` / `keyboard` | Dica só no hover ou controle só-ícone sem foco | `button`/`a` com foco e tooltip no foco |
 | `contrast` | Texto abaixo de 4,5:1 (3:1 grande) | Escurecer texto ou clarear fundo |
 
-Não entregue sem rodar a inspeção: nos testes desta skill, as telas entregues sem ela voltaram com rolagem lateral no celular, foco invisível e dezenas de textos abaixo do contraste, defeitos que a captura mostraria em um minuto. `--data-screen` liga as checagens de largura e primeira linha; não use em formulário ou login. O script procura Playwright em `PLAYWRIGHT_HOME`, na pasta atual e acima, na pasta acima da skill (a instalação padrão traz Playwright lá; `npm run setup` na pasta `software-ui-design` reinstala) e no npm global. Rode o comando antes de concluir que falta Playwright. Se não achar, ele imprime o comando para instalar numa pasta temporária; rode esse comando e repita. Só declare a prova pendente depois de tentar, citando o erro. Depois de rodar, **olhe as capturas** com a ferramenta de imagem: a medição não julga hierarquia nem acabamento. Corrija, rode de novo e pare quando não houver achado ou quando cada achado restante tiver justificativa escrita. Rode também os testes e gates do projeto. Sem navegador disponível, declare a revisão visual pendente. Critérios completos em [validation.md](references/validation.md).
+Para aplicação logada, use --storage-state ou --mock e um --expect próprio da rota; uma tela de login não comprova a tela alvo. Para estados reais, use --states loading,empty,error,long com mock que declare seletor esperado e resposta por estado. Prove todos os temas suportados, larguras pertinentes e movimento reduzido; não acrescente tema inexistente só para medir. A grade deve mostrar cada combinação aplicável; uma pendência de estado precisa de motivo explícito. Compare a mesma matriz antes/depois com --compare <pasta-antiga>.
 
-### 6. Entrega
+Não entregue sem rodar a inspeção: nos testes desta skill, as telas entregues sem ela voltaram com rolagem lateral no celular, foco invisível e dezenas de textos abaixo do contraste, defeitos que a captura mostraria em um minuto. `--data-screen` liga as checagens de largura e primeira linha; não use em formulário ou login. O script procura Playwright em `PLAYWRIGHT_HOME`, na pasta atual e acima, na pasta da skill e acima e no npm global. Rode o comando antes de concluir que falta Playwright. O pacote inclui package.json: `npm run setup` dentro da skill instala o runtime e Chromium quando necessário; não instale dependência no produto só para inspecionar. Se a descoberta falhar, use o comando indicado pelo erro e repita. Só declare a prova pendente depois de tentar, citando o erro. Depois de rodar, **olhe as capturas** com a ferramenta de imagem: a medição não julga hierarquia nem acabamento. Com a skill `web-design-guidelines` disponível, rode-a em seguida sobre os arquivos de UI alterados: ela lê o código e pega o que a captura não mostra (semântica de formulário, `autocomplete`, `aria-live`, estados de foco e tecla, confirmação destrutiva). Trate cada achado como os da inspeção; quando conflitar com o design system ou com as regras do projeto, vence o projeto e a entrega registra o motivo. Sem a skill, siga sem ela e não declare pendência. Corrija, rode de novo e pare quando não houver achado ou quando cada achado restante tiver justificativa escrita. Rode também os testes e gates do projeto. Sem navegador disponível, declare a revisão visual pendente. Critérios completos em [validation.md](references/validation.md).
+
+### 7. Entrega
 
 Use este modelo na resposta (ou no documento de decisões do projeto, se ele existir):
 
 ```markdown
 **Tela:** <arquivo ou rota> · <família e contrato em uma frase>
-**Componentes:** <IDs do acervo (ex.: 08-tabelas-grids-04) ou URL + commit> · <reuso de código ou adaptação de padrão> · <licença>
+**Componentes:** <arquivos do projeto e/ou IDs/URL + commit inspecionados> · <lacuna que exigiu acervo, ou nenhuma> · <reuso/adaptação e licença quando houver código externo>
 **Valores:** <sidebar, altura de linha, espaço, tipo> · <token do projeto ou fonte de defaults.md>
 **Convenções:** <desvios da tabela de convenções de ux-laws.md e o motivo, ou "nenhum"> · <pedido trocado por uma lei, ex.: progresso fixo virou N de M>
-**Inspeção:** antes <achados> -> depois <achados>, larguras <1440, 768, 390>; capturas vistas: <sim/quais>
+**Acabamento:** <tokens e microinterações aplicáveis> · <três traços de identidade em criação/redesign, ou preservados em refinamento>
+**Estados:** <matriz rota × tema × largura × estado × movimento, com caminhos das capturas e estado verificado>
+**Inspeção:** antes <achados> -> depois <achados>; <report.json, index.html e imagens comparadas>; capturas vistas: <quais>
 **Testes:** <comandos e resultado>
 **Pendente:** <o que não foi verificado e por quê>
 ```
 
-Conformidade técnica e qualidade visual são conclusões separadas; não afirme a segunda sem ter olhado a captura. Sem ID nem fonte na linha de componentes, a escolha não foi inspecionada: volte ao passo 2.
+Conformidade técnica e qualidade visual são conclusões separadas; não afirme a segunda sem ter olhado a captura. Sem arquivo local inspecionado, ID ou fonte na linha de componentes, volte ao passo 2. Zero achados não prova beleza: a aparência requer capturas e avaliação visual; para manter a skill, use a comparação independente em evals/visual-evaluation.md.
 
 ## Exemplos
 
@@ -150,6 +166,9 @@ Conformidade técnica e qualidade visual são conclusões separadas; não afirme
 | Design systems oficiais e leitura de DESIGN.md | [design-systems.md](references/design-systems.md) |
 | Acervo local, estudos e caminho | [local-library.md](references/local-library.md) |
 | Catálogos externos e outras skills | [research-and-skills.md](references/research-and-skills.md) |
+| Sessão, mock, temas, estados, regras e comparação | [inspection.md](references/inspection.md) |
+| Comportamento e prova dos estados | [estados.md](references/estados.md) |
+| Motion, microinterações, identidade e padrões de SaaS | [acabamento.md](references/acabamento.md) |
 | Critérios de aceite e evidência | [validation.md](references/validation.md) |
 | Origem e atribuições | [sources.md](references/sources.md) |
 

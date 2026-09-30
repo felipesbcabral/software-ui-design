@@ -52,3 +52,5 @@ Use os tempos e curvas existentes. Não introduza biblioteca de animação para 
 Verifique se a tela parece pertencer ao mesmo produto e se os controles são reconhecíveis. Observe se a área de trabalho recebe mais atenção que o entorno, se a seleção é evidente, se a paleta tem contraste suficiente e se o espaçamento ajuda a agrupar.
 
 “Bonito”, “moderno” e “premium” não bastam como achados. Descreva o efeito: o item ativo se perde, a busca fica distante da lista, títulos empurram dados para baixo, ou todos os botões competem pela atenção. Uma interface familiar e bem resolvida pode ser a melhor escolha.
+
+Para a passada de acabamento antes da prova, use [acabamento.md](acabamento.md). Para tempo e comportamento de skeleton, erro, vazio e conteúdo longo, use [estados.md](estados.md). Os tokens do projeto prevalecem; o inspector pode conferir papéis por seletor em ui-rules.json.

@@ -40,3 +40,7 @@ Os três primeiros viraram os evals 4 a 6 de `evals.json`. A base com a 2.0.0 (2
 | “Aplica a lei de Fitts e joga as ações para o canto da tela, que é alvo infinito.” | Explicar que a borda só ajuda em menu do sistema com mouse; manter a ação junto de onde a tarefa termina. |
 
 Estes casos são insumos de avaliação. Uma leitura editorial do próprio autor não é execução por outro agente e não deve ser reportada como avaliação independente.
+
+## Uso real convertido em regressão
+
+Os evals 7 a 9 cobrem configuração/desativação, lista com 300 registros e formulário com erro, inspirados no relato do ConsultaNow de 30/09/2026. Dados são sintéticos em inputs/saas-data.json; não há teste executado no ConsultaNow por este pacote. A execução com/sem skill e o juiz cego seguem [visual-evaluation.md](visual-evaluation.md). Notas por versão e limitações ficam em results/.

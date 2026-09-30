@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "rules": [
+    {"selector":".date","fontFamily":["Arial"],"minFontSize":14,"radii":["4px"],"colors":["rgb(0, 0, 0)"]}
+  ],
+  "consistency": {"maxFontSizes":6,"maxColors":12,"maxRadii":6,"maxShadows":4}
+}

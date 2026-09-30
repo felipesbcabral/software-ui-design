@@ -3,7 +3,9 @@
 //
 // Usage:
 //   node scripts/inspect-ui.mjs <url> [--out <dir>] [--widths 1440,390] [--height 900]
-//        [--tabs 25] [--wait 1500] [--data-screen] [--json]
+//        [--storage-state auth.json] [--mock mock.mjs] [--states loading,empty,error,long]
+//        [--color-scheme light,dark] [--rules ui-rules.json] [--compare old-dir]
+// Run --help for the complete CLI. Themes/states/motion are isolated browser contexts.
 //
 // For each width it saves a screenshot and reports measurable issues:
 //   overflow       horizontal page scroll (content wider than viewport)
@@ -15,28 +17,21 @@
 //   tooltips       icon-only controls whose tooltip appears on hover but not on keyboard focus
 //   contrast       sampled text below WCAG 1.4.3 (4.5:1 normal text, 3:1 large text)
 // Findings are evidence to look at, not an automatic verdict: always view the screenshot too.
-// Exit code: 0 = ran (findings may exist), 2 = usage error, 3 = Playwright missing, 4 = page failed.
+// Exit: 0 ran (may have findings), 1 findings with --fail-on-findings, 2 usage, 3 no Playwright, 4 failed run.
 
 import { createRequire } from 'node:module';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { options, inspectExtras, compareScreenshot, writeGallery } from './inspection-support.mjs';
 
 const args = process.argv.slice(2);
-const url = args.find((a) => !a.startsWith('--') && !isOptionValue(a));
-function isOptionValue(a) {
-  const i = args.indexOf(a);
-  return i > 0 && ['--out', '--widths', '--height', '--tabs', '--wait'].includes(args[i - 1]);
-}
-function opt(name, fallback) {
-  const i = args.indexOf(name);
-  return i >= 0 && args[i + 1] ? args[i + 1] : fallback;
-}
-if (!url) {
-  console.error('usage: node inspect-ui.mjs <url> [--out dir] [--widths 1440,390] [--height 900] [--tabs 25] [--data-screen] [--json]');
-  process.exit(2);
-}
+const usage='usage: node inspect-ui.mjs <url> [url2 ...] [--out dir] [--widths 1440,768,390] [--height 900] [--tabs 25] [--wait 1500] [--storage-state auth.json] [--mock mock.mjs] [--color-scheme light,dark] [--states default,loading,empty,error,long] [--rules ui-rules.json] [--ready selector] [--expect selector] [--timeout 5000] [--reduced-motion no-preference,reduce] [--compare old-dir] [--data-screen] [--full-page] [--fail-on-findings] [--json]';
+let config;
+try {config=await options(args);} catch(error) {console.error(error.message);console.error(usage);process.exit(2);}
+if(config.help){console.log(usage);process.exit(0);}
 
 // WCAG 2.2 SC 2.5.8 Target Size (Minimum) is 24x24 CSS px.
 const MIN_TARGET = 24;
@@ -44,12 +39,8 @@ const MIN_TARGET = 24;
 // 0.7 leaves room for a 240-320px sidebar plus normal page margins (Atlassian side nav 240-320px,
 // Carbon left panel 256px, Fluent Nav 260px) before flagging.
 const DATA_SCREEN_MIN_SHARE = 0.7;
-const outDir = resolve(opt('--out', 'ui-inspection'));
-const widths = opt('--widths', '1440,390').split(',').map(Number).filter(Boolean);
-const height = Number(opt('--height', '900'));
-const tabs = Number(opt('--tabs', '25'));
-const wait = Number(opt('--wait', '1500'));
-const dataScreen = args.includes('--data-screen');
+const {outDir,widths,height,tabs,wait}=config;
+const dataScreen = config['data-screen'];
 
 // Look for Playwright in: PLAYWRIGHT_HOME, the current folder and its parents, this skill's folder and
 // its parents, and the global npm root. Agents often run from a scratch folder without node_modules,
@@ -95,24 +86,48 @@ if (!pw || !pw.chromium) {
 }
 
 mkdirSync(outDir, { recursive: true });
-const report = { url, generated_at: new Date().toISOString(), runs: [] };
-const browser = await pw.chromium.launch();
+const report = { version:'2.2.0', url:config.urls[0], urls:config.urls, generated_at: new Date().toISOString(), runs: [] };
+let browser;
+try {browser = await pw.chromium.launch();} catch(error) {console.error(`Chromium failed: ${error.message.split('\n')[0]}`);process.exit(4);}
+const fingerprints=new Map();
 
 try {
-  for (const width of widths) {
-    const page = await browser.newPage({ viewport: { width, height } });
+  for (const url of config.urls) for (const colorScheme of config.themes) for (const state of config.states) for(const reducedMotion of config.motions) for (const width of widths) {
+    const context = await browser.newContext({viewport:{width,height},colorScheme,reducedMotion,
+      ...(config['storage-state']?{storageState:resolve(config['storage-state'])}:{}),serviceWorkers:config.mock?'block':'allow'});
+    const page = await context.newPage();
+    page.setDefaultTimeout(config.timeout);
+    const consoleErrors=[],pageErrors=[],networkErrors=[];
+    page.on('console',msg=>{if(msg.type()==='error')consoleErrors.push(msg.text().slice(0,300));});
+    page.on('pageerror',error=>pageErrors.push(error.message.slice(0,300)));
+    page.on('requestfailed',req=>networkErrors.push({url:req.url().split('?')[0],error:req.failure()?.errorText}));
+    const routeKey=createHash('sha256').update(url).digest('hex').slice(0,10);
+    const key=`${routeKey}-${width}-${colorScheme}-${state}-${reducedMotion}`;
+    const run={key,url,width,height,color_scheme:colorScheme,state,reduced_motion:reducedMotion};
+    try {
+    const definition=config.mock?.states?.[state]||{};
+    let setup={};
     let status = null;
     try {
+      setup=await config.mock?.default({page,context,url,width,height,state,colorScheme,reducedMotion})||{};
       const res = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
       status = res ? res.status() : null;
+      const ready=definition.ready||setup.ready||config.ready;
+      if(ready)await page.locator(ready).first().waitFor({state:'visible'});
+      await setup.beforeCapture?.({page,context,state});
     } catch (e) {
-      report.runs.push({ width, error: e.message.split('\n')[0] });
-      await page.close();
+      report.runs.push({ ...run,error: e.message.split('\n')[0] });
+      await context.close();
       continue;
     }
-    await page.waitForTimeout(wait);
-    const shot = join(outDir, `screen-${width}.jpg`);
-    await page.screenshot({ path: shot, type: 'jpeg', quality: 75 });
+    let expectationError=null;
+    const expect=definition.expect||setup.expect||config.expect;
+    await page.waitForTimeout(definition.captureAfter??setup.captureAfter??wait);
+    if(expect)try{await page.locator(expect).first().waitFor({state:'visible'});}catch(error){expectationError=error.message.split('\n')[0];}
+    // Never wait for API/network idle: that would skip a loading state under test.
+    const legacy=config.urls.length===1&&config.themes.length===1&&colorScheme==='light'&&config.states.length===1&&state==='default'&&config.motions.length===1&&reducedMotion==='no-preference';
+    const shot = join(outDir, legacy?`screen-${width}.jpg`:`screen-${key}.jpg`);
+    await page.screenshot({ path: shot, type: 'jpeg', quality: 75, fullPage:config['full-page']||false });
 
     const metrics = await page.evaluate(({ MIN_TARGET }) => {
       const vw = window.innerWidth;
@@ -261,6 +276,13 @@ try {
       };
     }, { MIN_TARGET });
 
+    Object.assign(metrics,await inspectExtras(page,config.rules));
+    const fingerprint=createHash('sha256').update(metrics.main_text).digest('hex');
+    delete metrics.main_text;
+    const fingerprintKey=`${width}-${colorScheme}-${state}-${reducedMotion}-${fingerprint}`;
+    const previousRoute=fingerprints.get(fingerprintKey);
+    fingerprints.set(fingerprintKey,url);
+
     // Focus visibility across Tab stops.
     const focus = [];
     await page.mouse.click(1, 1).catch(() => {});
@@ -334,12 +356,24 @@ try {
     await page.evaluate(() => document.querySelectorAll('[data-iv]').forEach((e) => e.removeAttribute('data-iv')));
 
     const findings = [];
+    if(metrics.blank)findings.push('blank: região principal sem conteúdo, controles ou indicador de carregamento visível');
+    if(previousRoute&&previousRoute!==url)findings.push(`route-duplicate: mesmo conteúdo principal que ${previousRoute}; verificar rota, login e montagem (heurística)`);
+    if(expectationError)findings.push(`state: seletor esperado ${expect} não ficou visível (${expectationError})`);
+    if(status>=400)findings.push(`http: documento retornou ${status}`);
+    if(pageErrors.length)findings.push(`runtime: ${pageErrors.length} erros JavaScript (primeiro: ${pageErrors[0]})`);
+    if(width<=768&&metrics.truncated.length)findings.push(`truncated: ${metrics.truncated.length} textos com reticência ou clamp excedem a área; verificar acesso ao conteúdo completo`);
+    if(width>=1024&&metrics.cta_wrap.length)findings.push(`cta-wrap: ${metrics.cta_wrap.length} ações com texto em mais de uma linha no desktop`);
+    if(metrics.rule_violations.length)findings.push(`rules: ${metrics.rule_violations.length} violações de regras do projeto (${[...new Set(metrics.rule_violations.map(v=>v.property))].join(', ')})`);
+    for(const warning of metrics.consistency_warnings)findings.push(`consistency: ${warning} (heurística)`);
+    if(metrics.motion_durations.length)findings.push(`motion-duration: ${metrics.motion_durations.length} transições/animações acima de ${config.rules.consistency?.maxDuration??500}ms (revisar finalidade)`);
+    if(metrics.motion_layout.length)findings.push(`motion-layout: ${metrics.motion_layout.length} animações de geometria ou transition:all (revisar custo)`);
+    if(metrics.motion_reduced.length)findings.push(`motion-reduced: ${metrics.motion_reduced.length} animações continuam com movimento reduzido`);
     if (metrics.overflow_px) findings.push(`overflow: página rola ${metrics.overflow_px}px na horizontal`);
     if (dataScreen && width >= 1280 && metrics.content_share_excluding_nav < DATA_SCREEN_MIN_SHARE) {
       findings.push(`width-usage: conteúdo usa ${Math.round(metrics.content_share_excluding_nav * 100)}% da área fora da navegação (${metrics.content_region.left}px à esquerda, ${metrics.content_region.right}px à direita) numa tela de dados`);
     }
     if (dataScreen && metrics.first_row_y && metrics.first_row_y > height * 0.55) findings.push(`first-row: primeira linha de dados em y=${metrics.first_row_y}px, abaixo de 55% da altura`);
-    if (dataScreen && metrics.first_row_y === null) findings.push('first-row: nenhuma linha ou item de lista visível no carregamento');
+    if (dataScreen && !['loading','empty','error','permission'].includes(state) && metrics.first_row_y === null) findings.push('first-row: nenhuma linha ou item de lista visível no carregamento');
     if (metrics.collapsed_cells_count) findings.push(`columns: ${metrics.collapsed_cells_count} células de tabela com texto e menos de 32px de largura (coluna esmagada)`);
     if (metrics.small_targets_count) findings.push(`targets: ${metrics.small_targets_count} controles menores que ${MIN_TARGET}x${MIN_TARGET}px (conferir exceções do SC 2.5.8)`);
     if (metrics.unnamed_controls.length) findings.push(`names: ${metrics.unnamed_controls.length} botões/links sem nome acessível`);
@@ -350,8 +384,15 @@ try {
     if (notFocusable.length) findings.push(`keyboard: ${notFocusable.length} controles clicáveis só com ícone não recebem foco (ex.: ${notFocusable[0]})`);
     if (metrics.low_contrast_count) findings.push(`contrast: ${metrics.low_contrast_count} textos amostrados abaixo do mínimo WCAG`);
 
-    report.runs.push({ width, height, http: status, screenshot: shot, findings, metrics, focus_stops: focus, no_focus_indicator: noFocusIndicator, tooltip_parity: tooltipParity, clickable_not_focusable: notFocusable });
-    await page.close();
+    Object.assign(run,{http:status,final_url:page.url(),screenshot:shot,findings,metrics,fingerprint,
+      state_verified:expect?!expectationError:state==='default'&&!metrics.blank,expected_selector:expect||null,
+      console_errors:consoleErrors,page_errors:pageErrors,network_errors:networkErrors,
+      focus_stops:focus,no_focus_indicator:noFocusIndicator,tooltip_parity:tooltipParity,clickable_not_focusable:notFocusable});
+    if(config.previous)await compareScreenshot(page,run,config.previous,outDir,config.compare);
+    report.runs.push(run);
+    } catch(error) {
+      report.runs.push({...run,error:error.message.split('\n')[0]});
+    } finally {await context.close();}
   }
 } finally {
   await browser.close();
@@ -359,16 +400,18 @@ try {
 
 const jsonPath = join(outDir, 'report.json');
 writeFileSync(jsonPath, JSON.stringify(report, null, 1));
+writeGallery(report,outDir);
 if (args.includes('--json')) {
   console.log(JSON.stringify(report, null, 1));
 } else {
   for (const run of report.runs) {
     if (run.error) { console.log(`[${run.width}px] FAIL ${run.error}`); continue; }
-    console.log(`[${run.width}px] HTTP ${run.http} | screenshot ${run.screenshot}`);
+    console.log(`[${run.width}px ${run.color_scheme} ${run.state} ${run.reduced_motion}] HTTP ${run.http} | screenshot ${run.screenshot}`);
     console.log(`  content ${run.metrics.content_region.width}px (${Math.round(run.metrics.content_share * 100)}% of viewport; nav ${run.metrics.nav_width}px) | first row y=${run.metrics.first_row_y ?? 'n/a'}`);
     if (!run.findings.length) console.log('  no automatic findings (still look at the screenshot)');
     for (const f of run.findings) console.log(`  - ${f}`);
   }
   console.log(`report: ${jsonPath}`);
 }
-if (report.runs.length && report.runs.every((r) => r.error)) process.exit(4);
+if (report.runs.some((r) => r.error)) process.exit(4);
+if(config['fail-on-findings']&&report.runs.some(r=>r.findings.length))process.exit(1);

@@ -68,7 +68,7 @@ Lista para revisar uma tela antes de entregar. Cada item traz o sinal que denunc
 
 31. **Rail recolhido como estado inicial no desktop.** Sinal: a primeira impressão é uma coluna de ícones. Troca: expandida a partir de 1280 px, rail por escolha da pessoa.
 32. **Login em cartão centralizado num SaaS.** Sinal: um cartão branco no meio de um fundo cinza, sem nada do produto. Troca: tela dividida com painel de marca e prévia do produto; cartão só em ferramenta interna.
-33. **Tela sem nenhum traço do produto.** Sinal: passaria por qualquer template. Troca: marca no shell, cor de destaque com critério, um detalhe com significado (avatar, status colorido, prévia de dados).
+33. **Tela sem traços observáveis do produto.** Sinal: passaria por qualquer template. Troca: em criação/redesign, registrar três traços em tipografia, ritmo/densidade e tratamento de ação/estado; em refinamento, preservar os existentes. Prova na captura e na linha Acabamento, conforme [acabamento.md](acabamento.md); logo sozinho não basta.
 
 ## Leis de UX aplicadas errado ou esquecidas
 

@@ -2,7 +2,7 @@
 
 ## Acervo primeiro; pesquisa externa para lacunas
 
-Para cada criação ou mudança visual, consulte os componentes do projeto e o [acervo local](local-library.md). Inspecione código e licença dos candidatos salvos. Pesquise na internet quando o acervo não atender, houver evidência desatualizada ou o usuário pedir uma busca atual. O tamanho da busca acompanha a necessidade: uma correção de combobox não exige pesquisar dashboards inteiros.
+Para cada criação ou mudança visual, consulte primeiro os componentes do projeto. Use o [acervo local](local-library.md) quando houver lacuna concreta ou comparação pertinente; registre qual componente faltou. Inspecione código e licença dos candidatos salvos. Pesquise na internet quando o acervo não atender, houver evidência desatualizada ou o usuário pedir uma busca atual. O tamanho da busca acompanha a necessidade: uma correção de combobox não exige pesquisar dashboards inteiros.
 
 Use busca web, navegador ou conectores de catálogo disponíveis. Confirme as ferramentas existentes; não invente chamada de CLI ou MCP. A consulta local ao resources.json encontra fontes, mas não é evidência de inspeção atual na internet.
 
@@ -88,3 +88,7 @@ Não instale especialistas, plugins ou pacotes só para cumprir esta tabela. Use
 ## Ampliação do diretório
 
 O `registry-resources.json` guarda 382 registries do diretório shadcn com proveniência. Use `--all` para descoberta e as fontes S do `software-resources.json` para uma shortlist operacional. O estudo CATALOGOS-E-REUSO.md do acervo compara os catálogos por necessidade. Um índice HTTP não prova qualidade, licença nem execução. Para padrões de empresas, leia [design-systems.md](design-systems.md) e consulte a superfície correta.
+
+## Convivência com a direção existente
+
+Se outra skill conduz a direção, use o modo acompanhante do SKILL.md: contrato, padrões operacionais, estados, acabamento compatível e inspeção. Não substitua os tokens, não duplique o loop visual e não faça pesquisa externa ritual para controles já cobertos pelo projeto. Um arquivo/componente local inspecionado é fonte válida na entrega.

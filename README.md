@@ -2,7 +2,7 @@
 
 Skill para projetar, redesenhar e revisar telas de software: SaaS, painel administrativo, dashboard, ERP, CRM e app interno. Ela escolhe componentes já revisados em vez de desenhar do zero, aplica valores de design systems oficiais e prova o resultado com medição e captura de tela.
 
-Funciona no Claude Code e no Codex. As instruções estão em português. Versão 2.1.0.
+Funciona no Claude Code e no Codex. As instruções estão em português. Versão 2.3.0.
 
 ## Instalar
 
@@ -24,14 +24,10 @@ Para atualizar, rode `git pull` dentro da pasta da skill.
 
 ## Inspeção de tela
 
-`scripts/inspect-ui.mjs` abre a tela em várias larguras, salva capturas e aponta o que dá para medir: rolagem lateral, largura útil, primeira linha abaixo da dobra, colunas esmagadas, alvos pequenos, controles sem nome, foco invisível, dica só no hover e contraste. Precisa do Playwright com o Chromium, instalado uma vez no projeto:
+`scripts/inspect-ui.mjs` abre a tela em várias larguras, salva capturas e aponta o que dá para medir: rolagem lateral, largura útil, primeira linha abaixo da dobra, colunas esmagadas, alvos pequenos, controles sem nome, foco invisível, dica só no hover e contraste. Reutilize o Playwright do harness quando disponível. Se faltar o runtime ou Chromium, execute dentro da pasta da skill, com Node 20 ou superior:
 
 ```bash
-npm install -D playwright
-```
-
-```bash
-npx playwright install chromium
+npm run setup
 ```
 
 Exemplo, com a tela rodando em `localhost:3000`:
@@ -52,7 +48,7 @@ O acervo com o código arquivado, as capturas e a licença de cada componente n�
 
 | Caminho | O que tem |
 |---|---|
-| `SKILL.md` | O fluxo em seis passos: contrato da tela, componentes, composição, implementação, prova e entrega |
+| `SKILL.md` | Contrato, projeto/componentes, composição, implementação, acabamento, prova e entrega |
 | `references/` | Escolha rápida de componentes, valores de partida com fonte, antipadrões, leis de UX aplicadas a software, padrões de tela, navegação, linguagem visual, design systems e critérios de aceite |
 | `scripts/` | `inspect-ui.mjs`, `find-resources.mjs` e os testes deles |
 | `evals/` | Cenários de avaliação com critérios verificáveis, para manter a skill |
@@ -64,4 +60,10 @@ O acervo com o código arquivado, as capturas e a licença de cada componente n�
 node --test scripts/find-resources.test.mjs scripts/inspect-ui.test.mjs
 ```
 
-Sem o Playwright, os dois testes de inspeção são pulados.
+A suíte de inspeção ampliada exige Playwright e Chromium; falta do runtime não é aprovação.
+
+## Aplicações logadas, estados e acabamento
+
+Use [references/inspection.md](references/inspection.md) para --storage-state, --mock, --states, --color-scheme, --rules e --compare. O inspector produz report.json, grade index.html e imagens antes/depois. [references/estados.md](references/estados.md) define a prova de carregamento, vazio, erro e conteúdo longo. [references/acabamento.md](references/acabamento.md) cobre tokens de motion, microinterações e padrões de SaaS. A skill pode acompanhar outra direção visual, preservando o design system do projeto.
+
+A avaliação independente usa [evals/visual-evaluation.md](evals/visual-evaluation.md); testes automáticos e nota visual são evidências diferentes. O [piloto de 2.2.0](evals/results/2.2.0/README.md) preserva resultados e nove imagens antes/depois.

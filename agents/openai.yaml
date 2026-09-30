@@ -1,6 +1,6 @@
 interface:
   display_name: "Software UI Design"
-  short_description: "Telas de SaaS e painéis com componentes revisados e prova medida"
-  default_prompt: "Use $software-ui-design para criar ou melhorar esta tela de software: escolha componentes do acervo, aplique os valores de partida e prove o resultado com scripts/inspect-ui.mjs."
+  short_description: "Telas de SaaS com estados, acabamento e prova medida"
+  default_prompt: "Use $software-ui-design para melhorar esta tela de SaaS, preservando o design system do projeto, aplicando estados e acabamento e comprovando a matriz com scripts/inspect-ui.mjs."
 policy:
   allow_implicit_invocation: true
