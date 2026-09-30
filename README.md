@@ -2,7 +2,7 @@
 
 Skill para projetar, redesenhar e revisar telas de software: SaaS, painel administrativo, dashboard, ERP, CRM e app interno. Ela escolhe componentes já revisados em vez de desenhar do zero, aplica valores de design systems oficiais e prova o resultado com medição e captura de tela.
 
-Funciona no Claude Code e no Codex. As instruções estão em português. Versão 2.3.0.
+Funciona no Claude Code e no Codex. As instruções estão em português. Versão 2.3.1.
 
 ## Instalar
 
