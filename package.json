@@ -1,7 +1,7 @@
 {
   "name":"software-ui-design-tools",
   "private":true,
-  "version":"2.3.1",
+  "version":"2.4.0",
   "scripts": {
     "test":"node --test scripts/find-resources.test.mjs scripts/inspect-ui.test.mjs",
     "setup":"npm install && npx playwright install chromium"

@@ -2,7 +2,7 @@
 
 ## Portão de seleção antes do código visual
 
-A implementação começa depois de consultar os [dez sites obrigatórios](research-and-skills.md#dez-sites-obrigatórios-em-toda-invocação) e inspecionar uma solução pronta compatível, existente no projeto, salva no acervo ou encontrada online. Registre uma linha por site com URL, achado e decisão; vale também para correções pequenas, revisões e modo acompanhante. Reutilize a consulta durante os ajustes da mesma invocação; uma nova invocação exige consulta atual aos dez. Mudança de necessidade ou candidato exige nova inspeção. Buscas além dos dez sites dependem de lacunas, desatualização relevante ou pedido explícito.
+A implementação começa depois de consultar os [onze sites obrigatórios](research-and-skills.md#onze-sites-obrigatórios-em-toda-invocação) e inspecionar uma solução pronta compatível, existente no projeto, salva no acervo ou encontrada online. Registre uma linha por site com URL, achado e decisão; vale também para correções pequenas, revisões e modo acompanhante. Reutilize a consulta durante os ajustes da mesma invocação; uma nova invocação exige consulta atual aos onze. Mudança de necessidade ou candidato exige nova inspeção. Buscas além dos onze sites dependem de lacunas, desatualização relevante ou pedido explícito.
 
 Registre no artefato de trabalho já usado pelo projeto:
 
@@ -10,11 +10,11 @@ Registre no artefato de trabalho já usado pelo projeto:
 |---|---|---|---|
 | Nome concreto do componente | ID e arquivos do acervo, ou URL e data; código/demo observado | Reuso local, reuso externo ou adaptação; motivo | Arquivo/componente alvo e, na entrega, integração verificada |
 
-O portão está atendido quando há registro da consulta aos dez sites e cada família afetada tem uma escolha compatível sustentada por inspeção real. Falhas de acesso seguem a tentativa de alternativa e o registro de pendência de research-and-skills.md; não contam como consulta concluída. Ler apenas nomes num índice não basta; examine os arquivos do item salvo ou os candidatos online. Quando reutilizar código, registre sua licença. Quando adaptar só um padrão, diga isso. Código salvo não dispensa a prova visual e funcional da integração.
+O portão está atendido quando há registro da consulta aos onze sites e cada família afetada tem uma escolha compatível sustentada por inspeção real. Falhas de acesso seguem a tentativa de alternativa e o registro de pendência de research-and-skills.md; não contam como consulta concluída. Ler apenas nomes num índice não basta; examine os arquivos do item salvo ou os candidatos online. Quando reutilizar código, registre sua licença. Quando adaptar só um padrão, diga isso. Código salvo não dispensa a prova visual e funcional da integração.
 
 Sem internet, prossiga com candidatos locais suficientes; registre apenas verificações externas que faltarem. Sem candidato que possa ser usado/adaptado, declare o impedimento e amplie a busca disponível. Criar um equivalente do zero exige a exceção consciente já descrita na skill. Nunca registre inspeção, reuso ou integração que não aconteceu.
 
-Auditoria sem implementação também consulta os dez sites, com foco nas famílias avaliadas; não exige uma busca adicional de componente para cada achado. Aprofunde quando precisar fundamentar a alternativa proposta. Backend e lógica sem efeito visual estão fora desta skill.
+Auditoria sem implementação também consulta os onze sites, com foco nas famílias avaliadas; não exige uma busca adicional de componente para cada achado. Aprofunde quando precisar fundamentar a alternativa proposta. Backend e lógica sem efeito visual estão fora desta skill.
 
 ## Verificação da tarefa
 

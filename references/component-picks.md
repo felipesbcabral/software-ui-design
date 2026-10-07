@@ -12,6 +12,7 @@ A coluna "Primeira escolha" já considera o defeito que precisa ser corrigido: l
 - Datas, agenda, quadros e gráficos
 - Estados, loading e feedback
 - IA, arquivos e colaboração
+- Cult UI
 - Lacunas conhecidas
 
 ## Navegação e shell ([picks-menus-configuracoes-dashboards.md](picks-menus-configuracoes-dashboards.md))
@@ -114,6 +115,18 @@ A coluna "Primeira escolha" já considera o defeito que precisa ser corrigido: l
 | Thread de comentários (resposta, @menção, resolver) | `19-colaboracao-atividade-11` Motiq Comment Thread | `19-colaboracao-atividade-12` Motiq Review Workspace (com aprovação e feed), `19-colaboracao-atividade-13` Liveblocks Comments | Persistência, permissões e moderação ficam com a aplicação | Comentário sem estado de envio e erro |
 | Copiloto operacional com etapas e fontes | `06-chats-ia-20` Motiq AI Agent Workspace | `06-chats-ia-17` SidekickCN | SidekickCN: painel de 420 px corta 30 px em 390 px | `06-chats-ia-19` InAppAI como visual final |
 | Atividade e logs | `19-colaboracao-atividade-10` Cloudscape detalhe com abas | `19-colaboracao-atividade-06` Tabler | | Feed plano sem filtro |
+
+## Cult UI ([picks-cult-ui.md](picks-cult-ui.md))
+
+137 componentes do registry Cult UI, indexados um a um (U001 a U137) e com código lido nos 59 de software. Instalação por `npx shadcn@latest add https://cult-ui.com/r/<slug>.json`.
+
+| Necessidade | Primeira escolha | Corrigir | Evitar |
+|---|---|---|---|
+| Copiar chave, comando ou URL | `copy-button` U121 | Textos em pt-BR, erro de cópia | |
+| Fluxo em etapas | `wizard-expandable` U137 | Modo controlado, validação real | `toolbar-expandable` U057 |
+| Status de tarefa em segundo plano | `dynamic-island` U009 | `role=status`, movimento reduzido, largura máxima | Usar como notificação única de erro |
+| Animação de popover ou painel | Primitivo do projeto + morph do `popover` U028 | Foco volta ao gatilho no Escape | `popover`, `floating-panel` e `expandable-screen` como camada de comportamento |
+| Controles halo (input, select, switch, badge) | Só com tokens do projeto | Remover blobs e hex; contraste do switch | `halo-badge` em coluna de tabela |
 
 ## Lacunas conhecidas
 

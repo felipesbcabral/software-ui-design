@@ -21,6 +21,7 @@ O acervo fica ao lado da skill, na pasta irmã `biblioteca-ui-software`, e não 
 | Estudos | tipografia e cores, 20 design systems, matriz de 32 famílias de tela, top 10 padrões de UX, catálogos | `estudos/` |
 | Paletas próprias com contraste calculado | 6 paletas, 144 pares | `estudos/paletas.json`, `estudos/CONTRASTES.md` |
 | Catálogos externos de descoberta | 382 registries + 114 fontes herdadas | `catalogos/` e `references/*resources.json` desta skill |
+| Cult UI completo (137 componentes do registry, MIT, commit `67a66c6`) | código, varredura estática, grupos do site e 268 capturas (1440 e 390 px) | `fontes/nolly-studio--cult-ui/` e `catalogos/cult-ui-2026-10-07/`; escolha em `references/picks-cult-ui.md` |
 
 ## Onde procurar cada decisão
 

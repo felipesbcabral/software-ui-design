@@ -60,7 +60,7 @@ export function loadCatalog({ saved = false, libraryPath } = {}) {
       status: 'Código arquivado; inspecionar compatibilidade, licença e comportamento antes de integrar.',
     }));
   }
-  return ['resources.json', 'software-resources.json', 'registry-resources.json'].flatMap((name) => {
+  return ['resources.json', 'software-resources.json', 'registry-resources.json', 'cult-ui-components.json'].flatMap((name) => {
     const data = JSON.parse(readFileSync(new URL(`../references/${name}`, import.meta.url), 'utf8'));
     if (!Array.isArray(data.resources)) throw new Error(`Catálogo inválido: ${name}`);
     return data.resources;
@@ -70,7 +70,7 @@ export function loadCatalog({ saved = false, libraryPath } = {}) {
 export function searchResources(query = '', { all = false, limit = 8, saved = false, libraryPath, recommended = false } = {}) {
   if (!Number.isInteger(limit) || limit < 1 || limit > 250) throw new Error('limit deve ser inteiro entre 1 e 250');
   const terms = normalize(query).trim().split(/\s+/u).filter(Boolean);
-  return loadCatalog({ saved, libraryPath }).filter((r) => saved || all || CORE.has(r.id) || r.id.startsWith('S'))
+  return loadCatalog({ saved, libraryPath }).filter((r) => saved || all || CORE.has(r.id) || r.id.startsWith('S') || r.default_scope === true)
     .filter((r) => !recommended || (r.review && verdictRank(r.review.verdict) === 0))
     .map((r) => {
       const tags = TOPICS.filter(([, ids]) => ids.split(' ').includes(r.id)).map(([words]) => words).join(' ');
@@ -83,7 +83,12 @@ export function searchResources(query = '', { all = false, limit = 8, saved = fa
     .filter(({ matches }) => matches)
     .sort((a, b) => (saved ? verdictRank(a.r.review?.verdict) - verdictRank(b.r.review?.verdict) : 0) || b.score - a.score || a.r.id.localeCompare(b.r.id))
     .slice(0, limit)
-    .map(({ r }) => ({ id: r.id, name: r.name, url: r.demo_url, source: r.source_url || r.code_access?.repo || null, status: r.status, ...(saved ? { local_readme: r.local_readme, local_bundle: r.local_bundle, review: r.review } : {}) }));
+    .map(({ r }) => ({
+      id: r.id, name: r.name, url: r.demo_url, source: r.source_url || r.code_access?.repo || null, status: r.status,
+      ...(saved ? { local_readme: r.local_readme, local_bundle: r.local_bundle, review: r.review } : {}),
+      // Per-component registry entries (Cult UI): install command, scope, code review and library capture.
+      ...(r.install ? { install: r.install, fit: r.encaixe, verdict: r.revisao?.veredito || null, condition: r.revisao?.condicao || null, capture: r.captura } : {}),
+    }));
 }
 
 export function main(args = process.argv.slice(2)) {
@@ -111,7 +116,8 @@ export function main(args = process.argv.slice(2)) {
     console.log(saved ? 'Acervo local (ordem: recomendado > adaptar > referência). Abra a ficha, a captura e o código antes de integrar.' : 'Índice de fontes externas. Consulte também --saved para componentes já arquivados.');
     for (const r of results) {
       const rv = r.review ? `\nRevisão: ${r.review.verdict}${r.review.fit ? ` · ${r.review.fit}` : ''}${r.review.visual?.length ? `\nCaptura: ${r.review.visual[0]}` : ''}` : (saved ? '\nRevisão: sem revisão individual' : '');
-      console.log(`${r.id} | ${r.name}\n${r.url}${r.source ? `\nCódigo: ${r.source}` : ''}${r.local_readme ? `\nFicha local: ${r.local_readme}\nZIP: ${r.local_bundle}` : ''}${rv}`);
+      const component = r.install ? `\nInstalar: ${r.install}\nEncaixe: ${r.fit} · Revisão: ${r.verdict ? `${r.verdict} · ${r.condition}` : 'sem revisão de código'}${r.capture ? `\nCaptura no acervo: ${r.capture}` : ''}` : '';
+      console.log(`${r.id} | ${r.name}\n${r.url}${r.source ? `\nCódigo: ${r.source}` : ''}${r.local_readme ? `\nFicha local: ${r.local_readme}\nZIP: ${r.local_bundle}` : ''}${rv}${component}`);
     }
     if (!results.length) console.log('Nenhuma fonte no índice para estes termos. Amplie a busca na internet.');
   }

@@ -2,7 +2,7 @@
 
 Skill para projetar, redesenhar e revisar telas de software: SaaS, painel administrativo, dashboard, ERP, CRM e app interno. Ela escolhe componentes já revisados em vez de desenhar do zero, aplica valores de design systems oficiais e prova o resultado com medição e captura de tela.
 
-Funciona no Claude Code e no Codex. As instruções estão em português. Versão 2.3.1.
+Funciona no Claude Code e no Codex. As instruções estão em português. Versão 2.4.0.
 
 ## Instalar
 
@@ -41,6 +41,8 @@ O script procura o Playwright em `PLAYWRIGHT_HOME`, na pasta atual e acima, na p
 ## Acervo de componentes
 
 A skill cita componentes por ID (por exemplo `08-tabelas-grids-10`), sempre com o nome e a origem, em `references/component-picks.md` e nos arquivos `references/picks-*.md`. Esses arquivos explicam a escolha, o que corrigir e o que evitar em cada família de tela.
+
+O Cult UI entra por componente: `references/cult-ui-components.json` traz os 137 itens do registry (U001 a U137) com comando de instalação, encaixe e veredito, e `references/picks-cult-ui.md` dá a escolha por necessidade. Esse índice funciona sem o acervo.
 
 O acervo com o código arquivado, as capturas e a licença de cada componente não está neste repositório: tem cerca de 500 MB de projetos de terceiros, com licenças diferentes. Sem ele, `scripts/find-resources.mjs` avisa "Acervo não encontrado" e o resto da skill funciona. Use o nome e a origem de cada escolha para achar o componente no site oficial e confira a licença antes de copiar código. Quem tiver uma cópia do acervo aponta a variável `SOFTWARE_UI_LIBRARY` para a pasta dele.
 

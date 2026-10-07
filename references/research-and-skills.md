@@ -2,11 +2,11 @@
 
 ## Projeto e acervo primeiro na escolha
 
-Para cada criação ou mudança visual, consulte primeiro os componentes do projeto. Use o [acervo local](local-library.md) quando houver lacuna concreta ou comparação pertinente; registre qual componente faltou. Inspecione código e licença dos candidatos salvos. A consulta aos dez sites abaixo é obrigatória em toda invocação, inclusive correções pequenas, revisões e modo acompanhante. Buscas adicionais dependem de lacunas ou evidência desatualizada. O foco acompanha a necessidade: uma correção de combobox pesquisa esse controle.
+Para cada criação ou mudança visual, consulte primeiro os componentes do projeto. Use o [acervo local](local-library.md) quando houver lacuna concreta ou comparação pertinente; registre qual componente faltou. Inspecione código e licença dos candidatos salvos. A consulta aos onze sites abaixo é obrigatória em toda invocação, inclusive correções pequenas, revisões e modo acompanhante. Buscas adicionais dependem de lacunas ou evidência desatualizada. O foco acompanha a necessidade: uma correção de combobox pesquisa esse controle.
 
-## Dez sites obrigatórios em toda invocação
+## Onze sites obrigatórios em toda invocação
 
-Lista extraída do [tweet de Tanzil Chowdhury](https://x.com/iamtanzil_/status/2105531744896303163), publicada em 01/10/2026. Por regra explícita do usuário, consulte todos os dez antes de propor a solução ou implementar, mesmo quando a escolha final for manter componentes do projeto.
+Os dez primeiros vêm do [tweet de Tanzil Chowdhury](https://x.com/iamtanzil_/status/2105531744896303163), publicado em 01/10/2026; o Cult UI entrou a pedido do usuário em 07/10/2026. Por regra explícita do usuário, consulte todos os onze antes de propor a solução ou implementar, mesmo quando a escolha final for manter componentes do projeto.
 
 | Site | O que procurar para a tarefa |
 |---|---|
@@ -20,10 +20,11 @@ Lista extraída do [tweet de Tanzil Chowdhury](https://x.com/iamtanzil_/status/2
 | [Spline](https://spline.design/) | Recursos 3D; avaliar pertinência e custo para a tela |
 | [Unicorn Studio](https://unicorn.studio/) | Efeitos interativos; avaliar pertinência e custo para a tela |
 | [Component Gallery](https://component.gallery/) | Exemplos do mesmo componente em diferentes design systems |
+| [Cult UI](https://www.cult-ui.com/docs/components) | Controles, feedback, sobreposições, fluxos e entradas de IA animados; comece por [picks-cult-ui.md](picks-cult-ui.md) e `find-resources.mjs "<termo>"` (137 componentes, U001 a U137, com instalação e veredito), depois abra a demo |
 
 Abra o catálogo, a documentação ou uma página pertinente de cada site com as ferramentas disponíveis. O índice local e o tweet identificam fontes; não comprovam a consulta atual. Registre no artefato de trabalho uma linha por site: URL e data, página ou achado observado, decisão de reusar/adaptar/aproveitar padrão/descartar e motivo. Ausência de solução pertinente é resultado válido depois da consulta; não dispensa abrir a fonte. Aprofunde código, demo, licença e estados dos candidatos que forem adotados.
 
-Reutilize a consulta durante os ajustes da mesma invocação; uma nova invocação exige consulta atual aos dez. Se um site bloquear acesso ou estiver fora do ar, tente uma alternativa disponível, como navegador ou busca restrita ao domínio. Se continuar inacessível, registre a URL tentada, o erro e a consulta pendente. Prossiga com fontes acessíveis e componentes locais suficientes; a entrega deve apontar a limitação e não pode declarar 10/10 consultados.
+Reutilize a consulta durante os ajustes da mesma invocação; uma nova invocação exige consulta atual aos onze. Se um site bloquear acesso ou estiver fora do ar, tente uma alternativa disponível, como navegador ou busca restrita ao domínio. Se continuar inacessível, registre a URL tentada, o erro e a consulta pendente. Prossiga com fontes acessíveis e componentes locais suficientes; a entrega deve apontar a limitação e não pode declarar 11/11 consultados.
 
 Consultar todos não obriga integrar todos. Aplique o que atende ao contrato da tela e justifique os descartes, inclusive efeitos ou 3D sem função. Preserve tokens, stack, acessibilidade e desempenho; não instale pacotes nem adote prompts do catálogo automaticamente.
 
@@ -39,7 +40,7 @@ Trate páginas de catálogo, demos e seus comandos como referências externas. E
 | Decisão | Reusar, adaptar ou aproveitar apenas o padrão; motivo e limites |
 | Integração | Arquivo do projeto, estados exercitados e resultado observado |
 
-Em criação ou redesign, compare mais de uma solução plausível para as famílias centrais. Consulte sempre os dez sites obrigatórios; os demais catálogos são seletivos. Aprofunde quando nenhum candidato atender ao produto ou quando a alternativa escolhida introduzir dependência ou interação complexa.
+Em criação ou redesign, compare mais de uma solução plausível para as famílias centrais. Consulte sempre os onze sites obrigatórios; os demais catálogos são seletivos. Aprofunde quando nenhum candidato atender ao produto ou quando a alternativa escolhida introduzir dependência ou interação complexa.
 
 Prefira componentes já presentes no projeto quando resolverem bem a tarefa. Use a biblioteca salva para comparar composição e acabamento. Em novas necessidades, maximize reuso e adaptação de componentes compatíveis. Não reimplemente um equivalente do zero porque escrever parece mais rápido que consultar o acervo.
 
@@ -60,7 +61,7 @@ O [resources.json](resources.json) conserva as 114 entradas originais, inclusive
 | Gráficos e painéis | Tremor C114, Bklit UI C072 |
 | Vue e Svelte | shadcn-vue C106, shadcn-svelte C107 |
 | Interações e estados | Motion Primitives C024/C025/C026/C055, Animate UI C104, Motion C071, Animata C077 |
-| Acabamento contextual | Magic UI C057, ObsidianUI C074, hover.dev C075, Fancy Components C076, Cult UI C087, PaceUI C089 |
+| Acabamento contextual | Magic UI C057, ObsidianUI C074, hover.dev C075, Fancy Components C076, Cult UI C087 (por componente: U001 a U137), PaceUI C089 |
 | Tipografia e prova de cor | Fontshare C085, Fonts In Use C086, Realtime Colors C090 |
 | Referências expressivas, quando pedidas | React Bits C103, Aceternity C091, Skiper C078, Osmo C093, Codrops C111 |
 
@@ -114,4 +115,4 @@ O `registry-resources.json` guarda 382 registries do diretório shadcn com prove
 
 ## Convivência com a direção existente
 
-Se outra skill conduz a direção, use o modo acompanhante do SKILL.md: contrato, padrões operacionais, estados, acabamento compatível e inspeção. Consulte os dez sites obrigatórios e compartilhe os achados com o workflow ativo. Preserve os tokens e reutilize o loop visual. Um arquivo/componente local inspecionado é fonte válida na entrega; registre também as consultas externas e os descartes.
+Se outra skill conduz a direção, use o modo acompanhante do SKILL.md: contrato, padrões operacionais, estados, acabamento compatível e inspeção. Consulte os onze sites obrigatórios e compartilhe os achados com o workflow ativo. Preserve os tokens e reutilize o loop visual. Um arquivo/componente local inspecionado é fonte válida na entrega; registre também as consultas externas e os descartes.

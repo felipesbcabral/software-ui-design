@@ -31,6 +31,22 @@ test('escopo padrão prioriza software e modo completo preserva fontes condicion
   assert.deepEqual(searchResources('naoexiste-987xyz'), []);
 });
 
+test('Cult UI entra por componente: software na busca padrão, marketing só com --all', () => {
+  const cult = loadCatalog().filter((r) => r.id.startsWith('U'));
+  assert.equal(cult.length, 137);
+  assert.equal(new Set(cult.map((r) => r.slug)).size, 137);
+  assert.ok(cult.every((r) => r.install === `npx shadcn@latest add https://cult-ui.com/r/${r.slug}.json` && r.license === 'MIT'));
+  assert.ok(!cult.some((r) => r.slug.startsWith('animated-')), 'aliases obsoletos ficam fora');
+  const island = searchResources('dynamic island')[0];
+  assert.equal(island.install, 'npx shadcn@latest add https://cult-ui.com/r/dynamic-island.json');
+  assert.ok(searchResources('ilha dinâmica').some((r) => r.id === island.id));
+  assert.ok(searchResources('kanban').some((r) => r.name.includes('kanban-board')));
+  const hero = cult.find((r) => r.slug === 'hero-liquid-metal');
+  assert.equal(hero.encaixe, 'marketing e vitrine');
+  assert.equal(searchResources(hero.id).length, 0);
+  assert.equal(searchResources(hero.id, { all: true })[0].id, hero.id);
+});
+
 test('CLI funciona a partir de outro diretório e rejeita argumentos inválidos', () => {
   const script = fileURLToPath(new URL('./find-resources.mjs', import.meta.url));
   const run = (...args) => spawnSync(process.execPath, [script, ...args], { encoding: 'utf8', cwd: fileURLToPath(new URL('../references/', import.meta.url)) });
