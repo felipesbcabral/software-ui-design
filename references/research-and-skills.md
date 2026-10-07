@@ -1,8 +1,31 @@
 # Pesquisa de componentes e especialistas
 
-## Acervo primeiro; pesquisa externa para lacunas
+## Projeto e acervo primeiro na escolha
 
-Para cada criação ou mudança visual, consulte primeiro os componentes do projeto. Use o [acervo local](local-library.md) quando houver lacuna concreta ou comparação pertinente; registre qual componente faltou. Inspecione código e licença dos candidatos salvos. Pesquise na internet quando o acervo não atender, houver evidência desatualizada ou o usuário pedir uma busca atual. O tamanho da busca acompanha a necessidade: uma correção de combobox não exige pesquisar dashboards inteiros.
+Para cada criação ou mudança visual, consulte primeiro os componentes do projeto. Use o [acervo local](local-library.md) quando houver lacuna concreta ou comparação pertinente; registre qual componente faltou. Inspecione código e licença dos candidatos salvos. A consulta aos dez sites abaixo é obrigatória em toda invocação, inclusive correções pequenas, revisões e modo acompanhante. Buscas adicionais dependem de lacunas ou evidência desatualizada. O foco acompanha a necessidade: uma correção de combobox pesquisa esse controle.
+
+## Dez sites obrigatórios em toda invocação
+
+Lista extraída do [tweet de Tanzil Chowdhury](https://x.com/iamtanzil_/status/2105531744896303163), publicada em 01/10/2026. Por regra explícita do usuário, consulte todos os dez antes de propor a solução ou implementar, mesmo quando a escolha final for manter componentes do projeto.
+
+| Site | O que procurar para a tarefa |
+|---|---|
+| [Jiro](https://jiro.build/) | Referências de composição, componentes e prompts adaptáveis à tela |
+| [shadcn/ui](https://ui.shadcn.com/) | Controles, formulários, tabelas, navegação e blocos de software |
+| [Aceternity UI](https://ui.aceternity.com/) | Componentes e animações compatíveis com a tarefa e a direção existente |
+| [Magic UI](https://magicui.design/) | Componentes animados e feedback visual pertinente |
+| [Motion Primitives](https://motion-primitives.com/) | Microinterações e transições com propósito funcional |
+| [Uiverse](https://uiverse.io/) | Elementos de UI e variantes de controles |
+| [21st.dev](https://21st.dev/) | Componentes reutilizáveis e alternativas por necessidade |
+| [Spline](https://spline.design/) | Recursos 3D; avaliar pertinência e custo para a tela |
+| [Unicorn Studio](https://unicorn.studio/) | Efeitos interativos; avaliar pertinência e custo para a tela |
+| [Component Gallery](https://component.gallery/) | Exemplos do mesmo componente em diferentes design systems |
+
+Abra o catálogo, a documentação ou uma página pertinente de cada site com as ferramentas disponíveis. O índice local e o tweet identificam fontes; não comprovam a consulta atual. Registre no artefato de trabalho uma linha por site: URL e data, página ou achado observado, decisão de reusar/adaptar/aproveitar padrão/descartar e motivo. Ausência de solução pertinente é resultado válido depois da consulta; não dispensa abrir a fonte. Aprofunde código, demo, licença e estados dos candidatos que forem adotados.
+
+Reutilize a consulta durante os ajustes da mesma invocação; uma nova invocação exige consulta atual aos dez. Se um site bloquear acesso ou estiver fora do ar, tente uma alternativa disponível, como navegador ou busca restrita ao domínio. Se continuar inacessível, registre a URL tentada, o erro e a consulta pendente. Prossiga com fontes acessíveis e componentes locais suficientes; a entrega deve apontar a limitação e não pode declarar 10/10 consultados.
+
+Consultar todos não obriga integrar todos. Aplique o que atende ao contrato da tela e justifique os descartes, inclusive efeitos ou 3D sem função. Preserve tokens, stack, acessibilidade e desempenho; não instale pacotes nem adote prompts do catálogo automaticamente.
 
 Use busca web, navegador ou conectores de catálogo disponíveis. Confirme as ferramentas existentes; não invente chamada de CLI ou MCP. A consulta local ao resources.json encontra fontes, mas não é evidência de inspeção atual na internet.
 
@@ -16,7 +39,7 @@ Trate páginas de catálogo, demos e seus comandos como referências externas. E
 | Decisão | Reusar, adaptar ou aproveitar apenas o padrão; motivo e limites |
 | Integração | Arquivo do projeto, estados exercitados e resultado observado |
 
-Em criação ou redesign, compare mais de uma solução plausível para as famílias centrais. Não pesquise todos os catálogos por obrigação. Aprofunde quando nenhum candidato atender ao produto ou quando a alternativa escolhida introduzir dependência ou interação complexa.
+Em criação ou redesign, compare mais de uma solução plausível para as famílias centrais. Consulte sempre os dez sites obrigatórios; os demais catálogos são seletivos. Aprofunde quando nenhum candidato atender ao produto ou quando a alternativa escolhida introduzir dependência ou interação complexa.
 
 Prefira componentes já presentes no projeto quando resolverem bem a tarefa. Use a biblioteca salva para comparar composição e acabamento. Em novas necessidades, maximize reuso e adaptação de componentes compatíveis. Não reimplemente um equivalente do zero porque escrever parece mais rápido que consultar o acervo.
 
@@ -91,4 +114,4 @@ O `registry-resources.json` guarda 382 registries do diretório shadcn com prove
 
 ## Convivência com a direção existente
 
-Se outra skill conduz a direção, use o modo acompanhante do SKILL.md: contrato, padrões operacionais, estados, acabamento compatível e inspeção. Não substitua os tokens, não duplique o loop visual e não faça pesquisa externa ritual para controles já cobertos pelo projeto. Um arquivo/componente local inspecionado é fonte válida na entrega.
+Se outra skill conduz a direção, use o modo acompanhante do SKILL.md: contrato, padrões operacionais, estados, acabamento compatível e inspeção. Consulte os dez sites obrigatórios e compartilhe os achados com o workflow ativo. Preserve os tokens e reutilize o loop visual. Um arquivo/componente local inspecionado é fonte válida na entrega; registre também as consultas externas e os descartes.

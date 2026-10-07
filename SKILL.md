@@ -15,6 +15,12 @@ As instruções do projeto vencem esta skill: tokens, componentes, stack e regra
 
 Nenhuma cor, fonte, raio ou pacote de ícones é universal. Branco puro, tema escuro, Inter, fonte de sistema e Lucide são escolhas válidas quando justificadas.
 
+## Regra obrigatória em toda utilização
+
+Em toda invocação desta skill, consulte os dez sites de [research-and-skills.md](references/research-and-skills.md#dez-sites-obrigatórios-em-toda-invocação) antes de propor a solução ou implementar. Vale também para correções pequenas, revisões e modo acompanhante. A consulta é obrigatória mesmo quando o projeto já cobre a necessidade. Registre uma linha por site com URL consultada, achado e decisão de uso ou descarte; aplique as soluções pertinentes à tarefa. Fonte inacessível exige tentativa de alternativa e registro da pendência, conforme a referência. Evidência de uma invocação anterior não dispensa a consulta atual.
+
+Os dez sites são fontes de pesquisa; a integração segue a necessidade, a stack e o design system do projeto. Consultá-los não exige instalar dez bibliotecas nem acrescentar animação, efeito ou 3D sem função na tela.
+
 ## Modo acompanhante
 
 Quando o projeto ou o usuário atribuir a direção a impeccable, design-taste-frontend, ui-ux-pro-max ou outra skill, use esta como acompanhante. A direção e a fundação continuam com a skill designada. Esta fornece contrato, densidade, padrões operacionais, matriz de estados, acabamento compatível e prova medida. Reutilize o workflow ativo; não abra um segundo redesign, não imponha preset nem peça nova escolha de marca. Leia referências só para a decisão atual. Sem diretiva concorrente, conduza o fluxo completo abaixo.
@@ -25,7 +31,7 @@ Registre o progresso no artefato adotado pelo projeto. Numa correção pequena, 
 
 ```
 - [ ] Contrato, volume e matriz de temas/estados/larguras
-- [ ] Design system do projeto, componentes inspecionados e composição
+- [ ] Consulta aos dez sites, design system do projeto, componentes inspecionados e composição
 - [ ] Implementação funcional e acabamento compatível
 - [ ] Prova medida, capturas vistas, web-design-guidelines no código e correções verificadas
 - [ ] Entrega com evidências, identidade e limites
@@ -37,7 +43,7 @@ Escreva em uma frase: quem usa, com que frequência, quanto dado, qual a ação 
 
 ### 2. Design system e componentes prontos
 
-Antes do acervo, procure DESIGN.md, tokens em CSS/tema, componentes compartilhados, variantes, ícones e harness visual do projeto. Registre fundação, papéis de fonte e temas suportados. Reutilize os componentes que cobrem a necessidade; consulte o acervo somente para lacunas ou comparação pertinente. Na entrega, cite o arquivo local e qual lacuna exigiu fonte externa. Ordem: projeto, acervo, pesquisa online. Comece pela [escolha rápida](references/component-picks.md), que dá a primeira escolha por necessidade, o que corrigir e o que evitar. Para abrir a ficha, o código arquivado e a captura:
+Antes do acervo, procure DESIGN.md, tokens em CSS/tema, componentes compartilhados, variantes, ícones e harness visual do projeto. Registre fundação, papéis de fonte e temas suportados. Reutilize os componentes que cobrem a necessidade; consulte o acervo somente para lacunas ou comparação pertinente. Na entrega, cite o arquivo local e qual lacuna exigiu fonte externa. A prioridade de adoção é projeto, acervo, fontes online; a consulta aos dez sites continua obrigatória em todos os casos. Comece pela [escolha rápida](references/component-picks.md), que dá a primeira escolha por necessidade, o que corrigir e o que evitar. Para abrir a ficha, o código arquivado e a captura:
 
 ```sh
 node <skill-dir>/scripts/find-resources.mjs --recommended "tabela"
@@ -61,7 +67,7 @@ As primeiras escolhas mais pedidas, para não começar do zero:
 | Ícones | `11-icones-05` (Lucide) |
 | Comentários / copiloto com etapas / Gantt | `19-colaboracao-atividade-11` / `06-chats-ia-20` / `16-quadros-cronogramas-17` |
 
-Para cada família afetada, inspecione primeiro a implementação do projeto. Quando faltar solução, rode a busca e anote o ID escolhido. Arquivos locais ou IDs inspecionados vão para a linha **Componentes** da entrega; não faça busca externa ritual quando o design system já cobre a tarefa. O resultado vem ordenado pelo veredito da revisão (recomendado, adaptar, referência). Busca não é inspeção. Para cada ID que for entrar na tela, nesta ordem: (1) abra a ficha; (2) abra o arquivo de captura indicado nela com a ferramenta de imagem; (3) só então decida. ID sem captura vista vai para a entrega como "referência não inspecionada" e não sustenta a escolha. Os arquivos `picks-*.md` explicam cada veredito com evidência (linha de código, captura, interação). Reutilize ou adapte o código quando a stack for compatível; se não for, adapte o padrão aos componentes do projeto e diga o que foi aproveitado. Pesquise online quando o acervo não cobrir (as lacunas estão no fim da escolha rápida), quando a licença ou a versão precisarem de conferência, ou quando o usuário pedir. Confira a licença antes de copiar código. O acervo, os estudos e os DESIGN.md revisados estão descritos em [local-library.md](references/local-library.md).
+Para cada família afetada, inspecione primeiro a implementação do projeto. Quando faltar solução, rode a busca e anote o ID escolhido. Arquivos locais ou IDs inspecionados vão para a linha **Componentes** da entrega; a consulta aos dez sites vai para **Pesquisa**, inclusive quando a escolha for manter o componente existente. O resultado vem ordenado pelo veredito da revisão (recomendado, adaptar, referência). Busca não é inspeção. Para cada ID que for entrar na tela, nesta ordem: (1) abra a ficha; (2) abra o arquivo de captura indicado nela com a ferramenta de imagem; (3) só então decida. ID sem captura vista vai para a entrega como "referência não inspecionada" e não sustenta a escolha. Os arquivos `picks-*.md` explicam cada veredito com evidência (linha de código, captura, interação). Reutilize ou adapte o código quando a stack for compatível; se não for, adapte o padrão aos componentes do projeto e diga o que foi aproveitado. Além da consulta obrigatória aos dez sites, amplie a pesquisa online quando o acervo não cobrir (as lacunas estão no fim da escolha rápida), quando a licença ou a versão precisarem de conferência, ou quando o usuário pedir. Confira a licença antes de copiar código. O acervo, os estudos e os DESIGN.md revisados estão descritos em [local-library.md](references/local-library.md).
 
 ### 3. Composição
 
@@ -127,6 +133,7 @@ A resposta final termina com este bloco preenchido, sempre, também em correçã
 
 ```markdown
 **Tela:** <arquivo ou rota> · <família e contrato em uma frase>
+**Pesquisa:** <registro dos dez sites com URLs, achados e decisões; caminho do artefato, 10/10 consultados ou pendências de acesso>
 **Componentes:** <arquivos do projeto e/ou IDs/URL + commit inspecionados, com a captura do acervo vista> · <lacuna que exigiu acervo, ou nenhuma> · <reuso/adaptação e licença quando houver código externo>
 **Valores:** <sidebar, altura de linha, espaço, tipo> · <token do projeto ou fonte de defaults.md>
 **Convenções:** <desvios da tabela de convenções de ux-laws.md e o motivo, ou "nenhum"> · <pedido trocado por uma lei, ex.: progresso fixo virou N de M>
@@ -148,7 +155,7 @@ Conformidade técnica e qualidade visual são conclusões separadas; não afirme
 **Decisão:** itens como links focáveis com `aria-label` e `aria-current`; tooltip no hover e no foco (`20-sobreposicoes-02` como referência de teclado); botão de expandir com `aria-expanded`; rail de 56 a 80 px. Base: `04-menus-laterais-10`. Prova: sem `tooltips` nem `keyboard`.
 
 **Pedido:** "Só ajusta o alinhamento da lupa no campo de busca."
-**Decisão:** mudança local no componente existente; sem pesquisa, sem trocar paleta ou shell; conferir foco e alvo depois do ajuste.
+**Decisão:** consultar os dez sites com foco no controle afetado e registrar as decisões; ajustar o alinhamento no componente existente, preservando paleta e shell; conferir foco e alvo depois do ajuste.
 
 ## Referências
 
