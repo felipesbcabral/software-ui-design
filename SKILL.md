@@ -21,6 +21,8 @@ Em toda invocação desta skill, consulte os onze sites de [research-and-skills.
 
 Os onze sites são fontes de pesquisa; a integração segue a necessidade, a stack e o design system do projeto. Consultá-los não exige instalar onze bibliotecas nem acrescentar animação, efeito ou 3D sem função na tela.
 
+Também em toda invocação, leia as [30 especialistas obrigatórias](references/research-and-skills.md#trinta-especialistas-obrigatórias-em-toda-invocação) (`gsap-*`, `21st-*`, React, `fixing-accessibility`, `fixing-metadata`, `fixing-motion-performance`, `apple-design`, `create-design-md`, `designmdme-cli`, auditoria de UI e motion, loops), cada uma na etapa indicada, no máximo três vivas por vez. Registre uma linha por skill em `.software-ui-design/skills.md` (ou `.frontend-quality/skills.md` quando o projeto usa `frontend-quality`): `nome — acionada em <etapa> — <o que mudou, ou por que não muda o código>`, ou `SKILL AUSENTE` quando o arquivo não existe no host. "Avaliada, não acionada" não vale. Ler não autoriza instalar pacote nem trocar stack. `node <skill-dir>/scripts/check-skills.mjs` imprime `PASS: 30/30` antes da entrega.
+
 ## Modo acompanhante
 
 Quando o projeto ou o usuário atribuir a direção a impeccable, design-taste-frontend, ui-ux-pro-max ou outra skill, use esta como acompanhante. A direção e a fundação continuam com a skill designada. Esta fornece contrato, densidade, padrões operacionais, matriz de estados, acabamento compatível e prova medida. Reutilize o workflow ativo; não abra um segundo redesign, não imponha preset nem peça nova escolha de marca. Leia referências só para a decisão atual. Sem diretiva concorrente, conduza o fluxo completo abaixo.
@@ -32,6 +34,7 @@ Registre o progresso no artefato adotado pelo projeto. Numa correção pequena, 
 ```
 - [ ] Contrato, volume e matriz de temas/estados/larguras
 - [ ] Consulta aos onze sites, design system do projeto, componentes inspecionados e composição
+- [ ] 30 especialistas lidas e registradas; check-skills.mjs com PASS 30/30
 - [ ] Implementação funcional e acabamento compatível
 - [ ] Prova medida, capturas vistas, web-design-guidelines no código e correções verificadas
 - [ ] Entrega com evidências, identidade e limites
@@ -134,6 +137,7 @@ A resposta final termina com este bloco preenchido, sempre, também em correçã
 ```markdown
 **Tela:** <arquivo ou rota> · <família e contrato em uma frase>
 **Pesquisa:** <registro dos onze sites com URLs, achados e decisões; caminho do artefato, 11/11 consultados ou pendências de acesso>
+**Especialistas:** <caminho do registro> · saída do check-skills.mjs (PASS 30/30) · <as que mudaram o código e o quê>
 **Componentes:** <arquivos do projeto e/ou IDs/URL + commit inspecionados, com a captura do acervo vista> · <lacuna que exigiu acervo, ou nenhuma> · <reuso/adaptação e licença quando houver código externo>
 **Valores:** <sidebar, altura de linha, espaço, tipo> · <token do projeto ou fonte de defaults.md>
 **Convenções:** <desvios da tabela de convenções de ux-laws.md e o motivo, ou "nenhum"> · <pedido trocado por uma lei, ex.: progresso fixo virou N de M>

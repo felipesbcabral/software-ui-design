@@ -81,7 +81,7 @@ Mantenha a lógica do produto, autorização, contratos de dados e navegação. 
 
 ## Uso seletivo das skills
 
-Resolva a cópia aplicável pelo catálogo do host e pela precedência do projeto. Leia uma vez a skill escolhida e só suas referências pertinentes. Uma menção nesta tabela não exige carregar todas. Se faltar uma especialista, este pacote oferece critérios para continuar; informe a ausência quando ela afetar o resultado.
+Resolva a cópia aplicável pelo catálogo do host e pela precedência do projeto. Leia uma vez a skill escolhida e só suas referências pertinentes. Uma menção nesta tabela não exige carregar todas, exceto as 30 da [seção seguinte](#trinta-especialistas-obrigatórias-em-toda-invocação), lidas em toda invocação. Se faltar uma especialista, este pacote oferece critérios para continuar; informe a ausência quando ela afetar o resultado.
 
 | Especialista | Quando ajuda | O que aproveitar e limite |
 |---|---|---|
@@ -89,17 +89,61 @@ Resolva a cópia aplicável pelo catálogo do host e pela precedência do projet
 | impeccable | Desenho ou refinamento de software, crítica, layout, estados | Modo Operate; shape, critique, polish, harden, adapt e clarify conforme o pedido. Siga o setup da cópia instalada ao invocá-la. |
 | design-taste-frontend / Taste Skill | Referência solicitada para direção e acabamento | Leitura do brief, coerência de componentes e auditoria antes de redesenhar. A cópia consultada exclui dashboards; não acioná-la como motor completo de software nem importar defaults de marketing. |
 | ui-ux-pro-max | Pesquisa de controles, UX, gráficos ou plataforma | Consultar domínios pertinentes com CLI confirmada. Paletas são candidatas. A cópia local consultada tem regras de React Native; não converter isso em stack obrigatória. |
-| 21st-ui-explore, 21st-registry, 21st-cli-use | Encontrar componente reutilizável em 21st | Busca e inspeção; confirmar ferramenta e compatibilidade antes de instalar |
-| awesome-claude-design, designmdme-cli, refero-design | Direção aberta ou busca de exemplos reais | Telas e fluxos de produto compatíveis, sem transportar marca ou layout de landing |
+| 21st-ui-explore, 21st-registry, 21st-cli-use | Obrigatórias em toda invocação; mudam o código quando há componente reutilizável em 21st | Busca e inspeção; confirmar ferramenta e compatibilidade antes de instalar |
+| awesome-claude-design, designmdme-cli, refero-design | Direção aberta ou busca de exemplos reais; designmdme-cli é lida em toda invocação | Telas e fluxos de produto compatíveis, sem transportar marca ou layout de landing |
 | emil-design-eng | Acabamento de controles frequentes | Alinhamento, foco, estados e resposta à interação |
 | design-motion-principles | Movimento criado ou revisado | Custo de repetição, feedback e movimento reduzido |
 | data-visualization | Gráficos e análise | Escolha do gráfico, escalas, valores acessíveis e interpretação honesta |
-| fixing-accessibility, baseline-ui | Controles e achados de acessibilidade | Semântica, teclado, foco e estados conforme a plataforma |
-| saas-frontend-patterns, react-best-practices | Integração na stack correspondente, se instaladas | Padrões de produto e desempenho, preservando a arquitetura |
+| fixing-accessibility, baseline-ui | Controles e achados de acessibilidade; fixing-accessibility é lida em toda invocação | Semântica, teclado, foco e estados conforme a plataforma |
+| saas-frontend-patterns, react-best-practices | Integração na stack correspondente; react-best-practices é lida em toda invocação | Padrões de produto e desempenho, preservando a arquitetura |
 | ux-writing, escrita-ptbr | Rótulos, erros e orientação | Linguagem concreta e fiel às ações disponíveis |
 | codex-remove-ui-noise | Excesso de texto ou controles sem função | Retirar ruído preservando caminhos, contexto e informação necessária |
 
 Não aplique proibições estéticas universais vindas de referências. Não use geradores que criem uma segunda fonte de tokens ou documentação. Resolva conflitos conforme o pedido, o projeto e o escopo da especialista.
+
+## Trinta especialistas obrigatórias em toda invocação
+
+Em 14/10/2026 a varredura dos transcripts de 73 dias mostrou que 30 especialistas roteadas por esta skill, por `web-design-craft` ou por `frontend-quality` nunca foram carregadas: zero chamadas da ferramenta `Skill` e zero leituras de arquivo delas. Estavam como "se instaladas" ou "quando ajuda". A pedido do proprietário, passam a ser obrigatórias em toda invocação, inclusive correção pequena, revisão e modo acompanhante.
+
+1. **Ler é obrigatório; usar depende da tela.** Leia o `SKILL.md` de cada uma na etapa da tabela. A linha do registro diz o que ela mudou ou por que não muda o código desta entrega (ex.: `gsap-react — acionada em 4 — lida; projeto sem GSAP, nada a aplicar`). Ler não autoriza instalar pacote, trocar stack nem acrescentar animação.
+2. **"Avaliada, não acionada" não vale.** Só `SKILL AUSENTE — fallback <critério interno>` dispensa a leitura, quando o arquivo não existe no host (em 14/10/2026 faltavam no Codex as sete `gsap-*` desta lista e `gsd-sketch`).
+3. **No máximo três vivas.** Leia, registre, libere, siga para a próxima.
+4. **Registro.** `.software-ui-design/skills.md` na raiz do projeto, ou `.frontend-quality/skills.md` quando o projeto já usa `frontend-quality`. `node <skill-dir>/scripts/check-skills.mjs` precisa imprimir `PASS: 30/30` antes da entrega.
+
+Custo medido: os 30 `SKILL.md` somam 267 KB, cerca de 67 mil tokens por invocação. Abra referência interna de uma especialista só quando a decisão depender dela.
+
+| Skill | Etapa do fluxo | O que aproveitar em software |
+|---|---|---|
+| `rtk-token-saver` | 1 | Saída de test, build, git e inspeção cortada pelo RTK |
+| `loop-state-and-stall-guard` | 1 | Estado em disco e detecção de stall no ciclo corrigir e reinspecionar |
+| `designmdme-cli` | 2 | `DESIGN.md` extraído de um produto de referência, como pesquisa |
+| `create-design-md` | 2 | `DESIGN.md` do projeto quando faltar documento de design system |
+| `21st-ui-explore` | 2 | Variações de tela ancoradas no design system do projeto |
+| `21st-cli-use` | 2 | Busca, código e instalação de componentes do catálogo 21st |
+| `21st-registry` | 2 | Publicação de componente próprio no 21st; registre quando a entrega não publica |
+| `art-direction` | 2 | Imagem, ilustração e mídia em estados vazios, onboarding e login dividido |
+| `image-to-code` | 2 | Esboço em imagem de uma composição, como estudo |
+| `brandkit` | 2 | Painel de marca do login dividido e imagem social do produto |
+| `gsd-sketch` | 2 | Esboço HTML descartável de alternativas de tela |
+| `composition-patterns` | 4 | Componentes compostos sem proliferação de props booleanas (React 19) |
+| `react-best-practices` | 4 | Desempenho em React e Next: renderização, dados, bundle |
+| `react-view-transitions` | 4 | Transição entre lista e detalhe, reordenação, elemento compartilhado |
+| `21st-ui-build` | 4 | Construção com o contexto de design do projeto |
+| `gsap-core` | 5 | API base e `matchMedia` para movimento reduzido |
+| `gsap-timeline` | 5 | Sequências de microinteração coordenadas |
+| `gsap-plugins` | 5 | Flip para reordenar e expandir, Draggable, Observer |
+| `gsap-utils` | 5 | `clamp`, `mapRange`, `snap` |
+| `gsap-react` | 5 | `useGSAP`, refs e limpeza |
+| `gsap-frameworks` | 5 | Ciclo de vida e limpeza em Vue, Svelte e Nuxt |
+| `gsap-performance` | 5 | Transform em vez de layout, lotes de leitura e escrita |
+| `animation-vocabulary` | 5 | Nome exato do efeito pedido em linguagem vaga |
+| `apple-design` | 5 | Gestos, sheets, molas e materiais em app e web móvel |
+| `improve-animations` | 5 | Auditoria do motion existente com plano priorizado |
+| `improve-ui` | 6 | Auditoria da tela contra a própria evidência de design |
+| `21st-ui-review` | 6 | Revisão de contexto de design, acessibilidade, responsivo e interação |
+| `fixing-accessibility` | 6 | ARIA, teclado, foco, contraste e erros de formulário |
+| `fixing-motion-performance` | 6 | Layout thrashing, compositor, blur |
+| `fixing-metadata` | 6 | Título, descrição e canonical das rotas públicas; em rota logada, `title` por tela |
 
 ## Outras skills pesquisadas no GitHub
 

@@ -52,14 +52,14 @@ O acervo com o código arquivado, as capturas e a licença de cada componente n�
 |---|---|
 | `SKILL.md` | Contrato, projeto/componentes, composição, implementação, acabamento, prova e entrega |
 | `references/` | Escolha rápida de componentes, valores de partida com fonte, antipadrões, leis de UX aplicadas a software, padrões de tela, navegação, linguagem visual, design systems e critérios de aceite |
-| `scripts/` | `inspect-ui.mjs`, `find-resources.mjs` e os testes deles |
+| `scripts/` | `inspect-ui.mjs`, `find-resources.mjs`, `check-skills.mjs` (registro das 30 especialistas obrigatórias) e os testes deles |
 | `evals/` | Cenários de avaliação com critérios verificáveis, para manter a skill |
 | `agents/openai.yaml` | Nome e descrição da skill no Codex |
 
 ## Testes
 
 ```bash
-node --test scripts/find-resources.test.mjs scripts/inspect-ui.test.mjs
+node --test scripts/find-resources.test.mjs scripts/inspect-ui.test.mjs scripts/check-skills.test.mjs
 ```
 
 A suíte de inspeção ampliada exige Playwright e Chromium; falta do runtime não é aprovação.
