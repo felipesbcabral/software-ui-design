@@ -21,7 +21,7 @@ Em toda invocação desta skill, consulte os onze sites de [research-and-skills.
 
 Os onze sites são fontes de pesquisa; a integração segue a necessidade, a stack e o design system do projeto. Consultá-los não exige instalar onze bibliotecas nem acrescentar animação, efeito ou 3D sem função na tela.
 
-Também em toda invocação, leia as [30 especialistas obrigatórias](references/research-and-skills.md#trinta-especialistas-obrigatórias-em-toda-invocação) (`gsap-*`, `21st-*`, React, `fixing-accessibility`, `fixing-metadata`, `fixing-motion-performance`, `apple-design`, `create-design-md`, `designmdme-cli`, auditoria de UI e motion, loops), cada uma na etapa indicada, no máximo três vivas por vez. Registre uma linha por skill em `.software-ui-design/skills.md` (ou `.frontend-quality/skills.md` quando o projeto usa `frontend-quality`): `nome — acionada em <etapa> — <o que mudou, ou por que não muda o código>`, ou `SKILL AUSENTE` quando o arquivo não existe no host. "Avaliada, não acionada" não vale. Ler não autoriza instalar pacote nem trocar stack. `node <skill-dir>/scripts/check-skills.mjs` imprime `PASS: 30/30` antes da entrega.
+Também em toda invocação, leia os cartões das [30 especialistas obrigatórias](references/research-and-skills.md#trinta-especialistas-obrigatórias-em-toda-invocação) (`gsap-*`, `21st-*`, React, `fixing-accessibility`, `fixing-metadata`, `fixing-motion-performance`, `apple-design`, `create-design-md`, `designmdme-cli`, auditoria de UI e motion, loops) em `~/.agents/skills/web-design-craft/references/cartoes-especialistas.md`, uma vez, no início. O `SKILL.md` completo entra na etapa indicada quando o cartão manda, no máximo três vivas por vez. Registre uma linha por skill em `.software-ui-design/skills.md` (ou `.frontend-quality/skills.md` quando o projeto usa `frontend-quality`): `cartão lido`, `acionada` com o `SKILL.md` completo, ou `SKILL AUSENTE`. "Avaliada, não acionada" não vale. Ler não autoriza instalar pacote nem trocar stack. `node <skill-dir>/scripts/check-skills.mjs` imprime `PASS: 30/30` antes da entrega.
 
 ## Modo acompanhante
 
@@ -34,7 +34,7 @@ Registre o progresso no artefato adotado pelo projeto. Numa correção pequena, 
 ```
 - [ ] Contrato, volume e matriz de temas/estados/larguras
 - [ ] Consulta aos onze sites, design system do projeto, componentes inspecionados e composição
-- [ ] 30 especialistas lidas e registradas; check-skills.mjs com PASS 30/30
+- [ ] Cartões das 30 especialistas lidos, completas quando o cartão manda; check-skills.mjs com PASS 30/30
 - [ ] Implementação funcional e acabamento compatível
 - [ ] Prova medida, capturas vistas, web-design-guidelines no código e correções verificadas
 - [ ] Entrega com evidências, identidade e limites

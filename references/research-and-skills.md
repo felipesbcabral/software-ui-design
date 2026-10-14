@@ -105,12 +105,12 @@ Não aplique proibições estéticas universais vindas de referências. Não use
 
 Em 14/10/2026 a varredura dos transcripts de 73 dias mostrou que 30 especialistas roteadas por esta skill, por `web-design-craft` ou por `frontend-quality` nunca foram carregadas: zero chamadas da ferramenta `Skill` e zero leituras de arquivo delas. Estavam como "se instaladas" ou "quando ajuda". A pedido do proprietário, passam a ser obrigatórias em toda invocação, inclusive correção pequena, revisão e modo acompanhante.
 
-1. **Ler é obrigatório; usar depende da tela.** Leia o `SKILL.md` de cada uma na etapa da tabela. A linha do registro diz o que ela mudou ou por que não muda o código desta entrega (ex.: `gsap-react — acionada em 4 — lida; projeto sem GSAP, nada a aplicar`). Ler não autoriza instalar pacote, trocar stack nem acrescentar animação.
+1. **O cartão é obrigatório; o `SKILL.md` completo, quando o cartão manda (2.6.0).** Leia `~/.agents/skills/web-design-craft/references/cartoes-especialistas.md` uma vez, no início (30 cartões, cerca de 10 mil tokens). Cada cartão diz o que a skill faz, quando muda o código, as regras que não podem faltar e quando abrir o `SKILL.md` completo; nesse caso, leia-o na etapa da tabela. Linha do registro: `nome — cartão lido em <etapa> — <por que não muda o código>` ou `nome — acionada em <etapa> — SKILL.md completo; <o que mudou>` (ex.: `gsap-react — cartão lido em 1 — projeto sem GSAP`). Sem o arquivo de cartões no host, leia os `SKILL.md` completos. Ler não autoriza instalar pacote, trocar stack nem acrescentar animação.
 2. **"Avaliada, não acionada" não vale.** Só `SKILL AUSENTE — fallback <critério interno>` dispensa a leitura, quando o arquivo não existe no host (em 14/10/2026 faltavam no Codex as sete `gsap-*` desta lista e `gsd-sketch`).
 3. **No máximo três vivas.** Leia, registre, libere, siga para a próxima.
 4. **Registro.** `.software-ui-design/skills.md` na raiz do projeto, ou `.frontend-quality/skills.md` quando o projeto já usa `frontend-quality`. `node <skill-dir>/scripts/check-skills.mjs` precisa imprimir `PASS: 30/30` antes da entrega.
 
-Custo medido: os 30 `SKILL.md` somam 267 KB, cerca de 67 mil tokens por invocação. Abra referência interna de uma especialista só quando a decisão depender dela.
+Custo medido: os 30 `SKILL.md` somam 267 KB (cerca de 67 mil tokens); os cartões, cerca de 40 KB. Abra referência interna de uma especialista só quando a decisão depender dela.
 
 | Skill | Etapa do fluxo | O que aproveitar em software |
 |---|---|---|

@@ -35,6 +35,13 @@ test('registro completo passa; falta, "avaliada" e linha sem estado reprovam; SK
   assert.equal(ledgerStatus('- gsap-core-extra — acionada', 'gsap-core'), null);
 });
 
+test('2.6.0: "cartão lido" vale para as 30; a leitura completa continua aceita', () => {
+  const cards = EXPECTED.map((s) => `- ${s} — cartão lido em 1 — nada a aplicar nesta tela`).join('\n');
+  assert.deepEqual(checkSkills(cards).errors, []);
+  assert.equal(ledgerStatus('- gsap-core — cartão lido em 1 — sem GSAP', 'gsap-core').status, 'cartao');
+  assert.equal(ledgerStatus('- gsap-core — acionada em 4 — SKILL.md completo', 'gsap-core').status, 'acionada');
+});
+
 test('CLI acha o registro do projeto, sai 1 com falta e 2 sem registro', () => {
   const dir = mkdtempSync(join(tmpdir(), 'sud-skills-'));
   let r = spawnSync(process.execPath, [script], { cwd: dir, encoding: 'utf8' });

@@ -3,8 +3,10 @@
  * Specialist ledger gate (2.5.0).
  *
  * In 73 days of transcripts, none of the specialists this skill routed "when installed" or "when it helps" was
- * ever loaded. The owner made the 30 below mandatory in every invocation. Each SKILL.md is read and gets a line:
- *   nome — acionada em <etapa> — <o que mudou, ou por que não muda o código>
+ * ever loaded. The owner made the 30 below mandatory in every invocation. Since 2.6.0 each one is read through
+ * its card (web-design-craft/references/cartoes-especialistas.md) and the full SKILL.md when the card says so:
+ *   nome — cartão lido em <etapa> — <por que não muda o código>
+ *   nome — acionada em <etapa> — SKILL.md completo; <o que mudou>
  *   nome — SKILL AUSENTE — fallback <critério interno>
  * "avaliada, não acionada" is not valid for these skills.
  *
@@ -34,6 +36,7 @@ export function ledgerStatus(text, skill) {
   if (/\bausente\b/i.test(line)) return { status: 'ausente', line };
   if (/n[ãa]o\s+acionada|\bavaliada\b/i.test(line)) return { status: 'avaliada', line };
   if (/\bacionada\b/i.test(line)) return { status: 'acionada', line };
+  if (/\bcart[ãa]o\b/i.test(line)) return { status: 'cartao', line };
   return { status: null, line };
 }
 
@@ -41,8 +44,8 @@ export function checkSkills(text) {
   const errors = [], ok = [];
   for (const s of MANDATORY_SKILLS) {
     const st = ledgerStatus(text, s);
-    if (st?.status === 'acionada' || st?.status === 'ausente') ok.push(`${s} ${st.status}`);
-    else errors.push(`${s} obrigatória em toda invocação: ${st ? `registrada como "${st.status || 'sem estado'}"` : 'sem linha'}; leia o SKILL.md e registre a decisão, ou SKILL AUSENTE (references/research-and-skills.md)`);
+    if (st?.status === 'acionada' || st?.status === 'ausente' || st?.status === 'cartao') ok.push(`${s} ${st.status}`);
+    else errors.push(`${s} obrigatória em toda invocação: ${st ? `registrada como "${st.status || 'sem estado'}"` : 'sem linha'}; leia o cartão e registre "cartão lido", "acionada" com o SKILL.md completo, ou SKILL AUSENTE (references/research-and-skills.md)`);
   }
   return { errors, ok };
 }
