@@ -12,7 +12,7 @@
  * Without an argument it looks for .software-ui-design/skills.md, then .frontend-quality/skills.md, in the cwd.
  * Exit 0 = complete, 1 = missing or invalid lines, 2 = no ledger found.
  */
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, realpathSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -60,4 +60,7 @@ function main(argv) {
   return r.errors.length ? 1 : 0;
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) process.exit(main(process.argv.slice(2)));
+// Compare real paths: ~/.claude/skills/software-ui-design is a link, and Node resolves it in import.meta.url but
+// not in argv[1]. A plain comparison skipped main() and exited 0 without checking anything.
+const isMain = process.argv[1] && realpathSync(resolve(process.argv[1])) === realpathSync(fileURLToPath(import.meta.url));
+if (isMain) process.exit(main(process.argv.slice(2)));

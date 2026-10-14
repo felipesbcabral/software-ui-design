@@ -2,9 +2,9 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, dirname } from 'node:path';
 import { MANDATORY_SKILLS, checkSkills, ledgerStatus } from './check-skills.mjs';
 
 const script = fileURLToPath(new URL('./check-skills.mjs', import.meta.url));
@@ -48,4 +48,15 @@ test('CLI acha o registro do projeto, sai 1 com falta e 2 sem registro', () => {
   r = spawnSync(process.execPath, [script], { cwd: dir, encoding: 'utf8' });
   assert.equal(r.status, 0, r.stdout);
   assert.match(r.stdout, /30\/30/);
+});
+
+test('CLI roda quando chamado por link (~/.claude/skills aponta para o repo)', () => {
+  // Node resolves the link in import.meta.url but not in argv[1]; a naive comparison made the CLI exit 0 silently.
+  const base = mkdtempSync(join(tmpdir(), 'sud-link-'));
+  const link = join(base, 'scripts-link');
+  symlinkSync(dirname(script), link, 'junction');
+  const empty = mkdtempSync(join(tmpdir(), 'sud-empty-'));
+  const r = spawnSync(process.execPath, [join(link, 'check-skills.mjs')], { cwd: empty, encoding: 'utf8' });
+  assert.equal(r.status, 2, `saída: ${r.stdout}${r.stderr}`);
+  assert.match(r.stdout, /registro de especialistas ausente/);
 });
