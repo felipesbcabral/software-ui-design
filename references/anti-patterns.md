@@ -12,6 +12,7 @@ Lista para revisar uma tela antes de entregar. Cada item traz o sinal que denunc
 - Sinais de "cara de IA"
 - Correto e genérico
 - Leis de UX aplicadas errado ou esquecidas
+- Piso do Hallmark em tela de app
 
 ## Espaço e largura
 
@@ -81,3 +82,18 @@ Critérios completos, limites e fontes em [ux-laws.md](ux-laws.md).
 38. **Menu cortado em 7 "por causa da lei de Miller", ou destino mais usado enterrado no meio da lista** (Miller e Hick). Troca: todos os destinos em grupos rotulados; os mais usados no alto da sidebar, logo depois do Início, e não só no topo do próprio grupo; os raros no fim.
 39. **Convenção quebrada sem ganho** (Jakob). Sinal: logo que não leva ao início, Sair no meio do conteúdo, atalho próprio no lugar do esperado. Troca: a tabela de convenções de ux-laws.md.
 40. **Identificador longo sem separação** (Miller). Sinal: CNPJ, CEP, telefone ou código de recuperação corridos. Troca: exibição em blocos e botão de copiar.
+
+## Piso do Hallmark em tela de app
+
+Itens 41 a 50, do Hallmark v2.0.0 (regras de tela de app em [hallmark-app.md](hallmark-app.md)). Os quatro primeiros são piso: não entram sem exceção escrita do proprietário.
+
+41. **Sobretítulo.** Sinal: rótulo curto acima do título que só anuncia o título ("VISÃO GERAL" sobre "Visão geral do mês"). Troca: o título sozinho; se o contexto importa, breadcrumb ou o nome da área na barra.
+42. **Cabeçalho de tabela ou rótulo em caixa alta com espaçamento largo.** Sinal: `text-transform: uppercase` com `letter-spacing` acima de 0,03em em cabeçalho de coluna, grupo de menu ou rótulo de campo. Troca: caixa de sentença, um degrau menor ou mais leve que o corpo, cor secundária com 4,5:1.
+43. **Pontos médios em série como separador de metadado.** Sinal: `Ana · 3 dias · Alta` em toda linha. Troca: colunas comparáveis na tabela, ou rótulo e valor (`<dl>`) no detalhe.
+44. **Cartão dentro de cartão.** Sinal: borda ou sombra dentro de outra superfície com borda ou sombra. Troca: um contêiner; dentro dele, divisão por espaço e fio.
+45. **Ponto colorido de status sem texto.** Sinal: bolinha verde, amarela ou vermelha como único sinal. Troca: rótulo de texto com ícone do conjunto da tela; cor só reforça.
+46. **Ícone dentro de círculo ou quadrado colorido.** Sinal: cada indicador, item de menu ou cabeçalho de cartão com um ícone numa moeda tingida. Troca: o número e o rótulo bastam; ícone só onde ajuda a achar, sem moeda.
+47. **Saudação acima de parede de KPI.** Sinal: "Bom dia, Ana" seguido de quatro a seis cartões de número iguais, medidor ou rosca. Troca: um número herói, um gráfico de apoio, uma tabela; a tela abre no objeto pelo qual a ferramenta é lembrada (fila, livro-razão, linha do tempo).
+48. **Seta de tendência que ninguém mediu.** Sinal: "+12%" verde sem período, base ou fonte. Troca: o número com período e comparação explícitos, vindos do dado, ou nada.
+49. **Toast para um efeito que já está visível.** Sinal: a linha foi salva e aparece atualizada, e ainda assim sobe "Salvo com sucesso!". Troca: o resultado na própria tela; toast só para o que acontece fora da vista ou para oferecer Desfazer.
+50. **Modal como primeira resposta.** Sinal: editar um campo abre modal; confirmar ação reversível abre modal. Troca: edição inline ou disclosure; Desfazer por 5 a 10 s no lugar da confirmação; modal só para o irreversível, com o nome digitado.

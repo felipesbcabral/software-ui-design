@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Foco sem contorno</title>
+<style>
+  body { font: 16px system-ui, sans-serif; margin: 24px; color: #1a1a1a; background: #fff; }
+  button, a { all: unset; display: inline-block; padding: 8px 12px; margin: 4px; cursor: pointer; color: #1a1a1a; }
+  .sublinhado:focus-visible { text-decoration: underline; text-decoration-thickness: 2px; }
+  .fundo:focus-visible { background: #e3ecff; }
+  .traco { position: relative; }
+  .traco::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 4px; height: 2px; background: #1747c9; transform: scaleX(0); }
+  .traco:focus-visible::after { transform: scaleX(1); }
+  .campo { display: inline-block; padding: 4px; background: #fff; transition: background .3s; }
+  .campo:focus-within { background: #eef2f7; }
+  .campo input { outline: none; border: 1px solid #6b6b6b; padding: 6px; }
+  .nada:focus { outline: none; }
+</style>
+</head>
+<body>
+<main>
+  <button class="sublinhado" type="button">Sublinhado</button>
+  <a class="fundo" href="#x">Fundo</a>
+  <button class="traco" type="button">Traço</button>
+  <label class="campo">Nome <input aria-label="Campo com fundo no pai"></label>
+  <button class="nada" type="button">Sem foco</button>
+</main>
+</body>
+</html>

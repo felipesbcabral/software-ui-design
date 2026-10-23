@@ -5,6 +5,7 @@ Primeira escolha de cada necessidade, vinda da revisão profunda de 26/09/2026. 
 A coluna "Primeira escolha" já considera o defeito que precisa ser corrigido: leia a coluna "Corrigir" antes de copiar.
 
 ## Conteúdo
+- Atalho: as mais pedidas
 - Navegação e shell
 - Tabelas, listas e busca
 - Formulários, exclusão e login
@@ -14,6 +15,22 @@ A coluna "Primeira escolha" já considera o defeito que precisa ser corrigido: l
 - IA, arquivos e colaboração
 - Cult UI
 - Lacunas conhecidas
+
+## Atalho: as mais pedidas
+
+| Família | ID do acervo |
+|---|---|
+| Sidebar expandida / rail | `04-menus-laterais-15` / `04-menus-laterais-10` |
+| Barra superior | `05-menus-superiores-01` |
+| Tabela densa / simples | `08-tabelas-grids-04` (ou `08-tabelas-grids-10` em stack Tailwind) / `08-tabelas-grids-05` |
+| Filtros facetados / command palette | `10-busca-filtros-comandos-01` / `10-busca-filtros-comandos-08` |
+| Criar em modal / editar em drawer / página | `02-formularios-crud-07` / `02-formularios-crud-08` / `02-formularios-crud-01` |
+| Tooltip / modal / confirmação destrutiva | `20-sobreposicoes-02` / `20-sobreposicoes-17` / `20-sobreposicoes-18` |
+| Login / cadastro / esqueci senha / OTP | `03-logins-09` / `21-autenticacao-05` / `21-autenticacao-11` / `21-autenticacao-17` |
+| Status / vazio / aviso de seção | `14-feedback-estados-01` / `14-feedback-estados-06` / `14-feedback-estados-02` |
+| Data / período de relatório | `01-calendarios-04` / `01-calendarios-15` |
+| Ícones | `11-icones-05` (Lucide) |
+| Comentários / copiloto com etapas / Gantt | `19-colaboracao-atividade-11` / `06-chats-ia-20` / `16-quadros-cronogramas-17` |
 
 ## Navegação e shell ([picks-menus-configuracoes-dashboards.md](picks-menus-configuracoes-dashboards.md))
 

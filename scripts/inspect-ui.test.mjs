@@ -38,6 +38,22 @@ test('flags every seeded defect in the fixture', (t) => {
   assert.equal(r.metrics.nav_width, 240);
 });
 
+test('2.7.0: focus without a contour (underline, background, pseudo-element, parent) counts as visible', (t) => {
+  const out = mkdtempSync(join(tmpdir(), 'inspect-focus-'));
+  const page = pathToFileURL(join(here, 'fixtures', 'inspect-focus.html')).href;
+  try {
+    execFileSync(process.execPath, [join(here, 'inspect-ui.mjs'), page, '--out', out, '--widths', '1440', '--tabs', '6', '--wait', '40'], { stdio: 'pipe' });
+  } catch (e) {
+    if (e.status === 3) return t.skip('Playwright not available');
+    if (!existsSync(join(out, 'report.json'))) throw e;
+  }
+  const r = JSON.parse(readFileSync(join(out, 'report.json'), 'utf8')).runs[0];
+  const flagged = r.no_focus_indicator.join('\n');
+  for (const name of ['Sublinhado', 'Fundo', 'Traço', 'Campo com fundo no pai']) assert.ok(!flagged.includes(name), `${name} sem contorno virou achado falso`);
+  assert.ok(flagged.includes('Sem foco'), 'botão sem nenhum indicador continua achado');
+  assert.equal(r.focus_stops.find((f) => f.el.includes('Traço')).indicator, '::after');
+});
+
 test('width-usage is only judged when --data-screen is set', (t) => {
   const r = run();
   if (r.skipped) return t.skip('Playwright not available');

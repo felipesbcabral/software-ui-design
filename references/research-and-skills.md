@@ -2,11 +2,19 @@
 
 ## Projeto e acervo primeiro na escolha
 
-Para cada criação ou mudança visual, consulte primeiro os componentes do projeto. Use o [acervo local](local-library.md) quando houver lacuna concreta ou comparação pertinente; registre qual componente faltou. Inspecione código e licença dos candidatos salvos. A consulta aos onze sites abaixo é obrigatória em toda invocação, inclusive correções pequenas, revisões e modo acompanhante. Buscas adicionais dependem de lacunas ou evidência desatualizada. O foco acompanha a necessidade: uma correção de combobox pesquisa esse controle.
+Para cada criação ou mudança visual, consulte primeiro os componentes do projeto. Use o [acervo local](local-library.md) quando houver lacuna concreta ou comparação pertinente; registre qual componente faltou. Inspecione código e licença dos candidatos salvos. A consulta aos onze sites abaixo segue o tier da tarefa. O foco acompanha a necessidade: uma correção de combobox pesquisa esse controle.
 
-## Onze sites obrigatórios em toda invocação
+## Onze sites por tier (2.7.0)
 
-Os dez primeiros vêm do [tweet de Tanzil Chowdhury](https://x.com/iamtanzil_/status/2105531744896303163), publicado em 01/10/2026; o Cult UI entrou a pedido do usuário em 07/10/2026. Por regra explícita do usuário, consulte todos os onze antes de propor a solução ou implementar, mesmo quando a escolha final for manter componentes do projeto.
+Os dez primeiros vêm do [tweet de Tanzil Chowdhury](https://x.com/iamtanzil_/status/2105531744896303163), publicado em 01/10/2026; o Cult UI entrou a pedido do usuário em 07/10/2026. Até a 2.6.0 os onze eram consultados em toda invocação, inclusive para alinhar uma lupa. A 2.7.0 escala a consulta pelo tamanho do trabalho:
+
+| Tier | Quando | Consulta |
+|---|---|---|
+| `quick` | Correção ou ajuste num componente existente, revisão pontual | Nenhuma externa: projeto e acervo local. Se o acervo não cobre o controle, um site pertinente |
+| `standard` | Tela nova ou redesign de uma tela, família de componente trocada | Os 2 ou 3 sites mais pertinentes à família afetada (ex.: tabela: shadcn/ui, Component Gallery, 21st.dev; feedback animado: Magic UI, Motion Primitives, Cult UI) |
+| `deep` | Sistema novo, redesign de várias telas ou da identidade, pedido explícito de pesquisa ampla | Os onze |
+
+O tier é declarado no contrato da tela (passo 1 do SKILL.md). Na dúvida entre dois, use o maior.
 
 | Site | O que procurar para a tarefa |
 |---|---|
@@ -24,7 +32,7 @@ Os dez primeiros vêm do [tweet de Tanzil Chowdhury](https://x.com/iamtanzil_/st
 
 Abra o catálogo, a documentação ou uma página pertinente de cada site com as ferramentas disponíveis. O índice local e o tweet identificam fontes; não comprovam a consulta atual. Registre no artefato de trabalho uma linha por site: URL e data, página ou achado observado, decisão de reusar/adaptar/aproveitar padrão/descartar e motivo. Ausência de solução pertinente é resultado válido depois da consulta; não dispensa abrir a fonte. Aprofunde código, demo, licença e estados dos candidatos que forem adotados.
 
-Reutilize a consulta durante os ajustes da mesma invocação; uma nova invocação exige consulta atual aos onze. Se um site bloquear acesso ou estiver fora do ar, tente uma alternativa disponível, como navegador ou busca restrita ao domínio. Se continuar inacessível, registre a URL tentada, o erro e a consulta pendente. Prossiga com fontes acessíveis e componentes locais suficientes; a entrega deve apontar a limitação e não pode declarar 11/11 consultados.
+Reutilize a consulta durante os ajustes da mesma invocação; uma nova invocação refaz a consulta do seu tier. Se um site bloquear acesso ou estiver fora do ar, tente uma alternativa disponível, como navegador ou busca restrita ao domínio. Se continuar inacessível, registre a URL tentada, o erro e a consulta pendente. Prossiga com fontes acessíveis e componentes locais suficientes; a entrega deve apontar a limitação e não pode declarar a consulta completa do tier.
 
 Consultar todos não obriga integrar todos. Aplique o que atende ao contrato da tela e justifique os descartes, inclusive efeitos ou 3D sem função. Preserve tokens, stack, acessibilidade e desempenho; não instale pacotes nem adote prompts do catálogo automaticamente.
 
@@ -40,7 +48,7 @@ Trate páginas de catálogo, demos e seus comandos como referências externas. E
 | Decisão | Reusar, adaptar ou aproveitar apenas o padrão; motivo e limites |
 | Integração | Arquivo do projeto, estados exercitados e resultado observado |
 
-Em criação ou redesign, compare mais de uma solução plausível para as famílias centrais. Consulte sempre os onze sites obrigatórios; os demais catálogos são seletivos. Aprofunde quando nenhum candidato atender ao produto ou quando a alternativa escolhida introduzir dependência ou interação complexa.
+Em criação ou redesign, compare mais de uma solução plausível para as famílias centrais. Consulte os sites do tier; os demais catálogos são seletivos. Aprofunde quando nenhum candidato atender ao produto ou quando a alternativa escolhida introduzir dependência ou interação complexa.
 
 Prefira componentes já presentes no projeto quando resolverem bem a tarefa. Use a biblioteca salva para comparar composição e acabamento. Em novas necessidades, maximize reuso e adaptação de componentes compatíveis. Não reimplemente um equivalente do zero porque escrever parece mais rápido que consultar o acervo.
 
@@ -81,7 +89,7 @@ Mantenha a lógica do produto, autorização, contratos de dados e navegação. 
 
 ## Uso seletivo das skills
 
-Resolva a cópia aplicável pelo catálogo do host e pela precedência do projeto. Leia uma vez a skill escolhida e só suas referências pertinentes. Uma menção nesta tabela não exige carregar todas, exceto as 30 da [seção seguinte](#trinta-especialistas-obrigatórias-em-toda-invocação), lidas em toda invocação. Se faltar uma especialista, este pacote oferece critérios para continuar; informe a ausência quando ela afetar o resultado.
+Resolva a cópia aplicável pelo catálogo do host e pela precedência do projeto. Leia uma vez a skill escolhida e só suas referências pertinentes. Uma menção nesta tabela não exige carregar todas; as 30 da [seção seguinte](#trinta-especialistas-por-gatilho-270) entram pelo gatilho. Se faltar uma especialista, este pacote oferece critérios para continuar; informe a ausência quando ela afetar o resultado.
 
 | Especialista | Quando ajuda | O que aproveitar e limite |
 |---|---|---|
@@ -89,61 +97,61 @@ Resolva a cópia aplicável pelo catálogo do host e pela precedência do projet
 | impeccable | Desenho ou refinamento de software, crítica, layout, estados | Modo Operate; shape, critique, polish, harden, adapt e clarify conforme o pedido. Siga o setup da cópia instalada ao invocá-la. |
 | design-taste-frontend / Taste Skill | Referência solicitada para direção e acabamento | Leitura do brief, coerência de componentes e auditoria antes de redesenhar. A cópia consultada exclui dashboards; não acioná-la como motor completo de software nem importar defaults de marketing. |
 | ui-ux-pro-max | Pesquisa de controles, UX, gráficos ou plataforma | Consultar domínios pertinentes com CLI confirmada. Paletas são candidatas. A cópia local consultada tem regras de React Native; não converter isso em stack obrigatória. |
-| 21st-ui-explore, 21st-registry, 21st-cli-use | Obrigatórias em toda invocação; mudam o código quando há componente reutilizável em 21st | Busca e inspeção; confirmar ferramenta e compatibilidade antes de instalar |
-| awesome-claude-design, designmdme-cli, refero-design | Direção aberta ou busca de exemplos reais; designmdme-cli é lida em toda invocação | Telas e fluxos de produto compatíveis, sem transportar marca ou layout de landing |
+| 21st-ui-explore, 21st-registry, 21st-cli-use | Por gatilho: componente do 21st candidato, a inspecionar ou a publicar | Busca e inspeção; confirmar ferramenta e compatibilidade antes de instalar |
+| awesome-claude-design, designmdme-cli, refero-design | Direção aberta ou busca de exemplos reais; designmdme-cli por gatilho (produto de referência a extrair) | Telas e fluxos de produto compatíveis, sem transportar marca ou layout de landing |
 | emil-design-eng | Acabamento de controles frequentes | Alinhamento, foco, estados e resposta à interação |
 | design-motion-principles | Movimento criado ou revisado | Custo de repetição, feedback e movimento reduzido |
 | data-visualization | Gráficos e análise | Escolha do gráfico, escalas, valores acessíveis e interpretação honesta |
-| fixing-accessibility, baseline-ui | Controles e achados de acessibilidade; fixing-accessibility é lida em toda invocação | Semântica, teclado, foco e estados conforme a plataforma |
-| saas-frontend-patterns, react-best-practices | Integração na stack correspondente; react-best-practices é lida em toda invocação | Padrões de produto e desempenho, preservando a arquitetura |
+| fixing-accessibility, baseline-ui | Controles e achados de acessibilidade; fixing-accessibility em todo tier | Semântica, teclado, foco e estados conforme a plataforma |
+| saas-frontend-patterns, react-best-practices | Integração na stack correspondente; react-best-practices com React ou Next | Padrões de produto e desempenho, preservando a arquitetura |
 | ux-writing, escrita-ptbr | Rótulos, erros e orientação | Linguagem concreta e fiel às ações disponíveis |
 | codex-remove-ui-noise | Excesso de texto ou controles sem função | Retirar ruído preservando caminhos, contexto e informação necessária |
 
 Não aplique proibições estéticas universais vindas de referências. Não use geradores que criem uma segunda fonte de tokens ou documentação. Resolva conflitos conforme o pedido, o projeto e o escopo da especialista.
 
-## Trinta especialistas obrigatórias em toda invocação
+## Trinta especialistas por gatilho (2.7.0)
 
-Em 14/10/2026 a varredura dos transcripts de 73 dias mostrou que 30 especialistas roteadas por esta skill, por `web-design-craft` ou por `frontend-quality` nunca foram carregadas: zero chamadas da ferramenta `Skill` e zero leituras de arquivo delas. Estavam como "se instaladas" ou "quando ajuda". A pedido do proprietário, passam a ser obrigatórias em toda invocação, inclusive correção pequena, revisão e modo acompanhante.
+Em 14/10/2026 a varredura dos transcripts de 73 dias mostrou que 30 especialistas roteadas por esta skill, por `web-design-craft` ou por `frontend-quality` nunca foram carregadas. A 2.5.0 as tornou obrigatórias em toda invocação e a 2.6.0 apontou para um arquivo de cartões (`web-design-craft/references/cartoes-especialistas.md`) que nunca foi criado: o fallback lia os 30 `SKILL.md` completos, 267 KB ou cerca de 67 mil tokens por invocação, a maior parte sobre stack que o projeto não tinha (GSAP sem GSAP, React em HTML puro). A 2.7.0 mantém o roteamento e troca a leitura cega pelo gatilho.
 
-1. **O cartão é obrigatório; o `SKILL.md` completo, quando o cartão manda (2.6.0).** Leia `~/.agents/skills/web-design-craft/references/cartoes-especialistas.md` uma vez, no início (30 cartões, cerca de 10 mil tokens). Cada cartão diz o que a skill faz, quando muda o código, as regras que não podem faltar e quando abrir o `SKILL.md` completo; nesse caso, leia-o na etapa da tabela. Linha do registro: `nome — cartão lido em <etapa> — <por que não muda o código>` ou `nome — acionada em <etapa> — SKILL.md completo; <o que mudou>` (ex.: `gsap-react — cartão lido em 1 — projeto sem GSAP`). Sem o arquivo de cartões no host, leia os `SKILL.md` completos. Ler não autoriza instalar pacote, trocar stack nem acrescentar animação.
-2. **"Avaliada, não acionada" não vale.** Só `SKILL AUSENTE — fallback <critério interno>` dispensa a leitura, quando o arquivo não existe no host (em 14/10/2026 faltavam no Codex as sete `gsap-*` desta lista e `gsd-sketch`).
-3. **No máximo três vivas.** Leia, registre, libere, siga para a próxima.
-4. **Registro.** `.software-ui-design/skills.md` na raiz do projeto, ou `.frontend-quality/skills.md` quando o projeto já usa `frontend-quality`. `node <skill-dir>/scripts/check-skills.mjs` precisa imprimir `PASS: 30/30` antes da entrega.
+1. **Gatilho observável manda ler.** Quando a condição da coluna Gatilho é observável no projeto ou no pedido, leia o `SKILL.md` na etapa indicada e registre o que mudou: `nome — acionada em <etapa> — <o que mudou>`. Ler não autoriza instalar pacote, trocar stack nem acrescentar animação.
+2. **Sem gatilho, uma linha basta no `deep`:** `nome — sem gatilho — <o que falta para disparar>`, com 15 caracteres ou mais (`gsap-react — sem gatilho — tela em HTML puro, sem GSAP`). "Avaliada, não acionada" sem nomear o gatilho continua inválido. `quick` e `standard` registram só `fixing-accessibility` e as que dispararam.
+3. **`fixing-accessibility` é de todo tier**, e nunca pode ser `sem gatilho`.
+4. **Ausente:** `nome — SKILL AUSENTE — fallback <critério interno>` quando o arquivo não existe no host (em 14/10/2026 faltavam no Codex as sete `gsap-*` desta lista e `gsd-sketch`).
+5. **No máximo três vivas.** Leia, registre, libere. Gatilho disparado nunca é pulado por orçamento.
+6. **Registro.** `.software-ui-design/skills.md` na raiz do projeto, ou `.frontend-quality/skills.md` quando o projeto já usa `frontend-quality`. `node <skill-dir>/scripts/check-skills.mjs --tier <tier>` imprime `PASS` antes da entrega.
 
-Custo medido: os 30 `SKILL.md` somam 267 KB (cerca de 67 mil tokens); os cartões, cerca de 40 KB. Abra referência interna de uma especialista só quando a decisão depender dela.
-
-| Skill | Etapa do fluxo | O que aproveitar em software |
-|---|---|---|
-| `rtk-token-saver` | 1 | Saída de test, build, git e inspeção cortada pelo RTK |
-| `loop-state-and-stall-guard` | 1 | Estado em disco e detecção de stall no ciclo corrigir e reinspecionar |
-| `designmdme-cli` | 2 | `DESIGN.md` extraído de um produto de referência, como pesquisa |
-| `create-design-md` | 2 | `DESIGN.md` do projeto quando faltar documento de design system |
-| `21st-ui-explore` | 2 | Variações de tela ancoradas no design system do projeto |
-| `21st-cli-use` | 2 | Busca, código e instalação de componentes do catálogo 21st |
-| `21st-registry` | 2 | Publicação de componente próprio no 21st; registre quando a entrega não publica |
-| `art-direction` | 2 | Imagem, ilustração e mídia em estados vazios, onboarding e login dividido |
-| `image-to-code` | 2 | Esboço em imagem de uma composição, como estudo |
-| `brandkit` | 2 | Painel de marca do login dividido e imagem social do produto |
-| `gsd-sketch` | 2 | Esboço HTML descartável de alternativas de tela |
-| `composition-patterns` | 4 | Componentes compostos sem proliferação de props booleanas (React 19) |
-| `react-best-practices` | 4 | Desempenho em React e Next: renderização, dados, bundle |
-| `react-view-transitions` | 4 | Transição entre lista e detalhe, reordenação, elemento compartilhado |
-| `21st-ui-build` | 4 | Construção com o contexto de design do projeto |
-| `gsap-core` | 5 | API base e `matchMedia` para movimento reduzido |
-| `gsap-timeline` | 5 | Sequências de microinteração coordenadas |
-| `gsap-plugins` | 5 | Flip para reordenar e expandir, Draggable, Observer |
-| `gsap-utils` | 5 | `clamp`, `mapRange`, `snap` |
-| `gsap-react` | 5 | `useGSAP`, refs e limpeza |
-| `gsap-frameworks` | 5 | Ciclo de vida e limpeza em Vue, Svelte e Nuxt |
-| `gsap-performance` | 5 | Transform em vez de layout, lotes de leitura e escrita |
-| `animation-vocabulary` | 5 | Nome exato do efeito pedido em linguagem vaga |
-| `apple-design` | 5 | Gestos, sheets, molas e materiais em app e web móvel |
-| `improve-animations` | 5 | Auditoria do motion existente com plano priorizado |
-| `improve-ui` | 6 | Auditoria da tela contra a própria evidência de design |
-| `21st-ui-review` | 6 | Revisão de contexto de design, acessibilidade, responsivo e interação |
-| `fixing-accessibility` | 6 | ARIA, teclado, foco, contraste e erros de formulário |
-| `fixing-motion-performance` | 6 | Layout thrashing, compositor, blur |
-| `fixing-metadata` | 6 | Título, descrição e canonical das rotas públicas; em rota logada, `title` por tela |
+| Skill | Etapa do fluxo | Gatilho | O que aproveitar em software |
+|---|---|---|---|
+| `rtk-token-saver` | 1 | saída de test, build, git ou inspeção passando de uma tela | Saída cortada pelo RTK |
+| `loop-state-and-stall-guard` | 1 | ciclo corrigir e reinspecionar com duas rodadas ou mais | Estado em disco e detecção de stall |
+| `designmdme-cli` | 2 | produto de referência a extrair como pesquisa | `DESIGN.md` extraído de um produto de referência |
+| `create-design-md` | 2 | projeto sem documento de design system e pedido de um | `DESIGN.md` do projeto |
+| `21st-ui-explore` | 2 | variações de tela a explorar no 21st | Variações ancoradas no design system do projeto |
+| `21st-cli-use` | 2 | componente do 21st a inspecionar ou instalar | Busca, código e instalação do catálogo 21st |
+| `21st-registry` | 2 | pedido de publicar componente próprio | Publicação no 21st |
+| `art-direction` | 2 | imagem ou ilustração em vazio, onboarding ou login dividido | Seleção e direção de mídia |
+| `image-to-code` | 2 | host com geração de imagem e composição aberta | Esboço em imagem, como estudo |
+| `brandkit` | 2 | painel de marca do login dividido ou imagem social | Quadro de marca |
+| `gsd-sketch` | 2 | `deep` com alternativas de tela a comparar | Esboço HTML descartável |
+| `composition-patterns` | 4 | componente React composto novo | Sem proliferação de props booleanas (React 19) |
+| `react-best-practices` | 4 | projeto React ou Next | Renderização, dados, bundle |
+| `react-view-transitions` | 4 | transição lista e detalhe, reordenação ou elemento compartilhado em React | View Transition API |
+| `21st-ui-build` | 4 | componente do 21st escolhido para entrar | Construção com o contexto do projeto |
+| `gsap-core` | 5 | projeto com GSAP | API base e `matchMedia` para movimento reduzido |
+| `gsap-timeline` | 5 | idem, com sequência coordenada | Timelines |
+| `gsap-plugins` | 5 | idem, com Flip, Draggable ou Observer | Reordenar e expandir, arrastar |
+| `gsap-utils` | 5 | idem, com mapeamento de valores | `clamp`, `mapRange`, `snap` |
+| `gsap-react` | 5 | GSAP dentro de React | `useGSAP`, refs e limpeza |
+| `gsap-frameworks` | 5 | GSAP em Vue, Svelte ou Nuxt | Ciclo de vida e limpeza |
+| `gsap-performance` | 5 | projeto com GSAP | Transform em vez de layout, lotes |
+| `animation-vocabulary` | 5 | efeito pedido em linguagem vaga | Nome exato do efeito |
+| `apple-design` | 5 | gesto, sheet, arraste ou mola em app ou web móvel | Padrão do sistema |
+| `improve-animations` | 5 | motion existente a revisar | Auditoria com plano priorizado |
+| `improve-ui` | 6 | redesign ou auditoria de tela existente | Auditoria contra a própria evidência de design |
+| `21st-ui-review` | 6 | `deep`, ou componente do 21st integrado | Revisão de design, acessibilidade, responsivo e interação |
+| `fixing-accessibility` | 6 | todo tier | ARIA, teclado, foco, contraste e erros de formulário |
+| `fixing-motion-performance` | 6 | animação ligada a rolagem, blur ou queda de fps | Layout thrashing, compositor, blur |
+| `fixing-metadata` | 6 | rota pública nova, ou `title` de tela alterado | Título, descrição e canonical; `title` por tela em rota logada |
 
 ## Outras skills pesquisadas no GitHub
 
@@ -159,4 +167,4 @@ O `registry-resources.json` guarda 382 registries do diretório shadcn com prove
 
 ## Convivência com a direção existente
 
-Se outra skill conduz a direção, use o modo acompanhante do SKILL.md: contrato, padrões operacionais, estados, acabamento compatível e inspeção. Consulte os onze sites obrigatórios e compartilhe os achados com o workflow ativo. Preserve os tokens e reutilize o loop visual. Um arquivo/componente local inspecionado é fonte válida na entrega; registre também as consultas externas e os descartes.
+Se outra skill conduz a direção, use o modo acompanhante do SKILL.md: contrato, padrões operacionais, estados, acabamento compatível e inspeção. Consulte os sites do tier e compartilhe os achados com o workflow ativo. Preserve os tokens e reutilize o loop visual. Um arquivo/componente local inspecionado é fonte válida na entrega; registre também as consultas externas e os descartes.

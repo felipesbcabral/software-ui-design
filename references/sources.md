@@ -50,3 +50,10 @@ Consulta realizada em 28/09/2026 para [ux-laws.md](ux-laws.md). As definições 
 | [Kivetz, Urminsky e Zheng (2006)](https://home.uchicago.edu/ourminsky/Goal-Gradient_Illusionary_Goal_Progress.pdf) | Cartão de 12 selos com 2 carimbados contra cartão de 10 vazio |
 | [Ghibellini e Meier (2025)](https://www.nature.com/articles/s41599-025-05000-w) | Meta-análise de 59 estudos: sem vantagem de memória para tarefa interrompida (razão 0,99); tendência de retomar confirmada |
 | [Cowan (2001)](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/44023F1147D4A1D44BDC0AD226838496/S0140525X01003922a.pdf/the-magical-number-4-in-short-term-memory-a-reconsideration-of-mental-storage-capacity.pdf) | Capacidade de cerca de 4 blocos, revisão do 7 ± 2 de Miller (1956) |
+
+## Hallmark e acervo de 5 sites (23/10/2026)
+
+| Fonte | O que foi aproveitado |
+|---|---|
+| [Hallmark v2.0.0](https://github.com/nutlope/hallmark) (MIT, Together AI, commit 7ec8682; cópia em `biblioteca-ui-software/fontes/nutlope--hallmark/`) | Regras de tela de app, oito estados, receita do campo, data viz, tema escuro e revisão fria, em [hallmark-app.md](hallmark-app.md); foco adaptado para estado sem contorno |
+| Acervo de 5 sites, coleta de 22/10/2026 (`biblioteca-ui-software/estudos/acervo-5-sites-2026-10-22/`) | Contrato de componente, estados por família, padrões de catálogo, níveis de evidência, em [acervo-5-sites.md](acervo-5-sites.md) |
