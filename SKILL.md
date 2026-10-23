@@ -2,7 +2,7 @@
 name: software-ui-design
 description: "Cria, redesenha e revisa telas de trabalho de SaaS, painéis, ERP, CRM e apps internos. Prioriza o design system do projeto e componentes revisados; cobre densidade, estados, acabamento e padrões de interação. Inspeciona aplicações logadas com sessão ou mock, temas, estados, regras locais e capturas comparadas. Atua como acompanhante quando outra skill conduz a direção visual. Use para telas operacionais, inclusive pedidos de melhorar aparência ou mostrar mais registros. Não use para landing pages ou marketing."
 metadata:
-  version: "2.7.0"
+  version: "2.7.1"
 ---
 
 # Software UI Design
@@ -39,9 +39,9 @@ Declare o tier no contrato da tela (passo 1). Ele decide o que roda.
 
 Na dúvida entre dois, use o maior. **Orçamento em todo tier:** uma inspeção em lote, um lote de correções, no máximo uma rodada de confirmação; cada revisão acrescenta um lote e sua recaptura.
 
-**Pesquisa:** os [onze sites](references/research-and-skills.md#onze-sites-por-tier-270) são fontes, não obrigação de integrar: registre uma linha por site consultado com URL, achado e decisão; fonte inacessível exige tentativa de alternativa e registro da pendência. Evidência de outra invocação não vale.
+**Pesquisa:** os [onze sites](references/research-and-skills.md#onze-sites-por-tier-270) são fontes, não obrigação de integrar: uma linha por site consultado (URL, achado, decisão); inacessível, tente alternativa e registre a pendência.
 
-**Especialistas:** as [30 roteadas](references/research-and-skills.md#trinta-especialistas-por-gatilho-270) (`gsap-*`, `21st-*`, React, `fixing-*`, `apple-design`, `create-design-md`, auditoria de UI e motion, loops) entram quando o gatilho da tabela é observável no projeto ou no pedido, lidas na etapa indicada, no máximo três vivas por vez. Registre em `.software-ui-design/skills.md` (ou `.frontend-quality/skills.md`): `acionada em <etapa> — <o que mudou>`, `sem gatilho — <motivo>` (só no `deep`) ou `SKILL AUSENTE`. Ler não autoriza instalar pacote nem trocar stack. `node <skill-dir>/scripts/check-skills.mjs --tier <tier>` imprime `PASS` antes da entrega.
+**Especialistas:** as [30 roteadas](references/research-and-skills.md#trinta-especialistas-por-gatilho-270) entram quando o gatilho da tabela é observável no projeto ou no pedido, lidas na etapa indicada, no máximo três vivas por vez. Registre em `.software-ui-design/skills.md` (ou `.frontend-quality/skills.md`): `acionada em <etapa> — <o que mudou>`, `sem gatilho — <motivo>` (só no `deep`) ou `SKILL AUSENTE`. Ler não autoriza instalar pacote nem trocar stack. `node <skill-dir>/scripts/check-skills.mjs --tier <tier>` imprime `PASS` antes da entrega.
 
 ## Modo acompanhante
 
@@ -78,6 +78,8 @@ Para cada família afetada, inspecione primeiro a implementação do projeto; fa
 
 ### 3. Composição
 
+**Decida a composição antes de expandir o código** (`standard` e `deep`): escolha a tela representativa, a ordem de atenção (localizar, comparar, decidir, agir, recuperar), o tamanho de cada região e a densidade. Renderize essa tela com dado representativo, estado cheio e um estado difícil (texto longo, erro, seleção ou vazio), olhe a captura e só então construa o resto. Direção aberta: duas composições com o mesmo conteúdo. Direção aprovada: use-a e registre a evidência.
+
 Use os [valores de partida](references/defaults.md) quando o projeto não tiver token: sidebar de 240 a 320 px, rail de 48 a 80 px, barra superior de 48 a 56 px, linha de tabela de 32 ou 40 px, escala de espaço 4/8, corpo de 14 px, alvo mínimo de 24 px (44 px de área de toque no celular). Passe a tela pelos [antipadrões](references/anti-patterns.md) antes de implementar. Os erros que mais estragam um painel são estes:
 
 - **Tela de dados espremida numa coluna central.** Lista, tabela, quadro e calendário ocupam a área fora da sidebar. Limite de largura vale só para texto e formulário.
@@ -95,7 +97,7 @@ Use os [valores de partida](references/defaults.md) quando o projeto não tiver 
 - **Progresso inventado ou perdido.** Barra que "já começa em X%": (1) um item por tarefa do pedido, opcionais marcadas e ainda na lista, mais o já feito (conta criada); (2) só então N de M. Número que não bate fica N de M, com a troca registrada. Checklist salvo e retomável ao recarregar.
 - **Convenção quebrada.** Logo sem link ao início, Sair fora do menu da conta, destino mais usado enterrado, CNPJ ou código sem separação (itens 34 a 40 dos antipadrões).
 
-Ações, destaques, progresso, navegação e identificadores seguem as [leis de UX](references/ux-laws.md) (Fitts, Hick, Jakob, Von Restorff, Goal gradient, Zeigarnik, Miller). Cada lei traz a regra, o sinal de erro e o limite de uso: 7 ± 2 não limita itens de menu, e Hick não se aplica a procurar um destino conhecido.
+[Leis de UX](references/ux-laws.md) com regra, sinal de erro e limite: 7 ± 2 não limita menu; Hick não vale para destino conhecido.
 
 Cor, tipo e acabamento: [visual-language.md](references/visual-language.md); tema escuro derivado, nunca invertido ([hallmark-app.md](references/hallmark-app.md#tema-escuro-por-derivação)). Para comparar com empresas ou usar um DESIGN.md, leia [design-systems.md](references/design-systems.md): documento de marketing não vira regra de dashboard.
 
@@ -144,12 +146,12 @@ Conformidade técnica e qualidade visual são conclusões separadas; não afirme
 | Primeira escolha de componente por necessidade, com link para o `picks-*.md` de cada família | [component-picks.md](references/component-picks.md) |
 | Tabela de achados, estados em camada, Playwright, bloco de entrega completo e exemplos | [prova-e-entrega.md](references/prova-e-entrega.md) |
 | Cult UI: 137 componentes com instalação, encaixe e veredito | [picks-cult-ui.md](references/picks-cult-ui.md), índice em [cult-ui-components.json](references/cult-ui-components.json) |
-| Números com fonte (sidebar, linha, espaço, tipo, alvo, breakpoints) | [defaults.md](references/defaults.md) |
+| Números com fonte | [defaults.md](references/defaults.md) |
 | O que evitar e como corrigir | [anti-patterns.md](references/anti-patterns.md) |
-| Leis de UX em software: regra, sinal de erro, limite e prova | [ux-laws.md](references/ux-laws.md) |
+| Leis de UX | [ux-laws.md](references/ux-laws.md) |
 | Família de tela e prova de aceite | [screen-patterns.md](references/screen-patterns.md) |
 | Largura, densidade, sidebar e responsividade | [layout-navigation.md](references/layout-navigation.md) |
-| Comportamento de controles, formulários, tabelas e datas | [components.md](references/components.md) |
+| Controles, formulários, tabelas e datas | [components.md](references/components.md) |
 | Cor, tipografia e acabamento | [visual-language.md](references/visual-language.md) |
 | Design systems oficiais e leitura de DESIGN.md | [design-systems.md](references/design-systems.md) |
 | Acervo local, estudos e caminho | [local-library.md](references/local-library.md) |

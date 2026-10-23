@@ -173,17 +173,17 @@ export async function measureFocus(page, tabs) {
       const pick = (cs, props) => props.map((p) => cs[p]).join('|');
       const read = () => [pick(getComputedStyle(el), OWN), pick(getComputedStyle(el, '::before'), PSEUDO),
         pick(getComputedStyle(el, '::after'), PSEUDO), el.parentElement ? pick(getComputedStyle(el.parentElement), PARENT) : ''];
-      const cs = getComputedStyle(el);
-      const outline = cs.outlineStyle !== 'none' && parseFloat(cs.outlineWidth) > 0;
-      const ring = cs.boxShadow && cs.boxShadow !== 'none';
-      const on = read();
+      // Only a change between rest and focus is an indicator: an outline or shadow already present at rest is not.
+      const ringOf = () => { const c = getComputedStyle(el); return { outline: `${c.outlineStyle}|${c.outlineWidth}|${c.outlineColor}`, shadow: c.boxShadow }; };
+      const on = read(), ringOn = ringOf();
       el.blur();
-      const off = read();
+      const off = read(), ringOff = ringOf();
       el.focus();
       const where = ['estilo próprio', '::before', '::after', 'pai'].filter((_, k) => on[k] !== off[k]);
+      const kind = ringOn.outline !== ringOff.outline ? 'outline' : ringOn.shadow !== ringOff.shadow ? 'box-shadow' : where.join(', ');
       const txt = (el.getAttribute('aria-label') || el.innerText || el.getAttribute('title') || '').trim().slice(0, 40);
-      return { el: `${el.tagName.toLowerCase()} "${txt}"`, visible_indicator: outline || ring || where.length > 0,
-        indicator: outline ? 'outline' : ring ? 'box-shadow' : where.join(', ') || null, matches_focus_visible: el.matches(':focus-visible') };
+      return { el: `${el.tagName.toLowerCase()} "${txt}"`, visible_indicator: where.length > 0,
+        indicator: kind || null, matches_focus_visible: el.matches(':focus-visible') };
     });
     if (!f) break;
     focus.push(f);

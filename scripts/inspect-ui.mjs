@@ -20,7 +20,7 @@
 // Exit: 0 ran (may have findings), 1 findings with --fail-on-findings, 2 usage, 3 no Playwright, 4 failed run.
 
 import { createRequire } from 'node:module';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
@@ -87,7 +87,7 @@ if (!pw || !pw.chromium) {
 }
 
 mkdirSync(outDir, { recursive: true });
-const report = { version:'2.2.0', url:config.urls[0], urls:config.urls, generated_at: new Date().toISOString(), runs: [] };
+const report = { version:JSON.parse(readFileSync(new URL('../package.json', import.meta.url),'utf8')).version, url:config.urls[0], urls:config.urls, generated_at: new Date().toISOString(), runs: [] };
 let browser;
 try {browser = await pw.chromium.launch();} catch(error) {console.error(`Chromium failed: ${error.message.split('\n')[0]}`);process.exit(4);}
 const fingerprints=new Map();

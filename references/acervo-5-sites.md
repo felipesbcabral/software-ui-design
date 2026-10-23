@@ -11,6 +11,7 @@ Pacote de pesquisa com 5.009 registros públicos de Landdding (2.540 sites), Mot
 - Níveis de evidência e vocabulário da entrega
 - Tokens e cor
 - Movimento em ferramenta
+- Glossário por problema
 
 ## Quando usar em tela de software
 
@@ -68,7 +69,7 @@ Comportamento de widget: [ARIA Authoring Practices Guide](https://www.w3.org/WAI
 
 ## Níveis de evidência e vocabulário da entrega
 
-- Quatro níveis, registrados em cada referência: **metadado publicado** (campo da fonte), **declaração CSS** (literal numa folha pública; não prova que está ativo), **cálculo derivado** (contraste calculado sobre o declarado) e **recomendação** (raciocínio próprio).
+- Quatro níveis, registrados em cada referência: **metadado publicado** (campo da fonte), **declaração CSS** (literal numa folha pública; não prova que está ativo), **cálculo derivado** (contraste calculado sobre o declarado) e **recomendação** (raciocínio próprio). Mais dois, separados destes: **observação no navegador** (captura vista) e **comportamento exercitado** (teclado, toque, estado acionado). Tag não prova técnica bem executada; captura não prova teclado; arquivo não prova integração. Cada referência escolhida produz uma decisão e uma forma de prova; sem isso a pesquisa vira inventário.
 - A interface do catálogo não é a interface catalogada: as cores do Wonderlist são do Wonderlist, não dos sites que ele lista.
 - "Inspirado em" descreve origem visual; "adaptado de código licenciado" exige código e licença; "testado" exige execução e resultado.
 - Gratuito no catálogo não é licença de redistribuir (Motionin veda redistribuir prompts e specs; Wonderlist vende os arquivos Figma; Modulify restringe raspagem).
@@ -82,3 +83,15 @@ Comportamento de widget: [ARIA Authoring Practices Guide](https://www.w3.org/WAI
 ## Movimento em ferramenta
 
 Ferramenta de uso frequente preserva previsibilidade em tarefas repetidas. Quando houver movimento além dos tokens de [acabamento.md](acabamento.md), escreva o contrato de nove campos: objetivo, elemento, gatilho, progresso, transformação, limites (começo, fim, repouso), alternativa (toque, teclado, movimento reduzido), ciclo de vida (inicia, pausa, remove eventos) e aceite (estados e trajetos a demonstrar). Animação de entrada nunca deixa informação indisponível se o JavaScript ou a mídia falharem.
+
+## Glossário por problema
+
+Os 261 conceitos de `estudos/GLOSSARIO_UIUX.md` são buscados pelo problema, nunca lidos inteiros: problema, conceitos, erro comum, decisão, prova.
+
+| Problema percebido | Conceitos | Decisão | Prova |
+|---|---|---|---|
+| Tudo parece importante | Hierarquia, cor de destaque, escala, proximidade | Concentrar intensidade na ação e nos dados prioritários | Tela inteira com ação, seleção, erro e secundário |
+| Tela parece vazia | Densidade, proporção, split, largura | Ajustar grupos ao trabalho e ao volume | Mesmo conteúdo e viewport antes e depois |
+| Formulário limpo que confunde | Rótulo, ajuda, validação, resumo de erros | Instrução junto do campo; recuperar sem perder dado | Preencher, falhar, corrigir, concluir |
+| Cartão quebra em coluna estreita | Tamanho intrínseco, container query, conteúdo primeiro | Reorganizar pelo espaço disponível | Mesma unidade larga, estreita e com texto longo |
+| Efeito atrasa o conteúdo | Stagger, melhoria progressiva, movimento reduzido | Resultado sem esperar a coreografia | Interromper, repetir, desligar o efeito |

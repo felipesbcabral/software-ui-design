@@ -15,6 +15,8 @@
   .campo:focus-within { background: #eef2f7; }
   .campo input { outline: none; border: 1px solid #6b6b6b; padding: 6px; }
   .nada:focus { outline: none; }
+  .sombra { box-shadow: 0 1px 3px rgba(0,0,0,.3); }
+  .sombra:focus { outline: none; }
 </style>
 </head>
 <body>
@@ -24,6 +26,7 @@
   <button class="traco" type="button">Traço</button>
   <label class="campo">Nome <input aria-label="Campo com fundo no pai"></label>
   <button class="nada" type="button">Sem foco</button>
+  <button class="sombra" type="button">Sombra fixa</button>
 </main>
 </body>
 </html>

@@ -118,3 +118,15 @@ Tema escuro é uma segunda renderização desenhada do mesmo sistema, nunca `fil
 Um agente sem o contexto da construção lê as capturas da tela inteira a 1440 e a 375 (e as de estado), até dez leituras, e responde como alguém fluente na categoria: a hierarquia está clara, a densidade é uniforme, cada controle e tabela funcionam no celular, os estados estão lá. A primeira palavra é `recapture` (captura faltando ou errada), `fix` (achados a seguir, no máximo oito, ordenados por custo) ou `ship`. Fecha com uma linha dizendo o que não pode ser diluído na correção. Em redesign, recebe também as capturas de antes e responde o que a tela antiga fazia melhor.
 
 Orçamento: uma inspeção em lote, um lote de correções, no máximo uma rodada de confirmação.
+
+**Crítica visual em cinco dimensões** (estudo Codex de 23/10/2026), uma observação por dimensão apontando a região e o efeito, nunca "mais premium":
+
+| Dimensão | A imagem responde | Sinal de fraqueza |
+|---|---|---|
+| Adequação | A forma ajuda esta pessoa nesta tarefa? | Vitrine numa tela frequente; operação escondida |
+| Hierarquia | O olhar acha a prioridade e a próxima ação? | Elementos concorrentes com a mesma intensidade |
+| Composição | Massa, proporção, alinhamento e espaço se relacionam? | Pequenos elementos num campo vazio; grupos indistintos |
+| Identidade | O que a torna reconhecível sem o logotipo? | Estrutura e exemplos aplicáveis a qualquer concorrente |
+| Execução e adaptação | Tipo, mídia, estados e recomposição sustentam a direção? | Fonte de fallback, quebra ruim, mobile só encolhido |
+
+Duas fases: **cega** (capturas e três fatos: produto, público, tarefa; sem a defesa do autor) descreve o que entende e percebe; **contextual** (contrato, referência aprovada, estados, restrições) confere se a intenção foi materializada e se alguma correção prejudicaria função, acesso ou identidade. Média alta não esconde dimensão fraca. Saída: o maior problema, poucas correções prioritárias e os acertos a preservar. Orçamento esgotado com problema aberto é **entregue com pendências**, nunca aprovação.
