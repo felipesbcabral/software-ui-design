@@ -2,7 +2,9 @@
 
 Skill para projetar, redesenhar e revisar telas de software: SaaS, painel administrativo, dashboard, ERP, CRM e app interno. Ela escolhe componentes já revisados em vez de desenhar do zero, aplica valores de design systems oficiais e prova o resultado com medição e captura de tela.
 
-Funciona no Claude Code e no Codex. As instruções estão em português. Versão 2.7.1.
+Funciona no Claude Code e no Codex. As instruções estão em português. Versão 2.8.0.
+
+A 2.8.0 acrescenta [componentes bonitos](references/componentes-bonitos.md): o que separa o componente fraco do forte em nove famílias de tela de trabalho, seis alavancas comuns e um teste de olho por família, usado na passada de acabamento, com âncoras de nível na avaliação visual e prova por equivalência demonstrada.
 
 A 2.7.0 abre com a barra visual de tela de app tirada do [Hallmark](references/hallmark-app.md) (objeto pelo qual a ferramenta é lembrada, escala de 1,125 a 1,2, acento só para ação, seleção e estado, quatro estados por região, oito por controle, gráfico honesto, tema escuro derivado e revisão fria), integra o [acervo de 5 sites](references/acervo-5-sites.md) (contrato de componente e estados por família) e escala o trabalho em `quick`, `standard` e `deep`: os onze sites e as 30 especialistas deixam de ser lidos em toda invocação e entram pelo tier e pelo gatilho.
 

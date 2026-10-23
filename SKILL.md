@@ -2,7 +2,7 @@
 name: software-ui-design
 description: "Cria, redesenha e revisa telas de trabalho de SaaS, painéis, ERP, CRM e apps internos. Prioriza o design system do projeto e componentes revisados; cobre densidade, estados, acabamento e padrões de interação. Inspeciona aplicações logadas com sessão ou mock, temas, estados, regras locais e capturas comparadas. Atua como acompanhante quando outra skill conduz a direção visual. Use para telas operacionais, inclusive pedidos de melhorar aparência ou mostrar mais registros. Não use para landing pages ou marketing."
 metadata:
-  version: "2.7.1"
+  version: "2.8.0"
 ---
 
 # Software UI Design
@@ -74,7 +74,7 @@ node <skill-dir>/scripts/find-resources.mjs --saved "date range"
 node <skill-dir>/scripts/find-resources.mjs --all "kanban"   # catálogos externos
 ```
 
-Para cada família afetada, inspecione primeiro a implementação do projeto; faltando solução, busque e anote o ID (resultado ordenado pelo veredito: recomendado, adaptar, referência). Busca não é inspeção: para cada ID que entra na tela, (1) abra a ficha, (2) abra a captura indicada nela com a ferramenta de imagem, (3) só então decida. ID sem captura vista vai como "referência não inspecionada" e não sustenta a escolha. Locais e IDs vão para **Componentes**; a pesquisa do tier, para **Pesquisa**. Stack compatível: reutilize ou adapte o código; senão, adapte o padrão aos componentes do projeto e diga o que foi aproveitado. Confira a licença antes de copiar. Pesquisa online além do tier só quando o acervo não cobre (lacunas no fim da escolha rápida), quando licença ou versão pedem conferência, ou a pedido. Acervo e estudos: [local-library.md](references/local-library.md) e [acervo-5-sites.md](references/acervo-5-sites.md).
+Para cada família afetada, inspecione primeiro a implementação do projeto; faltando solução, busque e anote o ID (resultado ordenado pelo veredito: recomendado, adaptar, referência). Busca não é inspeção: para cada ID que entra na tela, (1) abra a ficha, (2) abra a captura indicada nela com a ferramenta de imagem, (3) só então decida. ID sem captura vista vai como "referência não inspecionada" e não sustenta a escolha. Locais e IDs vão para **Componentes**; a pesquisa do tier, para **Pesquisa**. Stack compatível: reutilize ou adapte o código; senão, adapte o padrão aos componentes do projeto e diga o que foi aproveitado. Confira a licença antes de copiar. Pesquisa online além do tier só quando o acervo não cobre (lacunas no fim da escolha rápida), quando licença ou versão pedem conferência, ou a pedido.
 
 ### 3. Composição
 
@@ -107,7 +107,7 @@ Siga [components.md](references/components.md) para o comportamento de cada cont
 
 ### 5. Acabamento
 
-[acabamento.md](references/acabamento.md): tokens de motion, microinterações, desfazer, atualização otimista, edição inline, atalhos e recibos, só os que servem à tarefa. Confira papéis de fonte, alinhamento, hover/foco/ativo e interrupção de camadas. Foco sem contorno: sublinhado, fundo ou cor com 3:1, em `:focus-visible`. Sucesso é o resultado na tela; toast só para o que acontece fora da vista ou para Desfazer. Traços de identidade como no passo 3, sem decoração para cumprir contagem. Motion além dos tokens: design-motion-principles e emil-design-eng. No modo acompanhante, vale a direção da skill principal.
+Fraco e forte por família: [componentes-bonitos.md](references/componentes-bonitos.md), nas três que dominam a tela. [acabamento.md](references/acabamento.md): tokens de motion, microinterações, desfazer, atualização otimista, edição inline, atalhos e recibos, só os que servem à tarefa. Confira papéis de fonte, alinhamento, hover/foco/ativo e interrupção de camadas. Foco sem contorno: sublinhado, fundo ou cor com 3:1, em `:focus-visible`. Sucesso é o resultado na tela; toast só para o que acontece fora da vista ou para Desfazer. Traços de identidade como no passo 3, sem decoração para cumprir contagem. Motion além dos tokens: design-motion-principles e emil-design-eng. No modo acompanhante, vale a direção da skill principal.
 
 ### 6. Prova
 
@@ -143,7 +143,7 @@ Conformidade técnica e qualidade visual são conclusões separadas; não afirme
 |---|---|
 | Regras de tela de app do Hallmark: barra, estados, campo, gráfico, tema escuro, revisão fria | [hallmark-app.md](references/hallmark-app.md) |
 | Contrato de componente, estados por família, catálogo dentro do produto, evidência | [acervo-5-sites.md](references/acervo-5-sites.md) |
-| Primeira escolha de componente por necessidade, com link para o `picks-*.md` de cada família | [component-picks.md](references/component-picks.md) |
+| Primeira escolha de componente por família (`picks-*.md`) | [component-picks.md](references/component-picks.md) |
 | Tabela de achados, estados em camada, Playwright, bloco de entrega completo e exemplos | [prova-e-entrega.md](references/prova-e-entrega.md) |
 | Cult UI: 137 componentes com instalação, encaixe e veredito | [picks-cult-ui.md](references/picks-cult-ui.md), índice em [cult-ui-components.json](references/cult-ui-components.json) |
 | Números com fonte | [defaults.md](references/defaults.md) |

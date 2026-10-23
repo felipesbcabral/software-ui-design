@@ -23,6 +23,20 @@ O estado longo usa os valores exatos de `longContent`, inclusive o sufixo em tod
 | Identidade | 15 | Papéis de fonte, ritmo, semântica e controles do mesmo produto; três traços observáveis |
 | Acessibilidade | 20 | Nome, foco, teclado, contraste, toque, anúncio, reflow e acesso ao conteúdo completo |
 
+### Âncoras por nível
+
+A nota usa estas descrições observáveis; o juiz cita a captura que sustenta o nível. Sem âncora, 6 e 8 viram a mesma coisa.
+
+| Dimensão | 3 (fraco) | 6 (correto) | 9 (forte) |
+|---|---|---|---|
+| Hierarquia | Ação principal disputa com três outras; título empurra os dados para baixo | Ação principal identificável, mas o entorno pesa tanto quanto a área de trabalho | Em dois segundos se vê onde se está, o que fazer e o que é secundário; ação destrutiva separada |
+| Densidade | Cartões onde cabia tabela; primeira linha de dados abaixo da dobra | Tabela com volume real, mas colunas desalinhadas ou espaço irregular entre grupos | Linhas comparáveis, números à direita em algarismos tabulares, espaço menor dentro do grupo que entre grupos |
+| Estados | Só o estado cheio | Carregando e vazio existem, mas genéricos ("Sem resultados") | Cada região com os quatro estados no formato do conteúdo; vazio de filtro distinto de vazio real |
+| Identidade | Poderia ser qualquer template; acento em toda parte | Coerente, mas sem traço lembrável | Três traços observáveis (papéis de fonte, ritmo, objeto central) repetidos em todos os componentes |
+| Acabamento de componente | Raios, ícones e alturas variam na mesma tela | Consistente, com uma família fraca (tabela ou filtros) | As três famílias dominantes passam no teste de olho de [componentes-bonitos.md](../references/componentes-bonitos.md) |
+
+Acabamento de componente entra como observação da dimensão Identidade (ou Hierarquia, quando o defeito é de prioridade), sem mudar os pesos.
+
 Nota por dimensão: 0 a 10. Total = soma(nota × peso / 10), de 0 a 100. Captura estática pode avaliar aparência, mas não comprova teclado, anúncios, retorno de foco ou animação. Marque a parte sem evidência como não verificada e reduza a confiança; não invente teste. Perda de dados, ação principal inacessível, estado ausente e informação necessária cortada bloqueiam aprovação, mesmo com média alta.
 
 Quando `frontend-quality` estiver ativo, conserve também sua rubrica de 100 pontos e o juiz cego/contextual do tier. A rubrica de SaaS complementa, não substitui os gates do projeto. Três cenários e uma amostra por condição são um piloto: vitória local não significa melhora estatisticamente comprovada, nem autoriza atribuir nota 10 à skill.
