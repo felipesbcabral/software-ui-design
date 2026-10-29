@@ -100,6 +100,14 @@ test('motion-reduced: running animation under reduce is reported',()=>assert.ok(
 test('motion-duration: transitions longer than the budget are reported',()=>assert.ok(motion().runs[0].findings.some(f=>f.startsWith('motion-duration:'))));
 test('motion-layout: geometry animation and transition are reported',()=>assert.ok(motion().runs[0].findings.some(f=>f.startsWith('motion-layout:'))));
 test('consistency: fourteen font sizes exceed the default limit',()=>assert.ok(motion().runs[2].findings.some(f=>f.startsWith('consistency:')&&f.includes('font_sizes'))));
+const video = pathToFileURL(join(here,'fixtures','inspect-video.html')).href;
+let videoReport;
+const videoRuns=()=>videoReport??=inspect([video,video+'#respeita'],['--widths','1440','--reduced-motion','reduce']);
+test('motion-reduced: a video still playing under reduce is reported, a paused one is not',()=>{
+  const [ignores,respects]=videoRuns().runs;
+  assert.ok(ignores.findings.some(f=>f.startsWith('motion-reduced:')&&/1 v.deo/.test(f)),JSON.stringify(ignores.findings));
+  assert.ok(!respects.findings.some(f=>f.startsWith('motion-reduced:')),JSON.stringify(respects.findings));
+});
 test('runtime: JavaScript mount errors are reported',()=>assert.ok(motion().runs[3].findings.some(f=>f.startsWith('runtime:'))));
 test('failed combination remains in report, missing expected state is a finding, strict gate exits nonzero', () => {
   const out=mkdtempSync(join(tmpdir(),'inspect-exit-'));

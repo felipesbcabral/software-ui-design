@@ -207,7 +207,7 @@ try {
     for(const warning of metrics.consistency_warnings)findings.push(`consistency: ${warning} (heurística)`);
     if(metrics.motion_durations.length)findings.push(`motion-duration: ${metrics.motion_durations.length} transições/animações acima de ${config.rules.consistency?.maxDuration??500}ms (revisar finalidade)`);
     if(metrics.motion_layout.length)findings.push(`motion-layout: ${metrics.motion_layout.length} animações de geometria ou transition:all (revisar custo)`);
-    if(metrics.motion_reduced.length)findings.push(`motion-reduced: ${metrics.motion_reduced.length} animações continuam com movimento reduzido`);
+    if(metrics.motion_reduced.length){const videos=metrics.motion_reduced.filter(m=>m.properties?.includes('video')).length;findings.push(`motion-reduced: ${metrics.motion_reduced.length-videos} animações e ${videos} vídeo(s) continuam com movimento reduzido`);}
     if (metrics.overflow_px) findings.push(`overflow: página rola ${metrics.overflow_px}px na horizontal`);
     if (dataScreen && width >= 1280 && metrics.content_share_excluding_nav < DATA_SCREEN_MIN_SHARE) {
       findings.push(`width-usage: conteúdo usa ${Math.round(metrics.content_share_excluding_nav * 100)}% da área fora da navegação (${metrics.content_region.left}px à esquerda, ${metrics.content_region.right}px à direita) numa tela de dados`);

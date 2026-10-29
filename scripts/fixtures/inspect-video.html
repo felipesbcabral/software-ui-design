@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Login com prévia em vídeo</title>
+<style>body{margin:0;font:14px/1.5 system-ui;display:grid;grid-template-columns:1fr 1fr;min-height:100vh}main{padding:48px}aside{background:#0b0d10}video{width:100%;height:100%;object-fit:cover}</style></head>
+<body><main><h1>Entrar</h1><label>E-mail <input type="email" autocomplete="email"></label></main>
+<aside><video src="loop-640.webm" autoplay muted loop playsinline aria-hidden="true"></video></aside>
+<script>
+  // #respeita: the page honours reduced motion; without the hash it ignores it.
+  const v=document.querySelector('video');
+  if(location.hash==='#respeita'&&matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();}
+</script></body></html>

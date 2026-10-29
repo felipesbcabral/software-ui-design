@@ -2,7 +2,9 @@
 
 Skill para projetar, redesenhar e revisar telas de software: SaaS, painel administrativo, dashboard, ERP, CRM e app interno. Ela escolhe componentes já revisados em vez de desenhar do zero, aplica valores de design systems oficiais e prova o resultado com medição e captura de tela.
 
-Funciona no Claude Code e no Codex. As instruções estão em português. Versão 2.8.0.
+Funciona no Claude Code e no Codex. As instruções estão em português. Versão 2.9.0.
+
+A 2.9.0 acrescenta [movimento em telas de trabalho](references/movimento-saas.md), filtrado da auditoria das técnicas da MotionSites feita para a web-design-craft: curva de folha para gaveta e folha inferior, contrato da camada modal com fundo inerte, interrupção sem descartar clique, chips com `aria-pressed`, número que muda sem contagem no carregamento, vídeo de produto no login e no onboarding, e a lista do que não entra em tela de trabalho. A inspeção passa a acusar vídeo tocando com movimento reduzido. O cenário de avaliação novo fica em `evals/evals-2.9.json`, lido junto de `evals/evals.json`.
 
 A 2.8.0 acrescenta [componentes bonitos](references/componentes-bonitos.md): o que separa o componente fraco do forte em nove famílias de tela de trabalho, seis alavancas comuns e um teste de olho por família, usado na passada de acabamento, com âncoras de nível na avaliação visual e prova por equivalência demonstrada.
 

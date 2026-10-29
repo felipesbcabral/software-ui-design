@@ -130,6 +130,8 @@ export async function inspectExtras(page,rules) {
       if(props.some(p=>['width','height','top','left','right','bottom','margin','padding'].includes(p)))layoutMotion.push({...item,kind:'animation'});
       if(matchMedia('(prefers-reduced-motion: reduce)').matches)reduced.push(item);
     }
+    // A playing <video> is not in getAnimations(); a login or onboarding loop must stop under reduce too (2.9.0).
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches)for(const v of document.querySelectorAll('video'))if(!v.paused&&!v.ended&&v.readyState>2&&visible(v))reduced.push({element:describe(v),properties:['video']});
     const consistency={font_sizes:[...sizes],colors:[...colors],radii:[...radii],shadows:[...shadows]};
     const defaults={maxFontSizes:6,maxColors:12,maxRadii:6,maxShadows:4};
     const warnings=[];

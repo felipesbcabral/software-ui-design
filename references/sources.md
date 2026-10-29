@@ -57,3 +57,9 @@ Consulta realizada em 28/09/2026 para [ux-laws.md](ux-laws.md). As definições 
 |---|---|
 | [Hallmark v2.0.0](https://github.com/nutlope/hallmark) (MIT, Together AI, commit 7ec8682; cópia em `biblioteca-ui-software/fontes/nutlope--hallmark/`) | Regras de tela de app, oito estados, receita do campo, data viz, tema escuro e revisão fria, em [hallmark-app.md](hallmark-app.md); foco adaptado para estado sem contorno |
 | Acervo de 5 sites, coleta de 22/10/2026 (`biblioteca-ui-software/estudos/acervo-5-sites-2026-10-22/`) | Contrato de componente, estados por família, padrões de catálogo, níveis de evidência, em [acervo-5-sites.md](acervo-5-sites.md) |
+
+## MotionSites Web Builder (29/10/2026)
+
+| Fonte | O que foi aproveitado |
+|---|---|
+| [MotionSites Web Builder](https://github.com/Motionsites-AI/claude-skill) (MIT nas instruções e no código, commit faa30d5; [licença](motionsites-LICENSE.txt)) | Curva de folha `cubic-bezier(.32,.72,0,1)`, contrato de menu e gaveta, chips com `aria-pressed` e resumo vivo, regras de vídeo, filtrados pela auditoria das 58 técnicas feita para a web-design-craft 3.9.0, em [movimento-saas.md](movimento-saas.md). Exemplos e mídia (© MotionSites) não foram copiados. O vídeo `scripts/fixtures/loop-640.webm` foi gerado com o filtro `gradients` do ffmpeg |

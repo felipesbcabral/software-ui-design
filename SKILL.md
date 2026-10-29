@@ -2,7 +2,7 @@
 name: software-ui-design
 description: "Cria, redesenha e revisa telas de trabalho de SaaS, painéis, ERP, CRM e apps internos. Prioriza o design system do projeto e componentes revisados; cobre densidade, estados, acabamento e padrões de interação. Inspeciona aplicações logadas com sessão ou mock, temas, estados, regras locais e capturas comparadas. Atua como acompanhante quando outra skill conduz a direção visual. Use para telas operacionais, inclusive pedidos de melhorar aparência ou mostrar mais registros. Não use para landing pages ou marketing."
 metadata:
-  version: "2.8.0"
+  version: "2.9.0"
 ---
 
 # Software UI Design
@@ -107,7 +107,7 @@ Siga [components.md](references/components.md) para o comportamento de cada cont
 
 ### 5. Acabamento
 
-Fraco e forte por família: [componentes-bonitos.md](references/componentes-bonitos.md), nas três que dominam a tela. [acabamento.md](references/acabamento.md): tokens de motion, microinterações, desfazer, atualização otimista, edição inline, atalhos e recibos, só os que servem à tarefa. Confira papéis de fonte, alinhamento, hover/foco/ativo e interrupção de camadas. Foco sem contorno: sublinhado, fundo ou cor com 3:1, em `:focus-visible`. Sucesso é o resultado na tela; toast só para o que acontece fora da vista ou para Desfazer. Traços de identidade como no passo 3, sem decoração para cumprir contagem. Motion além dos tokens: design-motion-principles e emil-design-eng. No modo acompanhante, vale a direção da skill principal.
+Fraco e forte por família: [componentes-bonitos.md](references/componentes-bonitos.md), nas três que dominam a tela. [acabamento.md](references/acabamento.md): tokens de motion, microinterações, desfazer, atualização otimista, edição inline, atalhos e recibos, só os que servem à tarefa. Confira papéis de fonte, alinhamento, hover/foco/ativo e interrupção de camadas. Foco sem contorno: sublinhado, fundo ou cor com 3:1, em `:focus-visible`. Sucesso é o resultado na tela; toast só para o que acontece fora da vista ou para Desfazer. Traços de identidade como no passo 3, sem decoração para cumprir contagem. Motion: [movimento-saas](references/movimento-saas.md), depois design-motion-principles e emil-design-eng. No modo acompanhante, vale a direção da skill principal.
 
 ### 6. Prova
 

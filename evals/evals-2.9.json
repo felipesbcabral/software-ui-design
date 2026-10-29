@@ -1,0 +1,82 @@
+{
+  "skill_name": "software-ui-design",
+  "notes": "Scenarios added after evals.json reached the repository size limit. Same schema and the same portable input (inputs/saas-data.json); read together with evals.json. Eval 10 exercises motion on work screens (references/movimento-saas.md).",
+  "evals": [
+    {
+      "id": 10,
+      "name": "pedidos-gaveta-filtros-movimento",
+      "prompt": "Crie a lista de pedidos de um painel de loja com gaveta de filtros (chips por status e per\u00edodo) e menu de navega\u00e7\u00e3o que vira gaveta no celular. HTML/CSS/JS nativos, sem depend\u00eancias. Claro/escuro, celular/desktop; estados determin\u00edsticos via URL ?state=... . Dados ilustrativos, tokens e pap\u00e9is de fonte em inputs/saas-data.json. Salve pedidos.html.",
+      "expected_output": "pedidos.html com gaveta que entra e sai s\u00f3 com transform e opacity nos tokens de camada, curva de folha, fundo inerte, foco que entra e volta, Esc, chips com aria-pressed e resumo em aria-live, lista sem cascata no refetch e movimento reduzido sem transi\u00e7\u00e3o.",
+      "assertions": [
+        {
+          "type": "inspect",
+          "text": "A rota monta e o seletor do estado solicitado aparece",
+          "absent": [
+            "blank:",
+            "state:",
+            "runtime:"
+          ]
+        },
+        {
+          "type": "inspect",
+          "text": "Movimento sem geometria, dentro do or\u00e7amento e parado com movimento reduzido",
+          "absent": [
+            "motion-layout:",
+            "motion-duration:",
+            "motion-reduced:"
+          ]
+        },
+        {
+          "type": "inspect",
+          "text": "Temas suportados preservam contraste, foco e nomes",
+          "absent": [
+            "contrast:",
+            "focus:",
+            "names:"
+          ]
+        },
+        {
+          "type": "interaction",
+          "text": "Gaveta aberta: Tab n\u00e3o sai dela, Esc fecha e devolve o foco ao bot\u00e3o, clique no fundo fecha; abrir e fechar duas vezes r\u00e1pido n\u00e3o trava nem descarta clique"
+        },
+        {
+          "type": "interaction",
+          "text": "Chip alterna aria-pressed, o resumo anuncia filtros e total sem roubar o foco, e a lista filtrada aparece sem anima\u00e7\u00e3o de entrada"
+        },
+        {
+          "type": "visual",
+          "text": "Juiz cego compara hierarquia, densidade, estados, motion, identidade e acessibilidade com visual-evaluation.md; nenhum efeito de site de marketing (movimento-saas.md se\u00e7\u00e3o 7)"
+        }
+      ],
+      "extra_states": [
+        "drawer-open"
+      ],
+      "files": [
+        "inputs/saas-data.json"
+      ],
+      "matrix": {
+        "widths": [
+          1440,
+          768,
+          390,
+          320
+        ],
+        "color_schemes": [
+          "light",
+          "dark"
+        ],
+        "states": [
+          "default",
+          "loading",
+          "empty",
+          "error",
+          "long"
+        ],
+        "reduced_motion": [
+          "no-preference",
+          "reduce"
+        ]
+      }
+    }
+  ]
+}
