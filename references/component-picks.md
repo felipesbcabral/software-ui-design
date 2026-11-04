@@ -14,6 +14,7 @@ A coluna "Primeira escolha" já considera o defeito que precisa ser corrigido: l
 - Estados, loading e feedback
 - IA, arquivos e colaboração
 - Cult UI
+- PanelUI: app nativo e web
 - Lacunas conhecidas
 
 ## Atalho: as mais pedidas
@@ -132,6 +133,18 @@ A coluna "Primeira escolha" já considera o defeito que precisa ser corrigido: l
 | Thread de comentários (resposta, @menção, resolver) | `19-colaboracao-atividade-11` Motiq Comment Thread | `19-colaboracao-atividade-12` Motiq Review Workspace (com aprovação e feed), `19-colaboracao-atividade-13` Liveblocks Comments | Persistência, permissões e moderação ficam com a aplicação | Comentário sem estado de envio e erro |
 | Copiloto operacional com etapas e fontes | `06-chats-ia-20` Motiq AI Agent Workspace | `06-chats-ia-17` SidekickCN | SidekickCN: painel de 420 px corta 30 px em 390 px | `06-chats-ia-19` InAppAI como visual final |
 | Atividade e logs | `19-colaboracao-atividade-10` Cloudscape detalhe com abas | `19-colaboracao-atividade-06` Tabler | | Feed plano sem filtro |
+
+## PanelUI: app nativo e web ([picks-panelui.md](picks-panelui.md))
+
+145 itens de app React Native/Expo (P001 a P141 e blocos PB01 a PB04) e 47 web (W001 a W047), todos com código revisado e veredito. Para tela de app, comece por aqui; valores e regras de mobile em [mobile-app.md](mobile-app.md). Busca só de app: `find-resources.mjs --mobile "<termo>"`.
+
+| Necessidade no app | Primeira escolha | Corrigir | Evitar |
+|---|---|---|---|
+| Tarefa curta sobre a tela | `bottom-sheet` P040 | Textos e tokens | Sheet sobre sheet |
+| Linha de lista e configurações | `item` P064 + `frame` P061 | Tamanho `xs` em linha tocável | Card alto por registro |
+| Campo com rótulo e erro | `field` P019 + `input` P022 | Teclado, preenchimento e retorno por campo | `View` com `Text` solto acima |
+| Confirmar ação séria | `slide-button` P009 | Nada crítico | `progress-button` P007 sem ação acessível |
+| Abas | `tabs` P053 | Completar 44 pt com `hitSlop` | Barra inferior usada para ações |
 
 ## Cult UI ([picks-cult-ui.md](picks-cult-ui.md))
 

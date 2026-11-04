@@ -1,8 +1,10 @@
 # software-ui-design
 
-Skill para projetar, redesenhar e revisar telas de software: SaaS, painel administrativo, dashboard, ERP, CRM e app interno. Ela escolhe componentes já revisados em vez de desenhar do zero, aplica valores de design systems oficiais e prova o resultado com medição e captura de tela.
+Skill para projetar, redesenhar e revisar telas de software: SaaS, painel administrativo, dashboard, ERP, CRM e app interno, na web, no celular e em app nativo. Ela escolhe componentes já revisados em vez de desenhar do zero, aplica valores de design systems oficiais e prova o resultado com medição e captura de tela.
 
-Funciona no Claude Code e no Codex. As instruções estão em português. Versão 2.9.0.
+Funciona no Claude Code e no Codex. As instruções estão em português. Versão 3.0.0.
+
+A 3.0.0 estende a skill ao celular e ao app nativo. [mobile-app.md](references/mobile-app.md) traz os valores conferidos na Apple HIG, no Material 3 e no WCAG (44 pt, 48 dp, 3 a 5 destinos na barra inferior, sheet e diálogo, gesto com alternativa), regras de composição, antipadrões e como provar um app nativo. O PanelUI entra inteiro: 145 itens de app React Native/Expo e 47 web, cada um com código lido, captura vista e veredito, em [picks-panelui.md](references/picks-panelui.md). `find-resources.mjs --mobile` busca só componentes de app. O cenário 11 de `evals/evals-2.9.json` avalia uma tela de app em campo.
 
 A 2.9.0 acrescenta [movimento em telas de trabalho](references/movimento-saas.md), filtrado da auditoria das técnicas da MotionSites feita para a web-design-craft: curva de folha para gaveta e folha inferior, contrato da camada modal com fundo inerte, interrupção sem descartar clique, chips com `aria-pressed`, número que muda sem contagem no carregamento, vídeo de produto no login e no onboarding, e a lista do que não entra em tela de trabalho. A inspeção passa a acusar vídeo tocando com movimento reduzido. O cenário de avaliação novo fica em `evals/evals-2.9.json`, lido junto de `evals/evals.json`.
 
@@ -49,6 +51,8 @@ O script procura o Playwright em `PLAYWRIGHT_HOME`, na pasta atual e acima, na p
 A skill cita componentes por ID (por exemplo `08-tabelas-grids-10`), sempre com o nome e a origem, em `references/component-picks.md` e nos arquivos `references/picks-*.md`. Esses arquivos explicam a escolha, o que corrigir e o que evitar em cada família de tela.
 
 O Cult UI entra por componente: `references/cult-ui-components.json` traz os 137 itens do registry (U001 a U137) com comando de instalação, encaixe e veredito, e `references/picks-cult-ui.md` dá a escolha por necessidade. Esse índice funciona sem o acervo.
+
+O PanelUI entra do mesmo jeito: `references/panelui-components.json` traz 145 itens de app (P001 a P141 e os blocos PB01 a PB04) e 47 web (W001 a W047), com plataforma, instalação, encaixe e veredito; `references/picks-panelui.md` dá a escolha por necessidade.
 
 O acervo com o código arquivado, as capturas e a licença de cada componente não está neste repositório: tem cerca de 500 MB de projetos de terceiros, com licenças diferentes. Sem ele, `scripts/find-resources.mjs` avisa "Acervo não encontrado" e o resto da skill funciona. Use o nome e a origem de cada escolha para achar o componente no site oficial e confira a licença antes de copiar código. Quem tiver uma cópia do acervo aponta a variável `SOFTWARE_UI_LIBRARY` para a pasta dele.
 

@@ -63,3 +63,12 @@ Consulta realizada em 28/09/2026 para [ux-laws.md](ux-laws.md). As definições 
 | Fonte | O que foi aproveitado |
 |---|---|
 | [MotionSites Web Builder](https://github.com/Motionsites-AI/claude-skill) (MIT nas instruções e no código, commit faa30d5; [licença](motionsites-LICENSE.txt)) | Curva de folha `cubic-bezier(.32,.72,0,1)`, contrato de menu e gaveta, chips com `aria-pressed` e resumo vivo, regras de vídeo, filtrados pela auditoria das 58 técnicas feita para a web-design-craft 3.9.0, em [movimento-saas.md](movimento-saas.md). Exemplos e mídia (© MotionSites) não foram copiados. O vídeo `scripts/fixtures/loop-640.webm` foi gerado com o filtro `gradients` do ffmpeg |
+
+## PanelUI e mobile (04/11/2026)
+
+| Fonte | O que foi aproveitado |
+|---|---|
+| [PanelUI](https://github.com/panel-ui/PanelUI) (MIT, Copyright (c) 2026 Khalid Abdi, commit 73e7e3a; [licença](panelui-LICENSE.txt)) | Índice dos 145 itens de app (React Native/Expo) e 47 web em [panelui-components.json](panelui-components.json), com veredito próprio; regras de Uniwind e Reanimated resumidas em [mobile-app.md](mobile-app.md). Nenhum código ou mídia do PanelUI foi copiado para este repositório; código, gravações e capturas ficam no acervo |
+| [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/) (Buttons, Accessibility, Typography, Tab bars, Sheets) | 44 × 44 pt, corpo de 17 pt e mínimo de 11 pt, tab bar só para navegar, detents de sheet, conferidos no JSON oficial |
+| [Material 3](https://m3.material.io/) e [Android](https://developer.android.com/design/ui/mobile/guides/foundations/accessibility) | 48 × 48 dp, barra de navegação de 3 a 5 destinos, bottom sheet modal e diálogo, escala de tipo base 14, predictive back |
+| [WCAG 2.5.1 e 2.5.7](https://www.w3.org/WAI/WCAG22/Understanding/) | Alternativa de toque simples para gesto de caminho e para arrastar |

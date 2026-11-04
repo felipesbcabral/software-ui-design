@@ -60,21 +60,27 @@ export function loadCatalog({ saved = false, libraryPath } = {}) {
       status: 'Código arquivado; inspecionar compatibilidade, licença e comportamento antes de integrar.',
     }));
   }
-  return ['resources.json', 'software-resources.json', 'registry-resources.json', 'cult-ui-components.json'].flatMap((name) => {
+  return ['resources.json', 'software-resources.json', 'registry-resources.json', 'cult-ui-components.json', 'panelui-components.json'].flatMap((name) => {
     const data = JSON.parse(readFileSync(new URL(`../references/${name}`, import.meta.url), 'utf8'));
     if (!Array.isArray(data.resources)) throw new Error(`Catálogo inválido: ${name}`);
     return data.resources;
   });
 }
 
-export function searchResources(query = '', { all = false, limit = 8, saved = false, libraryPath, recommended = false } = {}) {
+export function searchResources(query = '', { all = false, limit = 8, saved = false, libraryPath, recommended = false, mobile = false, web = false } = {}) {
   if (!Number.isInteger(limit) || limit < 1 || limit > 250) throw new Error('limit deve ser inteiro entre 1 e 250');
+  if (mobile && web) throw new Error('Use --mobile ou --web, não os dois');
+  // Platform filter: only catalogs that declare plataforma (PanelUI today) match --mobile or --web.
+  const platform = mobile ? 'app' : web ? 'web' : null;
   const terms = normalize(query).trim().split(/\s+/u).filter(Boolean);
   return loadCatalog({ saved, libraryPath }).filter((r) => saved || all || CORE.has(r.id) || r.id.startsWith('S') || r.default_scope === true)
     .filter((r) => !recommended || (r.review && verdictRank(r.review.verdict) === 0))
+    // Native app entries only show up when asked for (--mobile) or in the full scope (--all).
+    .filter((r) => (platform ? r.plataforma === platform : all || r.plataforma !== 'app'))
     .map((r) => {
       const tags = TOPICS.filter(([, ids]) => ids.split(' ').includes(r.id)).map(([words]) => words).join(' ');
-      const title = normalize(`${r.id} ${r.name} ${r.provider}`);
+      // Curated keywords weigh like the title, so a pt-BR synonym beats an incidental match in review text.
+      const title = normalize(`${r.id} ${r.name} ${r.provider} ${r.keywords || ''}`);
       const content = normalize(`${JSON.stringify(r)} ${tags}`);
       const matches = terms.every((term) => content.includes(term));
       const score = terms.reduce((sum, term) => sum + (title.includes(term) ? 2 : content.includes(term) ? 1 : 0), 0);
@@ -84,15 +90,15 @@ export function searchResources(query = '', { all = false, limit = 8, saved = fa
     .sort((a, b) => (saved ? verdictRank(a.r.review?.verdict) - verdictRank(b.r.review?.verdict) : 0) || b.score - a.score || a.r.id.localeCompare(b.r.id))
     .slice(0, limit)
     .map(({ r }) => ({
-      id: r.id, name: r.name, url: r.demo_url, source: r.source_url || r.code_access?.repo || null, status: r.status,
+      id: r.id, name: r.name, url: r.demo_url, ...(r.plataforma ? { plataforma: r.plataforma } : {}), source: r.source_url || r.code_access?.repo || null, status: r.status,
       ...(saved ? { local_readme: r.local_readme, local_bundle: r.local_bundle, review: r.review } : {}),
-      // Per-component registry entries (Cult UI): install command, scope, code review and library capture.
+      // Per-component registry entries (Cult UI, PanelUI): install command, scope, code review and library capture.
       ...(r.install ? { install: r.install, fit: r.encaixe, verdict: r.revisao?.veredito || null, condition: r.revisao?.condicao || null, capture: r.captura } : {}),
     }));
 }
 
 export function main(args = process.argv.slice(2)) {
-  let all = false, json = false, saved = false, recommended = false, limit = 8;
+  let all = false, json = false, saved = false, recommended = false, mobile = false, web = false, limit = 8;
   const query = [];
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
@@ -100,23 +106,25 @@ export function main(args = process.argv.slice(2)) {
     else if (arg === '--saved') saved = true;
     else if (arg === '--recommended') { saved = true; recommended = true; }
     else if (arg === '--json') json = true;
+    else if (arg === '--mobile') mobile = true;
+    else if (arg === '--web') web = true;
     else if (arg === '--limit') {
       const value = args[++i];
       if (!value || !/^\d+$/.test(value)) throw new Error('--limit exige inteiro entre 1 e 250');
       limit = Number(value);
     } else if (arg === '--help') {
-      console.log('Uso: node find-resources.mjs [--saved|--recommended] [--all] [--json] [--limit 1..250] [termos]\n--saved busca código arquivado, ordenado pelo veredito da revisão. --recommended mostra só os padrões recomendados.\nInspecione os arquivos; pesquise online quando houver lacuna.');
+      console.log('Uso: node find-resources.mjs [--saved|--recommended] [--all] [--mobile|--web] [--json] [--limit 1..250] [termos]\n--mobile mostra só componentes de app nativo; --web só web (catálogos que declaram plataforma).\n--saved busca código arquivado, ordenado pelo veredito da revisão. --recommended mostra só os padrões recomendados.\nInspecione os arquivos; pesquise online quando houver lacuna.');
       return;
     } else if (arg.startsWith('--')) throw new Error(`Opção desconhecida: ${arg}`);
     else query.push(arg);
   }
-  const results = searchResources(query.join(' '), { all, limit, saved, recommended });
+  const results = searchResources(query.join(' '), { all, limit, saved, recommended, mobile, web });
   if (json) console.log(JSON.stringify(results, null, 2));
   else {
     console.log(saved ? 'Acervo local (ordem: recomendado > adaptar > referência). Abra a ficha, a captura e o código antes de integrar.' : 'Índice de fontes externas. Consulte também --saved para componentes já arquivados.');
     for (const r of results) {
       const rv = r.review ? `\nRevisão: ${r.review.verdict}${r.review.fit ? ` · ${r.review.fit}` : ''}${r.review.visual?.length ? `\nCaptura: ${r.review.visual[0]}` : ''}` : (saved ? '\nRevisão: sem revisão individual' : '');
-      const component = r.install ? `\nInstalar: ${r.install}\nEncaixe: ${r.fit} · Revisão: ${r.verdict ? `${r.verdict} · ${r.condition}` : 'sem revisão de código'}${r.capture ? `\nCaptura no acervo: ${r.capture}` : ''}` : '';
+      const component = r.install ? `\nInstalar: ${r.install}\nEncaixe: ${r.fit} · Revisão: ${r.verdict ? `${r.verdict}${r.condition ? ` · ${r.condition}` : ''}` : 'sem revisão de código'}${r.capture ? `\nCaptura no acervo: ${r.capture}` : ''}` : '';
       console.log(`${r.id} | ${r.name}\n${r.url}${r.source ? `\nCódigo: ${r.source}` : ''}${r.local_readme ? `\nFicha local: ${r.local_readme}\nZIP: ${r.local_bundle}` : ''}${rv}${component}`);
     }
     if (!results.length) console.log('Nenhuma fonte no índice para estes termos. Amplie a busca na internet.');

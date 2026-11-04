@@ -6,6 +6,7 @@ Detalhe dos passos 6 e 7 do [SKILL.md](../SKILL.md), movido para cá na 2.7.0 pa
 - Achados da inspeção
 - Estados em camada e matriz
 - Playwright e ordem da revisão
+- Bloco de entrega quick
 - Bloco de entrega standard e deep
 - Exemplos
 
@@ -35,6 +36,18 @@ Para aplicação logada, use --storage-state ou --mock e um --expect próprio da
 ## Playwright e ordem da revisão
 
 Não entregue sem rodar a inspeção: nos testes desta skill, as telas entregues sem ela voltaram com rolagem lateral no celular, foco invisível e dezenas de textos abaixo do contraste, defeitos que a captura mostraria em um minuto. `--data-screen` liga as checagens de largura e primeira linha; não use em formulário ou login. O script procura Playwright em `PLAYWRIGHT_HOME`, na pasta atual e acima, na pasta da skill e acima e no npm global. Rode o comando antes de concluir que falta Playwright. O pacote inclui package.json: `npm run setup` dentro da skill instala o runtime e Chromium quando necessário; não instale dependência no produto só para inspecionar. Se a descoberta falhar, use o comando indicado pelo erro e repita. Só declare a prova pendente depois de tentar, citando o erro.
+
+## Bloco de entrega quick
+
+Movido do SKILL.md na 3.0.0 para o núcleo caber em 20 KB.
+
+```markdown
+**Tela:** <arquivo ou rota> · <componente e o que mudou> · quick
+**Componentes:** <arquivo do projeto ou ID inspecionado>
+**Inspeção:** antes <achados> -> depois <achados>; capturas vistas: <quais>
+**Testes:** <comandos e resultado> · check-skills.mjs --tier quick: <PASS>
+**Pendente:** <o que não foi verificado e por quê>
+```
 
 ## Bloco de entrega standard e deep
 

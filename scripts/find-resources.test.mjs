@@ -47,6 +47,40 @@ test('Cult UI entra por componente: software na busca padrão, marketing só com
   assert.equal(searchResources(hero.id, { all: true })[0].id, hero.id);
 });
 
+test('PanelUI entra por plataforma: app e web separados, vitrine só com --all', () => {
+  const panel = loadCatalog().filter((r) => r.provider?.startsWith('PanelUI'));
+  assert.equal(panel.length, 192);
+  const app = panel.filter((r) => r.plataforma === 'app');
+  const web = panel.filter((r) => r.plataforma === 'web');
+  assert.equal(app.length, 145);
+  assert.equal(web.length, 47);
+  assert.ok(app.every((r) => /^P(B)?\d+$/.test(r.id) && r.install.startsWith('npx panelui-cli@latest add ')));
+  assert.ok(web.every((r) => /^W\d{3}$/.test(r.id) && r.install === `npx shadcn@latest add https://panelui.dev/r/web/${r.slug}.json`));
+  assert.ok(panel.every((r) => r.license === 'MIT' && ['tela de app', 'acabamento', 'vitrine'].includes(r.encaixe) && r.revisao?.veredito));
+  assert.ok(panel.every((r) => r.default_scope === (r.encaixe !== 'vitrine')));
+  const sheet = searchResources('bottom sheet', { mobile: true });
+  assert.ok(sheet.length > 0 && sheet.every((r) => r.plataforma === 'app'));
+  assert.ok(sheet.some((r) => r.name.includes('BottomSheet')));
+  assert.ok(searchResources('kpi', { web: true }).every((r) => r.plataforma === 'web'));
+  // Native app components never leak into a default (web) search; they need --mobile or --all.
+  assert.ok(!searchResources('tabela', { limit: 50 }).some((r) => r.plataforma === 'app'));
+  assert.ok(searchResources('tabela', { limit: 50 }).some((r) => r.id === 'W039'));
+  assert.ok(searchResources('tabela', { all: true, limit: 250 }).some((r) => r.plataforma === 'app'));
+  const showcase = panel.find((r) => r.encaixe === 'vitrine');
+  assert.equal(searchResources(showcase.id).length, 0);
+  assert.equal(searchResources(showcase.id, { all: true })[0].id, showcase.id);
+});
+
+test('CLI aceita --mobile e --web e recusa os dois juntos', () => {
+  const script = fileURLToPath(new URL('./find-resources.mjs', import.meta.url));
+  const run = (...args) => spawnSync(process.execPath, [script, ...args], { encoding: 'utf8' });
+  const mobile = run('--json', '--mobile', 'tabs');
+  assert.equal(mobile.status, 0, mobile.stderr);
+  const rows = JSON.parse(mobile.stdout);
+  assert.ok(rows.length > 0 && rows.every((r) => r.plataforma === 'app'));
+  assert.equal(run('--mobile', '--web', 'tabs').status, 2);
+});
+
 test('CLI funciona a partir de outro diretório e rejeita argumentos inválidos', () => {
   const script = fileURLToPath(new URL('./find-resources.mjs', import.meta.url));
   const run = (...args) => spawnSync(process.execPath, [script, ...args], { encoding: 'utf8', cwd: fileURLToPath(new URL('../references/', import.meta.url)) });

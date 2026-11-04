@@ -1,13 +1,13 @@
 ---
 name: software-ui-design
-description: "Cria, redesenha e revisa telas de trabalho de SaaS, painéis, ERP, CRM e apps internos. Prioriza o design system do projeto e componentes revisados; cobre densidade, estados, acabamento e padrões de interação. Inspeciona aplicações logadas com sessão ou mock, temas, estados, regras locais e capturas comparadas. Atua como acompanhante quando outra skill conduz a direção visual. Use para telas operacionais, inclusive pedidos de melhorar aparência ou mostrar mais registros. Não use para landing pages ou marketing."
+description: "Cria, redesenha e revisa telas de trabalho de SaaS, painéis, ERP, CRM e apps internos, na web, no celular e em app nativo (React Native/Expo, iOS, Android). Prioriza o design system do projeto e componentes revisados; cobre densidade, estados, acabamento e padrões de interação. Inspeciona aplicações logadas com sessão ou mock, temas, estados, regras locais e capturas comparadas. Atua como acompanhante quando outra skill conduz a direção visual. Use para telas operacionais, inclusive pedidos de melhorar aparência ou mostrar mais registros. Não use para landing pages ou marketing."
 metadata:
-  version: "2.9.0"
+  version: "3.0.0"
 ---
 
 # Software UI Design
 
-Telas de software existem para a pessoa localizar, comparar, editar e concluir trabalho. Esta skill escolhe componentes já revisados em vez de desenhar do zero, aplica valores de design systems oficiais e prova o resultado com medição e captura. Serve a web e a software em geral; em app nativo, use os controles e as unidades da plataforma.
+Telas de software existem para a pessoa localizar, comparar, editar e concluir trabalho. Esta skill escolhe componentes já revisados em vez de desenhar do zero, aplica valores de design systems oficiais e prova o resultado com medição e captura. Serve à web e ao celular, inclusive app nativo.
 
 ## Limites
 
@@ -39,13 +39,21 @@ Declare o tier no contrato da tela (passo 1). Ele decide o que roda.
 
 Na dúvida entre dois, use o maior. **Orçamento em todo tier:** uma inspeção em lote, um lote de correções, no máximo uma rodada de confirmação; cada revisão acrescenta um lote e sua recaptura.
 
-**Pesquisa:** os [onze sites](references/research-and-skills.md#onze-sites-por-tier-270) são fontes, não obrigação de integrar: uma linha por site consultado (URL, achado, decisão); inacessível, tente alternativa e registre a pendência.
-
-**Especialistas:** as [30 roteadas](references/research-and-skills.md#trinta-especialistas-por-gatilho-270) entram quando o gatilho da tabela é observável no projeto ou no pedido, lidas na etapa indicada, no máximo três vivas por vez. Registre em `.software-ui-design/skills.md` (ou `.frontend-quality/skills.md`): `acionada em <etapa> — <o que mudou>`, `sem gatilho — <motivo>` (só no `deep`) ou `SKILL AUSENTE`. Ler não autoriza instalar pacote nem trocar stack. `node <skill-dir>/scripts/check-skills.mjs --tier <tier>` imprime `PASS` antes da entrega.
+**Pesquisa e especialistas:** os [onze sites](references/research-and-skills.md#onze-sites-por-tier-270) são fontes, não obrigação: uma linha por site (URL, achado, decisão). As [30 especialistas](references/research-and-skills.md#trinta-especialistas-por-gatilho-270) entram pelo gatilho observável, no máximo três vivas, registradas em `.software-ui-design/skills.md` no formato daquela seção. Ler não autoriza instalar pacote. `node <skill-dir>/scripts/check-skills.mjs --tier <tier>` imprime `PASS` antes da entrega.
 
 ## Modo acompanhante
 
 Quando o projeto ou o usuário atribuir a direção a impeccable, design-taste-frontend, ui-ux-pro-max ou outra skill, use esta como acompanhante. Direção e fundação ficam com a skill designada; esta fornece contrato, densidade, padrões operacionais, estados, acabamento compatível e prova medida. Reutilize o workflow ativo, sem segundo redesign, preset ou nova escolha de marca. Sem diretiva concorrente, conduza o fluxo abaixo.
+
+## Mobile e app nativo (3.0.0)
+
+No celular (web a 390 px ou app nativo), nesta ordem:
+
+1. **Contrato:** superfície (`web no celular` ou `app nativo`), plataforma, postura (uma mão, em campo) e conexão. px não é pt nem dp.
+2. **Valores:** [mobile-app.md](references/mobile-app.md): toque de 44 pt (iOS) e 48 dp (Android); barra inferior com 3 a 5 destinos, nunca ações; sheet para tarefa curta, diálogo só para o que bloqueia.
+3. **Componentes:** projeto primeiro; no app, `find-resources.mjs --mobile "<termo>"` e [picks-panelui.md](references/picks-panelui.md); captura vista, condição aplicada.
+4. **Gesto e estados:** todo gesto também por toque simples ou `accessibilityActions`; cubra teclado aberto, offline, permissão negada, maior fonte e tema escuro.
+5. **Prova:** web com `--widths 390,320`; app com captura de simulador ou aparelho e VoiceOver/TalkBack. Expo web não prova o nativo.
 
 ## Fluxo
 
@@ -89,8 +97,7 @@ Use os [valores de partida](references/defaults.md) quando o projeto não tiver 
 - **Informação só no hover.** Tooltip abre também no foco; o que é essencial fica visível.
 - **Paleta apagada.** Superfícies com degraus claros, texto secundário com 4,5:1, cor de ação separada da cor de estado.
 - **Sidebar escondida por padrão.** No desktop a partir de 1280 px a sidebar abre expandida, com grupos e nomes visíveis; o rail só com ícones fica para quando a pessoa recolhe (e a escolha é lembrada) ou para 1024 a 1279 px. Casca nova com poucos destinos é barra superior: sidebar se justifica com mais de sete.
-- **Dashboard de cartões.** Saudação, quatro a seis cartões de número iguais, ícone em moeda colorida, seta verde sem período. Troca: o objeto da ferramenta primeiro, um número herói, um gráfico, uma tabela.
-- **Login e cadastro genéricos.** SaaS a partir de 1024 px: tela dividida, formulário de um lado e painel de marca com prévia real do produto (captura ou componente da própria UI, marcado como ilustrativo). Cartão centralizado só em ferramenta interna; no celular, só o formulário.
+- **Dashboard de cartões e login genérico** (antipadrões 47 e 32). Objeto da ferramenta e um número herói antes de parede de KPI; login de SaaS a partir de 1024 px dividido, com prévia real do produto marcada como ilustrativa; no celular, só o formulário.
 - **Correto e sem identidade.** Em criação/redesign, três traços observáveis em papéis de fonte, ritmo/densidade e ação/estado ([acabamento.md](references/acabamento.md)); em refinamento, preserve os existentes. Compare capturas com referência aprovada da mesma família.
 - **Tudo com o mesmo peso.** Vários botões preenchidos lado a lado, Salvar só no topo de um formulário longo, Excluir colado em Salvar. Um botão preenchido por região, junto de onde a tarefa termina; ação destrutiva em zona separada.
 - **Modal como primeira resposta.** Edição inline e disclosure antes; ação reversível roda na hora com Desfazer por 5 a 10 s; confirmação só para o irreversível, com o nome digitado. Filtros, abas e paginação ficam na URL.
@@ -119,21 +126,11 @@ node <skill-dir>/scripts/inspect-ui.mjs <url-ou-file://> --data-screen --widths 
 
 Não entregue sem rodar a inspeção: as telas entregues sem ela voltaram com rolagem lateral no celular, foco invisível e textos abaixo do contraste. Aplicação logada usa `--storage-state` ou `--mock` com `--expect` da rota; camada não capturada é pendência, não prova. Só declare a prova pendente depois de tentar rodar, citando o erro. `focus` acusa parada de Tab sem nenhuma mudança visível: a correção é estado de foco sem contorno (sublinhado, fundo ou cor) com 3:1.
 
-Depois de rodar, **olhe as capturas** com a ferramenta de imagem contra a barra visual: a medição não julga hierarquia nem acabamento. Em `standard` e `deep`, peça uma **revisão fria** a um agente sem o contexto da construção ([hallmark-app.md](references/hallmark-app.md#revisão-fria-da-tela)): capturas a 1440 e 375 e as de estado, até dez leituras, primeira palavra `recapture`, `fix` ou `ship`, no máximo oito achados por custo, e uma linha com o que não pode ser diluído. `web-design-guidelines`, quando instalada, lê os arquivos de UI alterados e pega o que a captura não mostra (semântica de formulário, `autocomplete`, `aria-live`, foco e tecla, confirmação destrutiva); conflito com o projeto, vence o projeto, com o motivo na entrega. Corrija tudo num lote, rode de novo uma vez, e pare sem achado ou com justificativa escrita para cada um. Rode os testes e gates do projeto. Sem navegador, revisão visual pendente. Critérios: [validation.md](references/validation.md).
+Depois de rodar, **olhe as capturas** com a ferramenta de imagem contra a barra visual: a medição não julga hierarquia nem acabamento. Em `standard` e `deep`, peça uma **revisão fria** a um agente sem o contexto da construção ([hallmark-app.md](references/hallmark-app.md#revisão-fria-da-tela)), com a primeira palavra `recapture`, `fix` ou `ship`. `web-design-guidelines`, quando instalada, lê os arquivos de UI alterados e pega o que a captura não mostra (semântica de formulário, `autocomplete`, `aria-live`, foco e tecla, confirmação destrutiva); conflito com o projeto, vence o projeto, com o motivo na entrega. Corrija tudo num lote, rode de novo uma vez, e pare sem achado ou com justificativa escrita para cada um. Rode os testes e gates do projeto. Sem navegador, revisão visual pendente. Critérios: [validation.md](references/validation.md).
 
 ### 7. Entrega
 
-A resposta final termina com o bloco do tier. Se houver documento de decisões do projeto, o bloco vai nele e a resposta aponta o caminho. O bloco de `standard` e `deep` (Tela, Pesquisa, Especialistas, Componentes, Valores, Convenções, Acabamento, Estados, Inspeção com revisão fria, Testes, Pendente) está em [prova-e-entrega.md](references/prova-e-entrega.md#bloco-de-entrega-standard-e-deep).
-
-`quick`:
-
-```markdown
-**Tela:** <arquivo ou rota> · <componente e o que mudou> · quick
-**Componentes:** <arquivo do projeto ou ID inspecionado>
-**Inspeção:** antes <achados> -> depois <achados>; capturas vistas: <quais>
-**Testes:** <comandos e resultado> · check-skills.mjs --tier quick: <PASS>
-**Pendente:** <o que não foi verificado e por quê>
-```
+A resposta final termina com o bloco do tier. Se houver documento de decisões do projeto, o bloco vai nele e a resposta aponta o caminho. Os blocos dos três tiers estão em [prova-e-entrega.md](references/prova-e-entrega.md#bloco-de-entrega-quick): `quick` com Tela, Componentes, Inspeção, Testes e Pendente; `standard` e `deep` acrescentam Pesquisa, Especialistas, Valores, Convenções, Acabamento, Estados e revisão fria.
 
 Conformidade técnica e qualidade visual são conclusões separadas; não afirme a segunda sem ter olhado a captura. Sem arquivo local inspecionado, ID ou fonte na linha de componentes, volte ao passo 2. Zero achados não prova beleza: a aparência requer capturas e avaliação visual; para manter a skill, use a comparação independente em evals/visual-evaluation.md.
 
@@ -143,9 +140,9 @@ Conformidade técnica e qualidade visual são conclusões separadas; não afirme
 |---|---|
 | Regras de tela de app do Hallmark: barra, estados, campo, gráfico, tema escuro, revisão fria | [hallmark-app.md](references/hallmark-app.md) |
 | Contrato de componente, estados por família, catálogo dentro do produto, evidência | [acervo-5-sites.md](references/acervo-5-sites.md) |
-| Primeira escolha de componente por família (`picks-*.md`) | [component-picks.md](references/component-picks.md) |
+| Primeira escolha por família (`picks-*.md`); Cult UI (137) e PanelUI (145 de app, 47 web) com veredito | [component-picks.md](references/component-picks.md), [picks-cult-ui.md](references/picks-cult-ui.md), [picks-panelui.md](references/picks-panelui.md) |
+| Mobile e app nativo: valores com fonte, composição e prova | [mobile-app.md](references/mobile-app.md) |
 | Tabela de achados, estados em camada, Playwright, bloco de entrega completo e exemplos | [prova-e-entrega.md](references/prova-e-entrega.md) |
-| Cult UI: 137 componentes com instalação, encaixe e veredito | [picks-cult-ui.md](references/picks-cult-ui.md), índice em [cult-ui-components.json](references/cult-ui-components.json) |
 | Números com fonte | [defaults.md](references/defaults.md) |
 | O que evitar e como corrigir | [anti-patterns.md](references/anti-patterns.md) |
 | Leis de UX | [ux-laws.md](references/ux-laws.md) |
@@ -162,4 +159,4 @@ Conformidade técnica e qualidade visual são conclusões separadas; não afirme
 | Critérios de aceite e evidência | [validation.md](references/validation.md) |
 | Origem e atribuições | [sources.md](references/sources.md) |
 
-Para manter a skill, use `evals/evals.json` (cenários com critérios verificáveis) e `evals/scenarios.md`.
+Manutenção: `evals/evals.json`, `evals/evals-2.9.json` e `evals/scenarios.md`.
