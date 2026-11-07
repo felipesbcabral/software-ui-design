@@ -4,7 +4,7 @@ Mapeie os estados existentes no contrato de tela. Para cada um, registre dado, g
 
 | Estado | Comportamento e prova | Exemplo do acervo |
 |---|---|---|
-| Carregando | Skeleton com geometria final, cabeçalhos reais e `aria-busy`; conteúdo anterior permanece durante recarga; resposta atrasada prova o indicador | `13-skeletons-02` Carbon DataTableSkeleton; `13-skeletons-01` Fluent Skeleton |
+| Carregando | Skeleton com geometria final, cabeçalhos reais e `aria-busy`; cada barra na caixa de linha do texto que substitui, para a linha de skeleton ter a altura da linha real (stageshow@299140f craft.md:56); conteúdo anterior permanece durante recarga; resposta atrasada prova o indicador | `13-skeletons-02` Carbon DataTableSkeleton; `13-skeletons-01` Fluent Skeleton |
 | Vazio | Diga o que está vazio e ofereça uma ação possível; coleção vazia difere de busca sem resultado | `14-feedback-estados-06` Primer Blankslate; `14-feedback-estados-10` shadcn Empty |
 | Erro | Nomeie a operação que falhou e a saída disponível; preservar dados digitados, permitir tentar novamente; não inventar causa técnica desconhecida | `14-feedback-estados-04` Carbon InlineNotification; `14-feedback-estados-02` Cloudscape Alert |
 | Conteúdo longo | Nomes, recibos, datas e erros quebram linha; truncamento secundário só com acesso integral por teclado e toque | Tabela `08-tabelas-grids-04` e drawer `02-formularios-crud-08`; conferir o padrão da página |
@@ -14,7 +14,7 @@ Em vazio de coleção, a contagem é zero. Em busca sem resultado, mostre zero r
 
 Preserve a geometria do shell entre estados; uma página curta não pode esticar a navegação e empurrar a tarefa. No erro, identifique uma saída principal: botões de retry e salvar simultâneos precisam deixar claro se executam a mesma operação. Controles para forçar loading ou falha ficam no harness de teste; não introduza "Carregar agora" no produto só para demonstrar o mock.
 
-Ao salvar, impeça submissão duplicada sem remover o foco. Se `disabled` ou a troca do feedback remover o controle ativo, mantenha-o estável com `aria-disabled` e guarda de submissão, ou defina um destino útil de foco após a resposta. Prove o intervalo salvando, a falha e o sucesso, inclusive quando retry estava dentro do feedback substituído. Campos obrigatórios precisam de `required` nativo ou semântica equivalente no controle customizado; a validação JavaScript sozinha não comunica essa exigência.
+Ao salvar, impeça submissão duplicada sem remover o foco. Se `disabled` ou a troca do feedback remover o controle ativo, mantenha-o estável com `aria-disabled` e guarda de submissão, ou defina um destino útil de foco após a resposta. Prove o intervalo salvando, a falha e o sucesso, inclusive quando retry estava dentro do feedback substituído. O spinner já gira antes de ficar visível e gira até o fim do fade de saída; pendente vira feito numa marca só, no mesmo slot, nunca spinner empilhado sobre o check (stageshow@299140f motion.md:85, teaching.md:26, kit.md:127). Linha de upload com progresso assenta como a linha de arquivo final, no mesmo lugar, sem sumir para o arquivo surgir em outra lista (stageshow@299140f SKILL.md:104). Campos obrigatórios precisam de `required` nativo ou semântica equivalente no controle customizado; a validação JavaScript sozinha não comunica essa exigência.
 
 ## Tempo do indicador
 

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Pedidos de compra</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px/20px Arial,sans-serif;color:#111827;background:#fff}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #d1d5db}
+h1{font-size:18px;line-height:24px;margin:0}
+main{padding:24px}
+.filtros{display:flex;gap:8px;margin-bottom:16px}
+button{font:inherit;padding:8px 14px;border:1px solid #6b7280;border-radius:6px;background:#fff;color:#111827}
+/* Seeded defect: no left padding, 16px on the right, so the label touches the left edge of the chip. */
+.chip{padding:6px 16px 6px 0;border:0;border-radius:999px;background:#e5e7eb}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid #e5e7eb}
+th{font-weight:600;color:#374151}
+</style></head>
+<body>
+<header>
+  <h1>Pedidos de compra</h1>
+  <button type="button">Novo pedido</button>
+</header>
+<main>
+  <div class="filtros">
+    <button type="button" class="chip">Aguardando aprovação</button>
+  </div>
+  <table>
+    <thead><tr><th>Pedido</th><th>Setor</th><th>Total</th><th>Situação</th></tr></thead>
+    <tbody>
+      <tr><td>PC-1042</td><td>Financeiro</td><td>R$ 2.300,00</td><td>Aguardando aprovação</td></tr>
+      <tr><td>PC-1043</td><td>Operações</td><td>R$ 780,00</td><td>Aprovado</td></tr>
+      <tr><td>PC-1044</td><td>Comercial</td><td>R$ 5.120,00</td><td>Aguardando aprovação</td></tr>
+      <tr><td>PC-1045</td><td>Atendimento</td><td>R$ 410,00</td><td>Recusado</td></tr>
+    </tbody>
+  </table>
+</main>
+</body></html>

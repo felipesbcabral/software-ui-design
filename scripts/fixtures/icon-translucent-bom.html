@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Agenda da equipe</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px/20px Arial,sans-serif;color:#111827;background:#fff}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #d1d5db}
+h1{font-size:18px;line-height:24px;margin:0}
+main{padding:24px}
+[role="toolbar"]{display:flex;gap:8px}
+button{display:inline-flex;align-items:center;gap:6px;font:inherit;padding:8px 14px;border:1px solid #6b7280;border-radius:6px;background:#fff;color:#111827}
+svg{width:16px;height:16px;flex:none}
+/* One opaque color: the crossing paints the same as the bars. */
+.mais{stroke:#4b5563}
+ul{margin:0;padding-left:20px}
+</style></head>
+<body>
+<header>
+  <h1>Agenda da equipe</h1>
+  <div role="toolbar" aria-label="Ações da agenda">
+    <button type="button"><svg class="mais" viewBox="0 0 24 24" fill="none" stroke-width="3" aria-hidden="true"><path d="M12 4v16"/><path d="M4 12h16"/></svg>Novo compromisso</button>
+    <button type="button">Hoje</button>
+  </div>
+</header>
+<main>
+  <ul>
+    <li>09:00 Reunião de planejamento semanal</li>
+    <li>10:30 Revisão das notas pendentes</li>
+    <li>14:00 Atendimento ao fornecedor de papelaria</li>
+    <li>16:00 Fechamento do caixa</li>
+  </ul>
+</main>
+</body></html>

@@ -88,3 +88,19 @@ O relatório registra URL final, status do documento, seletor esperado, console,
 Saídas do processo: `0` execução concluída (pode conter achados), `1` achados com `--fail-on-findings`, `2` argumentos/configuração inválidos, `3` Playwright ausente, `4` falha de navegador ou de qualquer combinação. Preserve o código de saída e o log completo. Use `--fail-on-findings` em CI apenas após avaliar exceções; sem esse flag, `0` não significa aprovação de design.
 
 As métricas de animação verificam estilos e animações ativas na captura. Hover, entrada/saída e animações JavaScript futuras precisam ser disparados pelo hook ou exercitados manualmente. Execute `--reduced-motion no-preference,reduce` para comparar as duas preferências, conforme [emulação do Playwright](https://playwright.dev/docs/emulation).
+
+## Candidatos (fora do gate)
+
+Sete detectores portados do Stageshow rodam em toda execução e saem em `runs[].candidates`, com a evidência em `runs[].candidate_evidence` e a seção "candidatos" no console. Não entram em `findings`, na galeria nem no código de saída de `--fail-on-findings` até passarem pelo replay com denominador (meta: no máximo 1 achado em 10 telas boas). Medem só o que está na viewport.
+
+| Nome | Mede | Correção |
+|---|---|---|
+| `layout-fit` | botão cuja linha de texto, padding e borda pedem mais altura que a caixa (tolerância de 2px) | altura mínima em vez de fixa, menos padding ou texto que não quebra |
+| `layout-edge` | conteúdo do controle colado num lado, padding perto de zero ali e recuo real no outro | mesmo padding nas duas pontas |
+| `layout-bottom` | contêiner com padding de base cujo último filho invade esse padding (altura fixa, compressão ou ancestral que corta) | `min-height`, rolagem própria ou menos conteúdo |
+| `icon-mixed` | ícones preenchidos e de traço no mesmo menu, lista, barra de ferramentas ou abas | um conjunto e uma construção, em 16 ou 20px |
+| `icon-emoji` | emoji no lugar de ícone ao lado de texto | ícone desenhado do conjunto da tela |
+| `icon-clipped` | SVG que desenha além do próprio `viewBox` e corta o traço | caber o desenho no `viewBox` ou trocar o ícone |
+| `icon-translucent` | traço ou preenchimento com alfa em ícone de duas ou mais formas, que escurecem onde se cruzam | cor opaca; para atenuar, `opacity` no `svg` inteiro |
+
+Proveniência: `scripts/inspect-layout.mjs` porta `auditLayout` (`layout-core.mjs:3-135,159-164`) sem `nested-composition-crop`; `scripts/inspect-icons.mjs` porta quatro checagens de `film-checks.mjs`. Origem: benjitaylor/skills stageshow@299140f, MIT, aviso em `references/stageshow-LICENSE.txt`. Seletores `.ss-*` viraram exclusões genéricas (logo, marca, avatar, spinner, switch, checkbox, chat). A escala de miniatura de 14px do Stageshow não vale aqui. Os pares `scripts/fixtures/<nome>-ruim.html` e `<nome>-bom.html` mostram cada defeito e a correção.

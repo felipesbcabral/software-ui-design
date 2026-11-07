@@ -13,13 +13,13 @@ const EXPECTED = ['fixing-accessibility', 'react-best-practices', 'designmdme-cl
   '21st-ui-build', '21st-ui-review', 'apple-design', 'fixing-motion-performance', 'fixing-metadata', 'create-design-md', 'gsap-performance',
   'brandkit', 'image-to-code', 'gsd-sketch', 'art-direction', 'gsap-core', 'gsap-react', 'gsap-frameworks', 'gsap-timeline', 'gsap-plugins',
   'gsap-utils', 'improve-ui', 'improve-animations', 'animation-vocabulary', 'composition-patterns', 'react-view-transitions',
-  'loop-state-and-stall-guard', 'rtk-token-saver'];
+  'loop-state-and-stall-guard', 'rtk-token-saver', 'stageshow'];
 const full = EXPECTED.map((s) => `- ${s} — acionada em 2 — SKILL.md lido; decisão registrada`).join('\n');
 
-test('as 30 especialistas roteadas e a referência listam as mesmas', () => {
+test('as 31 especialistas roteadas e a referência listam as mesmas', () => {
   assert.deepEqual([...MANDATORY_SKILLS].sort(), [...EXPECTED].sort());
   const text = readFileSync(reference, 'utf8');
-  const section = text.split('## Trinta especialistas por gatilho (2.7.0)')[1]?.split('\n## ')[0];
+  const section = text.split('## Especialistas por gatilho (2.7.0)')[1]?.split('\n## ')[0];
   assert.ok(section, 'seção das roteadas por gatilho ausente em research-and-skills.md');
   for (const s of EXPECTED) assert.match(section, new RegExp('`' + s + '`'), `${s} fora da tabela`);
 });
@@ -56,7 +56,7 @@ test('2.7.0: "sem gatilho" com motivo vale no deep; quick e standard cobram só 
   const onlyA11y = '- fixing-accessibility — acionada em 6 — nome no botão de fechar';
   assert.deepEqual(checkSkills(onlyA11y, { tier: 'quick' }).errors, []);
   assert.deepEqual(checkSkills(onlyA11y, { tier: 'standard' }).errors, []);
-  assert.equal(checkSkills(onlyA11y, { tier: 'deep' }).errors.length, 29);
+  assert.equal(checkSkills(onlyA11y, { tier: 'deep' }).errors.length, 30);
   assert.equal(checkSkills('', { tier: 'quick' }).errors.length, 1);
   assert.throws(() => checkSkills(onlyA11y, { tier: 'enorme' }), /tier inválido/);
 });
@@ -73,7 +73,7 @@ test('CLI acha o registro do projeto, sai 1 com falta e 2 sem registro', () => {
   writeFileSync(join(dir, '.software-ui-design', 'skills.md'), full, 'utf8');
   r = spawnSync(process.execPath, [script], { cwd: dir, encoding: 'utf8' });
   assert.equal(r.status, 0, r.stdout);
-  assert.match(r.stdout, /30\/30/);
+  assert.match(r.stdout, /31\/31/);
   writeFileSync(join(dir, '.software-ui-design', 'skills.md'), '- fixing-accessibility — acionada em 6 — foco revisado', 'utf8');
   r = spawnSync(process.execPath, [script, '--tier', 'quick'], { cwd: dir, encoding: 'utf8' });
   assert.equal(r.status, 0, r.stdout);

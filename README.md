@@ -62,7 +62,7 @@ O acervo com o código arquivado, as capturas e a licença de cada componente n�
 |---|---|
 | `SKILL.md` | Contrato, projeto/componentes, composição, implementação, acabamento, prova e entrega |
 | `references/` | Escolha rápida de componentes, valores de partida com fonte, antipadrões, leis de UX aplicadas a software, padrões de tela, navegação, linguagem visual, design systems e critérios de aceite |
-| `scripts/` | `inspect-ui.mjs`, `find-resources.mjs`, `check-skills.mjs` (registro das 30 especialistas obrigatórias) e os testes deles |
+| `scripts/` | `inspect-ui.mjs`, `find-resources.mjs`, `check-skills.mjs` (registro das 31 especialistas por gatilho) e os testes deles |
 | `evals/` | Cenários de avaliação com critérios verificáveis, para manter a skill |
 | `agents/openai.yaml` | Nome e descrição da skill no Codex |
 

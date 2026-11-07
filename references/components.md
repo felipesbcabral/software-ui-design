@@ -22,6 +22,8 @@ Use botão para executar ação e link para navegar. Hierarquia visual segue o f
 
 Rótulos nomeiam o resultado. Um botão de busca pode dizer Buscar; um ícone de lupa precisa de nome acessível e contexto claro. Preservar a largura durante envio evita deslocamento. Informe pendência e previna submissão duplicada sem esconder o erro ou impossibilitar recuperação.
 
+Controle abraça o conteúdo: nunca `flex: 1` com o conteúdo numa ponta (stageshow@299140f craft.md:69). Botão de ícone e chip numa linha flex levam `flex: none`; sinal de erro: botão de ícone mais estreito que alto quando o vizinho cresce (stageshow@299140f craft.md:93). Num controle de largura fixa (select, botão de menu), o rótulo que muda fica encostado no chevron e cresce para longe dele, e o espaço entre os dois não muda (stageshow@299140f teaching.md:110).
+
 Ações frequentes ficam próximas do objeto. Um menu de overflow serve a ações secundárias; não esconda nele a ação central só para reduzir ruído. Confirme operações de impacto quando o fluxo exigir; desfazer pode ser melhor para mudanças reversíveis. Não prometa desfazer sem suporte real.
 
 Escolha edição inline, painel ou página pelo tamanho e pela necessidade de contexto. Modal atende uma decisão ou tarefa delimitada. Sobreposições precisam escapar de contêineres que cortam conteúdo, manter camadas coerentes e gerir foco conforme o padrão usado.
@@ -34,7 +36,7 @@ Para busca instantânea, trate respostas fora de ordem, composição de texto e 
 
 Busca e filtros globais precisam considerar o conjunto completo, não apenas a página carregada. Alterações podem reiniciar a página quando necessário. Preserve filtros e posição ao abrir um detalhe e voltar, conforme o contrato de navegação existente. Não troque o roteador para implementar isso.
 
-Filtros avançados podem recolher, mas o estado aplicado continua visível. Ofereça remoção individual e limpeza quando fizer sentido. Não acrescente filtros decorativos ou chips sem comportamento. Seleção múltipla deixa claro se vale para a página, os registros carregados ou todos os resultados.
+Filtros avançados podem recolher, mas o estado aplicado continua visível. Ofereça remoção individual e limpeza quando fizer sentido. Não acrescente filtros decorativos ou chips sem comportamento. Texto digitado que vira filtro vira chip no lugar: as palavras ficam, a superfície cresce em volta e o × abre ao lado, sem apagar o campo e desenhar o chip em outro ponto (stageshow@299140f motion.md:82). Seleção múltipla deixa claro se vale para a página, os registros carregados ou todos os resultados.
 
 ## Formulários
 
@@ -58,7 +60,7 @@ Confirmações e erros precisam permanecer tempo suficiente para serem compreend
 
 Use tabela quando comparar atributos entre registros for a tarefa. Use lista quando o item tiver uma identidade principal e poucos atributos auxiliares. Cards são candidatos quando cada entidade exige conteúdo heterogêneo ou mídia.
 
-Cabeçalhos, unidades, alinhamento e ordenação tornam os dados comparáveis. Uma tabela HTML com botões nos cabeçalhos pode atender ordenação sem virar um grid ARIA. Um grid interativo exige o modelo de teclado correspondente. Exponha o estado de ordenação.
+Cabeçalhos, unidades, alinhamento e ordenação tornam os dados comparáveis. Uma tabela HTML com botões nos cabeçalhos pode atender ordenação sem virar um grid ARIA. Um grid interativo exige o modelo de teclado correspondente. Exponha o estado de ordenação. Lista montada com `div` alinha colunas com um template de grid de trilhas fixas em toda linha; conteúdo opcional deixa a trilha vazia, sem removê-la (stageshow@299140f craft.md:71).
 
 Em tarefas, prioridade, prazo, responsável e status precisam de hierarquia. Título é a entrada principal; metadados apoiam a decisão. Edição rápida não deve conflitar com seleção ou navegação da linha.
 
@@ -79,6 +81,8 @@ Separe escolher uma data de trabalhar numa agenda. Um date picker não substitui
 | Edição | Criação, alteração, cancelamento e alternativa ao arrastar |
 
 Não converta datas sem horário em instantes UTC de forma que mudem de dia. Use locale, início da semana e fuso definidos pelo produto. Confira limites de intervalo, passagem de mês/ano e horário de verão quando aplicáveis. Preserve as regras de datas da aplicação.
+
+Faixa de intervalo de datas corre semana a semana com ar entre as linhas, esmaece onde o intervalo continua fora da vista e fecha só nos dias reais de início e fim, cada um num disco sólido (círculo, não quadrado arredondado) no acento, com o dia em texto de 4,5:1 sobre ele (stageshow@299140f craft.md:23).
 
 Ofereça entrada por teclado quando útil e mensagens de formato. Calendário customizado exige navegação de teclado e retorno de foco adequados. Em agenda, eventos conflitantes e indisponibilidade devem ser compreensíveis sem depender só da cor.
 

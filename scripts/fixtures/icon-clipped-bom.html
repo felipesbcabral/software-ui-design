@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Clientes</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px/20px Arial,sans-serif;color:#111827;background:#fff}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #d1d5db}
+h1{font-size:18px;line-height:24px;margin:0}
+main{padding:24px}
+button{display:inline-flex;align-items:center;gap:6px;font:inherit;padding:8px 14px;border:1px solid #6b7280;border-radius:6px;background:#fff;color:#111827}
+svg{width:16px;height:16px;flex:none}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid #e5e7eb}
+th{font-weight:600;color:#374151}
+</style></head>
+<body>
+<header>
+  <h1>Clientes</h1>
+  <!-- The whole drawing, stroke included, stays inside the 24-unit viewBox. -->
+  <button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M6 12h12M9 18h6"/></svg>Filtrar</button>
+</header>
+<main>
+  <table>
+    <thead><tr><th>Cliente</th><th>Cidade</th><th>Última nota</th><th>Situação</th></tr></thead>
+    <tbody>
+      <tr><td>Comércio Alfa</td><td>Campinas</td><td>03/11/2026</td><td>Ativo</td></tr>
+      <tr><td>Oficina Beta</td><td>Santos</td><td>28/10/2026</td><td>Ativo</td></tr>
+      <tr><td>Padaria Gama</td><td>Sorocaba</td><td>14/10/2026</td><td>Inativo</td></tr>
+      <tr><td>Clínica Delta</td><td>Jundiaí</td><td>01/11/2026</td><td>Ativo</td></tr>
+    </tbody>
+  </table>
+</main>
+</body></html>

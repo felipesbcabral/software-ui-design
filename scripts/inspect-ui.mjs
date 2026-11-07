@@ -17,6 +17,7 @@
 //   tooltips       icon-only controls whose tooltip appears on hover but not on keyboard focus
 //   contrast       sampled text below WCAG 1.4.3 (4.5:1 normal text, 3:1 large text)
 // Findings are evidence to look at, not an automatic verdict: always view the screenshot too.
+// Candidates (layout-*, icon-*: inspect-layout.mjs, inspect-icons.mjs) go to runs[].candidates, never to findings or exit.
 // Exit: 0 ran (may have findings), 1 findings with --fail-on-findings, 2 usage, 3 no Playwright, 4 failed run.
 
 import { createRequire } from 'node:module';
@@ -27,6 +28,8 @@ import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { options, inspectExtras, compareScreenshot, writeGallery } from './inspection-support.mjs';
 import { collectPageMetrics, measureFocus } from './inspect-measure.mjs';
+import { inspectLayout } from './inspect-layout.mjs';
+import { inspectIcons } from './inspect-icons.mjs';
 
 const args = process.argv.slice(2);
 const usage='usage: node inspect-ui.mjs <url> [url2 ...] [--out dir] [--widths 1440,768,390] [--height 900] [--tabs 25] [--wait 1500] [--storage-state auth.json] [--mock mock.mjs] [--color-scheme light,dark] [--states default,loading,empty,error,long] [--rules ui-rules.json] [--ready selector] [--expect selector] [--timeout 5000] [--reduced-motion no-preference,reduce] [--compare old-dir] [--data-screen] [--full-page] [--fail-on-findings] [--json]';
@@ -133,6 +136,9 @@ try {
     const metrics = await page.evaluate(collectPageMetrics, { MIN_TARGET });
 
     Object.assign(metrics,await inspectExtras(page,config.rules));
+    // Candidate detectors (Stageshow port): reported apart, never in findings nor in the exit code until promoted.
+    const layout=await inspectLayout(page),icons=await inspectIcons(page);
+    const candidateList=[...layout.candidates,...icons.candidates],candidateEvidence={layout:layout.evidence,icons:icons.evidence};
     const fingerprint=createHash('sha256').update(metrics.main_text).digest('hex');
     delete metrics.main_text;
     const fingerprintKey=`${width}-${colorScheme}-${state}-${reducedMotion}-${fingerprint}`;
@@ -224,7 +230,7 @@ try {
     if (notFocusable.length) findings.push(`keyboard: ${notFocusable.length} controles clicáveis só com ícone não recebem foco (ex.: ${notFocusable[0]})`);
     if (metrics.low_contrast_count) findings.push(`contrast: ${metrics.low_contrast_count} textos amostrados abaixo do mínimo WCAG`);
 
-    Object.assign(run,{http:status,final_url:page.url(),screenshot:shot,findings,metrics,fingerprint,
+    Object.assign(run,{http:status,final_url:page.url(),screenshot:shot,findings,candidates:candidateList,candidate_evidence:candidateEvidence,metrics,fingerprint,
       state_verified:expect?!expectationError:state==='default'&&!metrics.blank,expected_selector:expect||null,
       console_errors:consoleErrors,page_errors:pageErrors,network_errors:networkErrors,
       focus_stops:focus,no_focus_indicator:noFocusIndicator,tooltip_parity:tooltipParity,clickable_not_focusable:notFocusable});
@@ -250,6 +256,7 @@ if (args.includes('--json')) {
     console.log(`  content ${run.metrics.content_region.width}px (${Math.round(run.metrics.content_share * 100)}% of viewport; nav ${run.metrics.nav_width}px) | first row y=${run.metrics.first_row_y ?? 'n/a'}`);
     if (!run.findings.length) console.log('  no automatic findings (still look at the screenshot)');
     for (const f of run.findings) console.log(`  - ${f}`);
+    if (run.candidates?.length) console.log(`  candidatos (fora do gate):\n${run.candidates.map((c) => `  ~ ${c}`).join('\n')}`);
   }
   console.log(`report: ${jsonPath}`);
 }

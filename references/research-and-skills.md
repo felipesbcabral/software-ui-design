@@ -89,7 +89,7 @@ Mantenha a lógica do produto, autorização, contratos de dados e navegação. 
 
 ## Uso seletivo das skills
 
-Resolva a cópia aplicável pelo catálogo do host e pela precedência do projeto. Leia uma vez a skill escolhida e só suas referências pertinentes. Uma menção nesta tabela não exige carregar todas; as 30 da [seção seguinte](#trinta-especialistas-por-gatilho-270) entram pelo gatilho. Se faltar uma especialista, este pacote oferece critérios para continuar; informe a ausência quando ela afetar o resultado.
+Resolva a cópia aplicável pelo catálogo do host e pela precedência do projeto. Leia uma vez a skill escolhida e só suas referências pertinentes. Uma menção nesta tabela não exige carregar todas; as 31 da [seção seguinte](#especialistas-por-gatilho-270) entram pelo gatilho. Se faltar uma especialista, este pacote oferece critérios para continuar; informe a ausência quando ela afetar o resultado.
 
 | Especialista | Quando ajuda | O que aproveitar e limite |
 |---|---|---|
@@ -109,9 +109,9 @@ Resolva a cópia aplicável pelo catálogo do host e pela precedência do projet
 
 Não aplique proibições estéticas universais vindas de referências. Não use geradores que criem uma segunda fonte de tokens ou documentação. Resolva conflitos conforme o pedido, o projeto e o escopo da especialista.
 
-## Trinta especialistas por gatilho (2.7.0)
+## Especialistas por gatilho (2.7.0)
 
-Em 14/10/2026 a varredura dos transcripts de 73 dias mostrou que 30 especialistas roteadas por esta skill, por `web-design-craft` ou por `frontend-quality` nunca foram carregadas. A 2.5.0 as tornou obrigatórias em toda invocação e a 2.6.0 apontou para um arquivo de cartões (`web-design-craft/references/cartoes-especialistas.md`) que nunca foi criado: o fallback lia os 30 `SKILL.md` completos, 267 KB ou cerca de 67 mil tokens por invocação, a maior parte sobre stack que o projeto não tinha (GSAP sem GSAP, React em HTML puro). A 2.7.0 mantém o roteamento e troca a leitura cega pelo gatilho.
+Em 14/10/2026 a varredura dos transcripts de 73 dias mostrou que 30 especialistas roteadas por esta skill, por `web-design-craft` ou por `frontend-quality` nunca foram carregadas. A 2.5.0 as tornou obrigatórias em toda invocação e a 2.6.0 apontou para um arquivo de cartões (`web-design-craft/references/cartoes-especialistas.md`) que nunca foi criado: o fallback lia os 30 `SKILL.md` completos, 267 KB ou cerca de 67 mil tokens por invocação, a maior parte sobre stack que o projeto não tinha (GSAP sem GSAP, React em HTML puro). A 2.7.0 mantém o roteamento e troca a leitura cega pelo gatilho. Em 07/11/2026 entrou a 31ª, `stageshow`, só para prévia ilustrativa de produto.
 
 1. **Gatilho observável manda ler.** Quando a condição da coluna Gatilho é observável no projeto ou no pedido, leia o `SKILL.md` na etapa indicada e registre o que mudou: `nome — acionada em <etapa> — <o que mudou>`. Ler não autoriza instalar pacote, trocar stack nem acrescentar animação.
 2. **Sem gatilho, uma linha basta no `deep`:** `nome — sem gatilho — <o que falta para disparar>`, com 15 caracteres ou mais (`gsap-react — sem gatilho — tela em HTML puro, sem GSAP`). "Avaliada, não acionada" sem nomear o gatilho continua inválido. `quick` e `standard` registram só `fixing-accessibility` e as que dispararam.
@@ -132,6 +132,7 @@ Em 14/10/2026 a varredura dos transcripts de 73 dias mostrou que 30 especialista
 | `art-direction` | 2 | imagem ou ilustração em vazio, onboarding ou login dividido | Seleção e direção de mídia |
 | `image-to-code` | 2 | host com geração de imagem e composição aberta | Esboço em imagem, como estudo |
 | `brandkit` | 2 | painel de marca do login dividido ou imagem social | Quadro de marca |
+| `stageshow` | 2 e 5 | prévia ilustrativa: painel de marca do login dividido a partir de 1024 px, onboarding ou novidade, estado vazio com demonstração, card de recurso em docs ou changelog | Prévia `aria-hidden`, sem foco nem título; kit só em React (sem React, só as regras); nunca em tela de trabalho nem com dado real ([sources.md](sources.md#stageshow-07112026)) |
 | `gsd-sketch` | 2 | `deep` com alternativas de tela a comparar | Esboço HTML descartável |
 | `composition-patterns` | 4 | componente React composto novo | Sem proliferação de props booleanas (React 19) |
 | `react-best-practices` | 4 | projeto React ou Next | Renderização, dados, bundle |

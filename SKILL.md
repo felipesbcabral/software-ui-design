@@ -43,7 +43,7 @@ Declare o tier no contrato da tela (passo 1). Ele decide o que roda.
 
 Na dúvida entre dois, use o maior. **Orçamento em todo tier:** uma inspeção em lote, um lote de correções, no máximo uma rodada de confirmação; cada revisão acrescenta um lote e sua recaptura.
 
-**Pesquisa e especialistas:** os [onze sites](references/research-and-skills.md#onze-sites-por-tier-270) são fontes, não obrigação: uma linha por site (URL, achado, decisão). As [30 especialistas](references/research-and-skills.md#trinta-especialistas-por-gatilho-270) entram pelo gatilho observável, no máximo três vivas, registradas em `.software-ui-design/skills.md` no formato daquela seção. Ler não autoriza instalar pacote. `node <skill-dir>/scripts/check-skills.mjs --tier <tier>` imprime `PASS` antes da entrega.
+**Pesquisa e especialistas:** os [onze sites](references/research-and-skills.md#onze-sites-por-tier-270) são fontes, não obrigação: uma linha por site (URL, achado, decisão). As [31 especialistas](references/research-and-skills.md#especialistas-por-gatilho-270) entram pelo gatilho observável, no máximo três vivas, registradas em `.software-ui-design/skills.md` no formato daquela seção. Ler não autoriza instalar pacote. `node <skill-dir>/scripts/check-skills.mjs --tier <tier>` imprime `PASS` antes da entrega.
 
 ## Modo acompanhante
 

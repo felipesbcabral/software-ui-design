@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Resumo do mês</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px/20px Arial,sans-serif;color:#111827;background:#fff}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #d1d5db}
+h1{font-size:18px;line-height:24px;margin:0}
+main{padding:24px}
+button{font:inherit;padding:8px 14px;border:1px solid #6b7280;border-radius:6px;background:#fff;color:#111827}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+/* A minimum height lets the card grow with its content and keep the bottom padding. */
+.card{min-height:96px;padding:16px;border:1px solid #d1d5db;border-radius:8px}
+.card h2{font-size:14px;margin:0 0 8px;color:#374151}
+.card p{margin:0}
+.valor{font-size:20px;line-height:28px;font-weight:600}
+</style></head>
+<body>
+<header>
+  <h1>Resumo de novembro</h1>
+  <button type="button">Baixar relatório</button>
+</header>
+<main>
+  <div class="cards">
+    <section class="card">
+      <h2>Notas emitidas</h2>
+      <p class="valor">128</p>
+      <p>12 aguardando envio ao cliente</p>
+    </section>
+    <section class="card">
+      <h2>Recebido</h2>
+      <p class="valor">R$ 84.300</p>
+    </section>
+    <section class="card">
+      <h2>Em atraso</h2>
+      <p class="valor">R$ 6.120</p>
+    </section>
+  </div>
+</main>
+</body></html>

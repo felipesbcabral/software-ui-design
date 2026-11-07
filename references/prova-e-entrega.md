@@ -33,6 +33,8 @@ Detalhe dos passos 6 e 7 do [SKILL.md](../SKILL.md), movido para cá na 2.7.0 pa
 
 Para aplicação logada, use --storage-state ou --mock e um --expect próprio da rota; uma tela de login não comprova a tela alvo. Para estados reais, use --states loading,empty,error,long com mock que declare seletor esperado e resposta por estado. Tela com modal, drawer, validação ou estado vazio implementado exige, nesta ordem: (1) um mock com um estado por camada (ex.: `modal`, `invalid`, `empty`), cada um com `expect`; (2) `beforeCapture` que abre a camada, envia o formulário vazio ou filtra até zerar; (3) a mesma matriz de larguras e temas para esses estados. Vale também para arquivo local sem API. Camada que não foi capturada é pendência na entrega, não prova. Prove todos os temas suportados, larguras pertinentes e movimento reduzido; não acrescente tema inexistente só para medir. A grade deve mostrar cada combinação aplicável; uma pendência de estado precisa de motivo explícito. Compare a mesma matriz antes/depois com --compare <pasta-antiga>. Reduza o produto cartesiano só por equivalência demonstrada: duas larguras são equivalentes quando a captura mostra a mesma composição (mesmas colunas, mesma navegação, nenhum ponto de quebra entre elas), e dois temas nunca são, porque contraste e superfícies mudam. Registre na linha **Estados** qual combinação cobre qual (`768 cobre 1024: mesma grade, sem breakpoint entre elas`); estado, tema ou largura onde a composição muda tem prova própria, e animação tem teste dinâmico, não captura repetida.
 
+Cada largura da matriz parte de carga limpa, e uma rodada à mão redimensiona a janela entre duas larguras com a tela aberta: alvos, cortes e camadas abertas sobrevivem ao resize (stageshow@299140f craft.md:159). A entrega diz o navegador e o aparelho conferidos e se o movimento reduzido foi alternado durante a reprodução, ida e volta (stageshow@299140f rehearse.md:107, rehearse.md:108).
+
 ## Playwright e ordem da revisão
 
 Não entregue sem rodar a inspeção: nos testes desta skill, as telas entregues sem ela voltaram com rolagem lateral no celular, foco invisível e dezenas de textos abaixo do contraste, defeitos que a captura mostraria em um minuto. `--data-screen` liga as checagens de largura e primeira linha; não use em formulário ou login. O script procura Playwright em `PLAYWRIGHT_HOME`, na pasta atual e acima, na pasta da skill e acima e no npm global. Rode o comando antes de concluir que falta Playwright. O pacote inclui package.json: `npm run setup` dentro da skill instala o runtime e Chromium quando necessário; não instale dependência no produto só para inspecionar. Se a descoberta falhar, use o comando indicado pelo erro e repita. Só declare a prova pendente depois de tentar, citando o erro.
@@ -44,9 +46,11 @@ Movido do SKILL.md na 3.0.0 para o núcleo caber em 20 KB.
 ```markdown
 **Tela:** <arquivo ou rota> · <componente e o que mudou> · quick
 **Componentes:** <arquivo do projeto ou ID inspecionado>
-**Inspeção:** antes <achados> -> depois <achados>; capturas vistas: <quais>
+**Inspeção:** antes <achados> -> depois <achados>; capturas vistas: <quais>; <achado> → <captura> → <correção ou por que fica>
 **Testes:** <comandos e resultado> · check-skills.mjs --tier quick: <PASS>
-**Pendente:** <o que não foi verificado e por quê>
+**Pendente:** <o que falta fazer e por quê>
+**Não verificado:** <o que nem a ferramenta nem o olho cobriram: interrupção, toque no aparelho, navegador não testado>
+**Correções do dono → regra proposta:** <correção> → <arquivo, seção>, ou "nenhuma"
 ```
 
 ## Bloco de entrega standard e deep
@@ -59,11 +63,15 @@ Movido do SKILL.md na 3.0.0 para o núcleo caber em 20 KB.
 **Valores:** <sidebar, altura de linha, espaço, tipo> · <token do projeto ou fonte de defaults.md>
 **Convenções:** <desvios da tabela de convenções de ux-laws.md e o motivo, ou "nenhum"> · <pedido trocado por uma lei, ex.: progresso fixo virou N de M>
 **Acabamento:** <tokens e microinterações aplicáveis> · <três traços de identidade em criação/redesign, ou preservados em refinamento> · <objeto pelo qual a tela é lembrada>
-**Estados:** <matriz rota × tema × largura × estado × movimento, com caminhos das capturas e estado verificado>
-**Inspeção:** antes <achados> -> depois <achados>; <report.json, index.html e imagens comparadas>; capturas vistas: <quais>; revisão fria: <primeira palavra e achados resolvidos>
+**Estados:** <matriz rota × tema × largura × estado × movimento, com caminhos das capturas e estado verificado> · <navegador e aparelho> · <movimento reduzido alternado na reprodução: sim/não>
+**Inspeção:** antes <achados> -> depois <achados>; <report.json, index.html e imagens comparadas>; capturas vistas: <quais>; revisão fria: <primeira palavra e achados resolvidos>; cada achado: <achado> → <captura> → <correção ou por que fica>
 **Testes:** <comandos e resultado>
-**Pendente:** <o que não foi verificado e por quê>
+**Pendente:** <o que falta fazer e por quê>
+**Não verificado:** <o que nem a ferramenta nem o olho cobriram>
+**Correções do dono → regra proposta:** <correção> → <arquivo, seção>, ou "nenhuma"
 ```
+
+Achado que fica tem o motivo escrito ao lado da captura, nunca é escondido para calar a checagem. Toda correção que o dono faz na entrega vira proposta de regra na reference que o passo do fluxo lê, para a próxima tela não repetir o defeito (stageshow@299140f verify.md:65, verify.md:78, verify.md:82, verify.md:84).
 
 ## Exemplos
 

@@ -51,9 +51,9 @@ Dispensa registrada assim: `dispensa <item> · <evidência na tela> · <motivo>`
 | Padrão | Em repouso | Estilo base |
 | Hover | Ponteiro em cima, dentro de `@media (hover: hover)` | Um sinal só: degrau de cor, elevação de 1 px ou degrau de borda |
 | Foco | Teclado ou foco programático | Na hora, sem contorno: sublinhado, mudança de fundo ou de cor de texto com 3:1 contra o vizinho; `:focus-visible` |
-| Ativo | Durante o clique | 1 px para baixo ou um degrau mais escuro |
+| Ativo | Durante o clique | 1 px para baixo ou um degrau mais escuro; gatilho de menu ou popover aberto continua assim enquanto `aria-expanded="true"` (stageshow@299140f craft.md:79) |
 | Desabilitado | Não interativo | Três canais juntos: `opacity: 0.55`, `cursor: not-allowed` e o atributo `disabled` (ou `aria-disabled="true"` quando precisa continuar focável); perto da atenção, diz por quê |
-| Carregando | Processando | Progresso inline; o rótulo continua legível e a largura não pula |
+| Carregando | Processando | Progresso inline; o rótulo continua legível e a largura não pula. Rótulo que muda (Salvar, Salvando, Salvo) muda no mesmo botão: variantes na mesma célula de grid, caixa no tamanho da maior; nunca outro botão no lugar (stageshow@299140f motion.md:33, motion.md:78) |
 | Erro | Falhou | Cor de erro na borda e na mensagem, `aria-invalid`; nunca só cor |
 | Sucesso | Concluiu | O resultado em si, vindo da resposta do servidor; no máximo um ícone; sem toast; sem sucesso onde não houve requisição |
 
@@ -63,10 +63,10 @@ Controle sem um destes não está pronto. Um botão preenchido por região (diá
 
 - **A borda nunca muda de espessura.** Estado vai para `background-color`, `border-color` ou cor do texto; nunca `border-width`, `padding` ou `height`, e nada disso é animado.
 - Padrão: borda de 1 px com 3:1 contra o fundo (um fio decorativo não tem isso). Hover: fundo um degrau acima, borda igual. Foco: fundo do campo muda e a borda escurece na mesma espessura. Erro: borda de erro, texto de erro na linha de ajuda, ícone de erro no slot da direita. Sucesso só depois de uma checagem real; some quando a pessoa edita. Carregando: spinner pequeno no slot da direita, campo continua editável.
-- Altura igual à do botão ao lado. Slot de cerca de 24 px reservado à direita para limpar, erro ou spinner, para nada reflowar.
+- Altura igual à do botão ao lado. Botão abaixo de campo, fio ou borda de card fica a 8 a 12 px dele: colado parece encostado, longe parece de outro grupo. Card flutuante (toast, popup de comentário) tem o mesmo padding nos quatro lados, medido até a borda do avatar e do botão, não até o texto (stageshow@299140f craft.md:52). Slot de cerca de 24 px reservado à direita para limpar, erro ou spinner, para nada reflowar.
 - Rótulo visível acima, a 4 a 8 px; placeholder mostra formato (`01 jan 2026`), nunca instrução nem rótulo. Ajuda a cerca de 4 px abaixo numa linha com `min-height: 1lh`; o erro substitui a ajuda nessa linha.
 - Valide ao sair do campo depois de tocado, e a cada digitação a partir daí. Erro diz o que quebrou, por quê e o que fazer, ligado por `aria-describedby`. Obrigatório com `aria-required` e palavra visível. Envio desabilitado só durante a requisição; envio que falha leva o foco ao primeiro campo inválido. 16 px no celular; `name`, `autocomplete`, `type` e `inputmode` certos; colar nunca bloqueado; `type` explícito em todo `<button>`.
-- Select nativo com chevron no wrapper; checkbox e radio nativos com `accent-color`; switch é checkbox com o mesmo contrato; combobox abre abaixo sem empurrar o conteúdo, `aria-expanded` acompanha, setas navegam, Enter escolhe, Escape fecha.
+- Select nativo com chevron no wrapper; checkbox e radio nativos com `accent-color`; switch é checkbox com o mesmo contrato; combobox abre abaixo sem empurrar o conteúdo, com as laterais da lista alinhadas às do campo (anel ou borda desenhado para dentro) (stageshow@299140f craft.md:68), `aria-expanded` acompanha, setas navegam, Enter escolhe, Escape fecha.
 - Diálogo: `<dialog>` com `showModal()`, `inert` atrás, fecha com Escape, clique no fundo e controle visível; primeiro foco no primeiro elemento interativo.
 
 ## Dados: quatro estados por região
@@ -97,6 +97,8 @@ Em redesign, desenhe os estados para os quais o app já tem lógica e liste os d
 - Sem sombra, 3D ou degradê nas marcas (exceto o preenchimento esmaecido da sparkline).
 - Texto nunca veste a cor do dado: a série é identificada por uma amostra ao lado do rótulo.
 - Algarismos tabulares em toda superfície numérica.
+- Número e unidade na mesma linha (`white-space: nowrap` no par). Unidade quebrada sozinha se resolve com o número no tamanho do bloco ou a unidade no rótulo (stageshow@299140f verify.md:29, verify.md:58).
+- Valor centralizado centraliza os dígitos: o `R$` fica pendurado à esquerda (`position: absolute; right: 100%` dentro da caixa dos dígitos), fora da centralização (stageshow@299140f craft.md:75).
 - **A barra do dashboard:** menos números e mais verdadeiros. Um número herói, um gráfico de apoio, uma tabela. A parede de KPI com seis medidores é o tell que esta regra existe para matar.
 
 ## Tema escuro por derivação
@@ -115,9 +117,9 @@ Tema escuro é uma segunda renderização desenhada do mesmo sistema, nunca `fil
 
 ## Revisão fria da tela
 
-Um agente sem o contexto da construção lê as capturas da tela inteira a 1440 e a 375 (e as de estado), até dez leituras, e responde como alguém fluente na categoria: a hierarquia está clara, a densidade é uniforme, cada controle e tabela funcionam no celular, os estados estão lá. A primeira palavra é `recapture` (captura faltando ou errada), `fix` (achados a seguir, no máximo oito, ordenados por custo) ou `ship`. Fecha com uma linha dizendo o que não pode ser diluído na correção. Em redesign, recebe também as capturas de antes e responde o que a tela antiga fazia melhor.
+Um agente sem o contexto da construção lê as capturas da tela inteira a 1440 e a 375 (e as de estado), até dez leituras, e responde como alguém fluente na categoria: a hierarquia está clara, a densidade é uniforme, cada controle e tabela funcionam no celular, os estados estão lá. A primeira palavra é `recapture` (captura faltando ou errada), `fix` (achados a seguir, no máximo oito, ordenados pelo estrago que fazem na tela, não pela facilidade de corrigir) ou `ship`. Cada achado cita o arquivo da captura que o mostra; previsão sem captura não é achado. Linha que o construtor deu como intencional volta a ser julgada pela captura (stageshow@299140f review.md:20, review.md:21, review.md:22). Fecha com uma linha dizendo o que não pode ser diluído na correção. Em redesign, recebe também as capturas de antes e responde o que a tela antiga fazia melhor.
 
-Orçamento: uma inspeção em lote, um lote de correções, no máximo uma rodada de confirmação.
+Orçamento: uma inspeção em lote, um lote de correções, no máximo uma rodada de confirmação. Dentro do lote, a ordem é composição, hierarquia e densidade, movimento, polimento: o maior estrago visível primeiro (stageshow@299140f review.md:17, verify.md:3).
 
 **Crítica visual em cinco dimensões** (estudo Codex de 23/10/2026), uma observação por dimensão apontando a região e o efeito, nunca "mais premium":
 
@@ -129,4 +131,4 @@ Orçamento: uma inspeção em lote, um lote de correções, no máximo uma rodad
 | Identidade | O que a torna reconhecível sem o logotipo? | Estrutura e exemplos aplicáveis a qualquer concorrente |
 | Execução e adaptação | Tipo, mídia, estados e recomposição sustentam a direção? | Fonte de fallback, quebra ruim, mobile só encolhido |
 
-Duas fases: **cega** (capturas e três fatos: produto, público, tarefa; sem a defesa do autor) descreve o que entende e percebe; **contextual** (contrato, referência aprovada, estados, restrições) confere se a intenção foi materializada e se alguma correção prejudicaria função, acesso ou identidade. Média alta não esconde dimensão fraca. Saída: o maior problema, poucas correções prioritárias e os acertos a preservar. Orçamento esgotado com problema aberto é **entregue com pendências**, nunca aprovação.
+Duas fases: **cega** (capturas e três fatos: produto, público, tarefa; sem a defesa do autor) descreve o que entende e percebe; **contextual** (contrato, referência aprovada, estados, restrições) confere se a intenção foi materializada e se alguma correção prejudicaria função, acesso ou identidade. Média alta não esconde dimensão fraca. Saída: o maior problema, poucas correções em ordem de estrago e os acertos a preservar. Orçamento esgotado com problema aberto é **entregue com pendências**, nunca aprovação.

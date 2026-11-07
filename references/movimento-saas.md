@@ -14,6 +14,9 @@ Tela usada o dia todo responde a gesto e informa estado; ela não se apresenta. 
 - **Sem JS a navegação existe:** os links estão no HTML; a gaveta é melhoria.
 - **Só `transform` e `opacity`.** Animar `width`, `left` ou `height` faz o layout recalcular a cada quadro; o `inspect-ui` acusa como `motion-layout`.
 - **Interrupção:** clique durante a animação inverte ou conclui a camada. Trava que descarta o clique por 650 ms parece travamento. Transição CSS inverte sozinha; em JS, cancele a anterior antes de começar outra.
+- **Montado até a saída terminar:** toast, popover e menu tocam a saída e só então desmontam; desmontar no clique pula a saída e a camada some num quadro (stageshow@299140f motion.md:90, teaching.md:17).
+- **Popover, menu e paleta presos pela borda de onde abriram:** medidos e posicionados antes do primeiro quadro, sem corrigir tamanho enquanto abrem, com altura reservada para a lista mais longa. Sinal de erro: a borda de ancoragem anda com a camada aberta enquanto a pessoa filtra (stageshow@299140f motion.md:100, motion.md:101).
+- **Superfície que muda de tamanho** move tamanho, posição e conteúdo numa transição só, sem esticar o texto (nada de `scale` sobre texto legível), e, interrompida, parte da geometria atual (stageshow@299140f motion.md:94, teaching.md:24).
 
 ```css
 :root { --ease-sheet: cubic-bezier(.32, .72, 0, 1); }
@@ -36,9 +39,15 @@ function setDrawer(open, drawer, button, page) {
 ## 2. Troca de estado e lista
 
 - **Filtro, aba, ordenação, item expandido:** View Transitions no mesmo documento quando a stack permitir, de 150 a 250 ms; com movimento reduzido ou sem suporte, a atualização acontece direto.
-- **Reordenar ou expandir linha:** FLIP (mede antes, aplica o novo layout, anima o desvio com `transform` até zero).
+- **Reordenar, inserir ou expandir linha:** FLIP (mede antes, aplica o novo layout, anima o desvio com `transform` até zero). A inserção muda duas coisas, o que chega e o espaço dos vizinhos: anime as duas, e as linhas de baixo descem junto com a nova; ícone que entra ao lado de um rótulo abre largura e gap no mesmo tempo (stageshow@299140f motion.md:92, motion.md:93, teaching.md:36).
 - **Cascata:** só na primeira exibição de um conjunto pequeno (até 8 itens, 20 a 30 ms por item, teto de 150 ms). Nunca em refetch, paginação, filtro ou linha de tabela.
-- **Item removido com Desfazer:** sai com `opacity`; a lista fecha o espaço sem animar altura, ou por FLIP.
+- **Item removido com Desfazer:** sai com `opacity` e só depois a lista fecha o espaço, sem animar altura, ou por FLIP (stageshow@299140f teaching.md:22).
+- **Mudança dependente vem depois da causa:** editou a célula, o total recalcula 40 a 80 ms depois, com os movimentos sobrepostos; nunca tudo no mesmo quadro nem o total antes da célula. Causa e efeito não é cascata de linha (stageshow@299140f motion.md:61, motion.md:63, teaching.md:30, kit.md:128).
+- **Indicador de aba ou segmented** fica montado e, se o clique muda o alvo no meio do caminho, retoma de onde está; recriar o elemento (nova `key`) reinicia da origem (stageshow@299140f teaching.md:18, motion.md:115).
+- **Rótulo que troca se move por `transform`** com as duas versões na mesma célula de um grid estável; `margin` animada em itens sobrepostos de inline-grid move a linha de base dos vizinhos. Sinal de erro: o texto ao lado pula um pixel ao fim da troca (stageshow@299140f teaching.md:27).
+- **Troca de corpo com o chrome fixo:** cabeçalho, abas e posição das ações ficam; só o corpo faz crossfade, no token de camada, com subida de 8 px. Nunca deslizar a página inteira para o lado (stageshow@299140f motion.md:96, motion.md:169).
+- **Região que rola** começa com linhas inteiras; depois de rolar, esmaece só a borda que esconde conteúdo, e o esmaecido some no fim da rolagem (stageshow@299140f motion.md:149).
+- **Arrastar com pegada fixa:** o item sai de onde a pessoa o pegou, segue o ponteiro sem transição e mantém o deslocamento da pegada até soltar; o lugar de soltar não viaja, aparece na posição e pula para a próxima (stageshow@299140f motion.md:135, motion.md:141, motion.md:142, motion.md:143).
 
 ```js
 function swap(update) {
@@ -54,7 +63,7 @@ Cada chip é `button` com `aria-pressed`; o estado aparece no fundo e num ícone
 
 ## 4. Número que muda
 
-`font-variant-numeric: tabular-nums` em todo número. Transição de valor só quando ele muda por ação ou atualização ao vivo, de 400 a 600 ms. Nunca contagem a partir de zero no carregamento: atrasa a leitura e parece dado sendo inventado. O leitor de tela ouve só o valor final (a animação em `aria-hidden`, o valor final em texto acessível). Em movimento reduzido, troca direta.
+`font-variant-numeric: tabular-nums` em todo número. Transição de valor só quando ele muda por ação ou atualização ao vivo, de 400 a 600 ms. Só o dígito que mudou rola, do último para o primeiro, num slot de largura estável; os inalterados ficam parados, sem interpolação quadro a quadro que borra (stageshow@299140f motion.md:81). Nunca contagem a partir de zero no carregamento: atrasa a leitura e parece dado sendo inventado. O leitor de tela ouve só o valor final (a animação em `aria-hidden`, o valor final em texto acessível). Em movimento reduzido, troca direta.
 
 ## 5. Carregamento e conteúdo que chega
 

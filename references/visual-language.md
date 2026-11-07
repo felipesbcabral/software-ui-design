@@ -19,15 +19,17 @@ Comece pelos tokens existentes. Mapeie papéis antes de propor novos valores:
 | Controles | Contorno, hover, foco, pressionado, selecionado e desabilitado |
 | Semântica | Erro, alerta, sucesso, informação e categorias de dados |
 
-A cor de marca não substitui toda a semântica. Um status precisa de texto ou outro sinal além da cor. Diferencie seleção, erro e ação principal sem saturar toda a tela. Bordas e sombras são recursos válidos quando tornam agrupamento e profundidade compreensíveis.
+A cor de marca não substitui toda a semântica. Um status precisa de texto ou outro sinal além da cor. Diferencie seleção, erro e ação principal sem saturar toda a tela. Bordas e sombras são recursos válidos quando tornam agrupamento e profundidade compreensíveis: teste o preenchimento sozinho antes e ponha a borda para separar, marcar estado ou porque o produto a desenha (stageshow@299140f craft.md:106). Em tema monocromático, a seleção é um degrau sólido de superfície e peso, nunca um véu translúcido (stageshow@299140f craft.md:111).
 
-Confira contraste nos pares reais e nos estados. Texto secundário em tamanho normal continua exigindo o contraste de texto normal. Reduzir opacidade sem medir o resultado pode apagar informação útil. Não declare acessibilidade só porque o token tem um nome semântico.
+Confira contraste nos pares reais e nos estados. Texto secundário em tamanho normal continua exigindo o contraste de texto normal. Reduzir opacidade sem medir o resultado pode apagar informação útil. Cinzas claros de texto e fio calibrados para cartão branco sobre fundo cinza sobem um tom quando o fundo é branco (stageshow@299140f craft.md:115). Não declare acessibilidade só porque o token tem um nome semântico.
 
 Implemente tema adicional quando o produto ou pedido exigir. Avalie cada tema separadamente. Não inverta cores automaticamente nem acrescente tema escuro como requisito universal.
 
 ## Tipografia e alinhamento
 
-Uma família bem escolhida pode atender títulos, rótulos e dados. Fontes de sistema, Inter e Geist não são defeitos por si mesmas. Considere licença, idiomas, leitura em tamanhos de interface e custo de carregamento.
+Uma família bem escolhida pode atender títulos, rótulos e dados. Fontes de sistema, Inter e Geist não são defeitos por si mesmas. Considere licença, idiomas, leitura em tamanhos de interface e custo de carregamento. Monoespaçada só em código, identificador (hash, ID, chave) e número alinhado em coluna, nunca nos rótulos de um produto técnico (stageshow@299140f craft.md:45).
+
+Texto pequeno (12 a 13 px) leva line-height de 1,3 ou mais e folga em todos os lados do seu slot (stageshow@299140f craft.md:43). Rótulo em pill ou badge, inicial em avatar e texto de campo centralizam pela altura de versal, não pela caixa de linha: `text-box: trim-both cap alphabetic` corta a folga acima da versal e abaixo da linha de base. Sinal de erro: rótulo que parece baixo dentro do badge. Navegador sem suporte ignora a propriedade; confira no navegador-alvo (stageshow@299140f craft.md:60, craft.md:67).
 
 Use a escala do projeto e contraste moderado entre títulos e conteúdo. Títulos de tarefas e configurações não precisam ocupar a primeira dobra como um anúncio. Teste acentos, nomes longos, zoom e expansão de texto.
 
@@ -35,9 +37,9 @@ Alinhe números comparáveis por coluna e use algarismos tabulares quando houver
 
 ## Acabamento dos componentes
 
-Reutilize famílias de controles e escalas de raio, borda e espaço. Variações podem comunicar hierarquia, como botão primário preenchido e ação secundária discreta. Não faça todo controle parecer igualmente importante.
+Reutilize famílias de controles e escalas de raio, borda e espaço. Mapeie raio e densidade por papel, lidos do produto: item de menu com o menor raio, botão e campo com o médio, popover e card com o maior; altura de campo e de linha de menu como dois tokens próprios (stageshow@299140f looks.md:51). Variações podem comunicar hierarquia, como botão primário preenchido e ação secundária discreta. Não faça todo controle parecer igualmente importante.
 
-Ícones prontos são válidos. Preserve uma família coerente, tamanhos e alinhamento óptico. Ícone decorativo não ganha nome acessível redundante; botão de ícone precisa de nome que descreva a ação. Não redesenhe ícones comuns só para alegar originalidade.
+Ícones prontos são válidos. Preserve uma família coerente, tamanhos e alinhamento óptico. Ícone decorativo não ganha nome acessível redundante; botão de ícone precisa de nome que descreva a ação. Não redesenhe ícones comuns só para alegar originalidade. Ícone vem de um conjunto, nunca da mão: glifo desenhado à mão no SVG é o primeiro sinal de UI gerada, porque o peso do traço nunca bate com o dos vizinhos (stageshow@299140f craft.md:86). Ícone numa cor opaca; para esmaecer, `opacity` no svg inteiro ou um cinza opaco mais claro, nunca cor translúcida, que escurece onde os traços se cruzam (stageshow@299140f craft.md:95, teaching.md:83).
 
 Cards servem para agrupar entidades ou regiões independentes. Uma lista de cem tarefas costuma precisar de linhas comparáveis. Evite empilhar card dentro de card quando borda, fundo ou espaçamento já separa o conteúdo.
 

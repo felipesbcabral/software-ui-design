@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Contas a pagar</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px/20px Arial,sans-serif;color:#111827;background:#fff}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #d1d5db}
+h1{font-size:18px;line-height:24px;margin:0}
+main{padding:24px}
+.acoes{display:flex;gap:8px}
+button{font:inherit;padding:8px 14px;border:1px solid #6b7280;border-radius:6px;background:#fff;color:#111827}
+/* Compact action: smaller padding instead of a height that cannot hold the line box. */
+.compacto{height:32px;padding:5px 12px}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid #e5e7eb}
+th{font-weight:600;color:#374151}
+</style></head>
+<body>
+<header>
+  <h1>Contas a pagar</h1>
+  <div class="acoes">
+    <button type="button">Filtrar</button>
+    <button type="button" class="compacto">Exportar</button>
+  </div>
+</header>
+<main>
+  <table>
+    <thead><tr><th>Fornecedor</th><th>Vencimento</th><th>Valor</th><th>Situação</th></tr></thead>
+    <tbody>
+      <tr><td>Papelaria Exemplo</td><td>12/11/2026</td><td>R$ 480,00</td><td>Aberta</td></tr>
+      <tr><td>Serviço de limpeza</td><td>15/11/2026</td><td>R$ 1.250,00</td><td>Aberta</td></tr>
+      <tr><td>Aluguel da sala</td><td>20/11/2026</td><td>R$ 3.900,00</td><td>Agendada</td></tr>
+      <tr><td>Internet do escritório</td><td>25/11/2026</td><td>R$ 199,90</td><td>Paga</td></tr>
+    </tbody>
+  </table>
+</main>
+</body></html>

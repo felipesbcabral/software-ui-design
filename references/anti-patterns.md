@@ -63,7 +63,7 @@ Lista para revisar uma tela antes de entregar. Cada item traz o sinal que denunc
 
 ## Sinais de "cara de IA"
 
-30. Gradiente roxo-azul em cards e botões, glassmorphism em tela de dados, emoji como ícone de navegação, títulos em Title Case, textos de marketing ("Supercharge your workflow") dentro do produto, cards com o mesmo peso para tudo, métricas falsas com setas verdes. Troca: a composição sóbria de produtos de referência (Linear, Vercel, GitHub, Stripe Dashboard, Atlassian): hierarquia por tipo e espaço, cor para significado.
+30. Gradiente roxo-azul em cards e botões, glassmorphism em tela de dados, emoji como ícone de navegação, títulos em Title Case, textos de marketing ("Supercharge your workflow") dentro do produto, cards com o mesmo peso para tudo, métricas falsas com setas verdes, estrela, varinha ou brilho como ícone genérico de IA e roxo como cor de IA, logo inventado (letra ou glifo num quadrado colorido). Para recurso de IA: mostre o que ela faz, com rótulo que diz a ação; o ícone próprio do produto vale mesmo quando é um brilho (stageshow@299140f craft.md:99, teaching.md:82). Para marca: a marca real do produto ou o nome em texto (stageshow@299140f craft.md:100). Troca geral: a composição sóbria de produtos de referência (Linear, Vercel, GitHub, Stripe Dashboard, Atlassian): hierarquia por tipo e espaço, cor para significado.
 
 ## Correto e genérico
 

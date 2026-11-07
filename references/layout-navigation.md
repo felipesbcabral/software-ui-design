@@ -32,7 +32,7 @@ Separe a navegação global da navegação de uma área e das ações sobre um r
 
 No desktop, um shell com navegação lateral e área principal fluida costuma servir a produtos com vários módulos. Uma ferramenta de poucos destinos pode funcionar melhor com barra superior. Essa escolha depende da arquitetura da informação, não do rótulo SaaS.
 
-Na web, `min-width: 0` nas regiões flexíveis e `minmax(0, 1fr)` nas grades evitam que conteúdo largo force a página. Defina altura de viewport apenas quando houver uma área de trabalho que realmente precisa dela. Formulários longos podem rolar no documento.
+Na web, `min-width: 0` nas regiões flexíveis e `minmax(0, 1fr)` nas grades evitam que conteúdo largo force a página. Defina altura de viewport apenas quando houver uma área de trabalho que realmente precisa dela. Formulários longos podem rolar no documento. O primeiro título do conteúdo fica abaixo do fio da barra superior a pelo menos o recuo lateral do conteúdo; sinal de erro: título colado no fio (stageshow@299140f craft.md:63).
 
 Declare quem rola: documento, lista, calendário ou painel de detalhe. Regiões independentes podem preservar contexto em um editor. Cada uma deve ter limite visível, alcance por teclado e comportamento previsível. Não esconda overflow para disfarçar corte de conteúdo.
 
@@ -47,6 +47,8 @@ Declare quem rola: documento, lista, calendário ou painel de detalhe. Regiões 
 | Configurações e conta | Agrupe ações menos frequentes sem tornar o rodapé inacessível em telas baixas. |
 
 Uma sidebar recolhível precisa de comando explícito, estado expandido acessível e rótulos disponíveis por foco e toque. Tooltip sozinho não resolve descoberta em tela touch. Evite esconder por padrão os nomes que iniciantes precisam ler.
+
+A sidebar e a coluna de lista de um mestre-detalhe correm a altura inteira da janela; coluna que para antes deixa uma emenda (stageshow@299140f craft.md:132). Ao lado da sidebar, o título da coluna de conteúdo fica no mesmo recuo do primeiro item (16 px nos dois), para título e primeira linha alinharem (stageshow@299140f kit.md:80).
 
 Hierarquias expansíveis usam botões para expandir e links para navegar. Diferencie essas ações. A navegação comum de um site pode usar `nav`, listas e links; não aplique `role="menu"` sem implementar o comportamento de teclado correspondente.
 

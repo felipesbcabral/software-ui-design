@@ -48,6 +48,8 @@ Origem oficial não é prova de popularidade, adequação a outra stack ou aprov
 | Dados | Ordenação, seleção, paginação, concorrência e persistência coerentes |
 | Manutenção | Versão, licença, exemplos e revisão na aplicação real |
 
+Projeto sem tokens declarados (sem custom properties, tema do Tailwind, arquivo de tema ou provider da biblioteca): leia os estilos computados dos componentes reais, botão, campo, menu e card, e registre cor, raio, altura e fonte de cada um antes de propor valor novo (stageshow@299140f looks.md:50).
+
 Tokens organizados não compensam um fluxo quebrado. Um exemplo funcionando isoladamente não comprova que a adaptação preservou seus contratos.
 
 ## Triagem de DESIGN.md

@@ -72,3 +72,15 @@ Consulta realizada em 28/09/2026 para [ux-laws.md](ux-laws.md). As definições 
 | [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/) (Buttons, Accessibility, Typography, Tab bars, Sheets) | 44 × 44 pt, corpo de 17 pt e mínimo de 11 pt, tab bar só para navegar, detents de sheet, conferidos no JSON oficial |
 | [Material 3](https://m3.material.io/) e [Android](https://developer.android.com/design/ui/mobile/guides/foundations/accessibility) | 48 × 48 dp, barra de navegação de 3 a 5 destinos, bottom sheet modal e diálogo, escala de tipo base 14, predictive back |
 | [WCAG 2.5.1 e 2.5.7](https://www.w3.org/WAI/WCAG22/Understanding/) | Alternativa de toque simples para gesto de caminho e para arrastar |
+
+## Stageshow (07/11/2026)
+
+| Fonte | O que foi aproveitado |
+|---|---|
+| [Stageshow 1.1.1](https://github.com/benjitaylor/skills/tree/main/stageshow) (MIT, Copyright (c) 2026 Benji Taylor, commit 299140f; [licença](stageshow-LICENSE.txt)) | Regras de acabamento, movimento de resposta e revisão fria adaptadas às references, cada uma com `stageshow@299140f arquivo:linha`; detectores candidatos portados de `layout-core.mjs` e `film-checks.mjs` em `scripts/`. Ícones de apps, marcas e fotos do NOTICE.md não foram copiados |
+
+**Especialista por gatilho.** `stageshow` é a 31ª da [tabela de gatilhos](research-and-skills.md#especialistas-por-gatilho-270), só para prévia ilustrativa (login dividido, onboarding, estado vazio com demonstração, card de recurso). Instalada à parte do repositório, no commit 299140f: `~/.agents/skills/stageshow`, com links em `~/.claude/skills` e `~/.codex/skills`. O kit (React) não entra em `skill/`.
+
+**Sincronizar.** A cada versão nova, rode `git -C <clone> diff 299140f..origin/main -- stageshow/references stageshow/scripts` e passe cada mudança pela triagem do estudo de integração. Nunca copie às cegas.
+
+**Fica de fora** (regra de ilustração que contraria "nunca valor inventado"): orçamento de 3 a 7 palavras e barras de filler; rótulo e valor como barras; corte, bleed, satélites, prato e calha única; título como `div` fora da prévia ilustrativa; coreografia de cursor; loops, pôster e beats; curvas narrativas de 0,8 a 1 s; câmera; "escolha um texto que caiba"; "painel vazio: ponha mais produto"; regras de bento; escala de miniatura (botão de 24 a 32 px, texto de 11 a 15 px, chrome de 38 px); molduras de celular e Dynamic Island; grounds e fotos. Também fica a escala de ícone de 14 px (vale 16 ou 20 px de [anti-patterns.md](anti-patterns.md)) e a cascata em status de várias linhas.

@@ -6,6 +6,7 @@
  * ever loaded. 2.5.0 made the 30 below mandatory in every invocation and 2.6.0 pointed at a cards file that was
  * never created, so every call read the 30 full SKILL.md files (267 KB, about 67k tokens). Since 2.7.0 they are
  * read when their trigger is observable (table in references/research-and-skills.md):
+ * stageshow joined on 2026-11-07 (31st), for illustrative product previews only.
  *   nome — acionada em <etapa> — <o que mudou>
  *   nome — sem gatilho — <o que falta para disparar>   (deep only; 15+ characters of reason)
  *   nome — SKILL AUSENTE — fallback <critério interno>
@@ -26,6 +27,7 @@ export const MANDATORY_SKILLS = [
   'gsap-performance', 'brandkit', 'image-to-code', 'gsd-sketch', 'art-direction', 'gsap-core', 'gsap-react',
   'gsap-frameworks', 'gsap-timeline', 'gsap-plugins', 'gsap-utils', 'improve-ui', 'improve-animations',
   'animation-vocabulary', 'composition-patterns', 'react-view-transitions', 'loop-state-and-stall-guard', 'rtk-token-saver',
+  'stageshow',
 ];
 export const EVERY_TIER = ['fixing-accessibility'];
 export const TIERS = ['quick', 'standard', 'deep'];
