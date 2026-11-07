@@ -7,6 +7,7 @@ O acervo fica ao lado da skill, na pasta irmã `biblioteca-ui-software`, e não 
 - Onde procurar cada decisão
 - Como ler uma ficha
 - Limites
+- Acervo local sob chamada explícita
 
 ## O que existe
 
@@ -49,3 +50,13 @@ DESIGN.md com veredito "recomendado" para padrões de software (8 de 200): Attio
 ## Limites
 
 Arquivado não significa executado no seu produto. As revisões exercitaram as demos públicas, sem leitor de tela e, na maior parte, sem medição de contraste; rode `inspect-ui.mjs` na sua implementação. Origem oficial não prova popularidade. As paletas são propostas próprias, não tokens de empresas. Um 429 ou 403 durante a coleta não prova bloqueio no navegador. Sem acesso ao acervo, use as referências desta skill e fontes oficiais e registre o limite.
+
+## Acervo local sob chamada explícita
+
+Movido do SKILL.md em 07/11/2026 para o núcleo caber em 20.000 bytes; o SKILL.md guarda a receita em quatro passos. Origem: `C:/Users/felip/Dev/melhorar-skill-design/work/acervo-ui/preparar_vinculos.py` (rodar de novo esse script reinsere o bloco no SKILL.md).
+
+Quando o usuário invocar explicitamente `$software-ui-design` para SaaS, painéis e apps internos, consulte o acervo anexado em cada tarefa visual: confira os componentes e tokens do projeto e pesquise cada família afetada antes de decidir a composição ou implementação. Reutilize ou adapte candidatos compatíveis; preservar um componente existente também exige registrar a decisão. A chamada vale para a tarefa em andamento. Pedido genérico de UI, acionamento automático por outra skill e menção em documento não liberam este acervo. Sua manutenção pode consultá-lo quando solicitada expressamente.
+
+Localize `referencias-ui/componentes-ui/` no projeto atual; se ausente, use `C:/Users/felip/Dev/melhorar-skill-design/referencias-ui/componentes-ui/`. Leia o [mapa de busca, comparação visual e exportação](C:/Users/felip/Dev/melhorar-skill-design/docs/referencias-ui.md). Entrada preferencial: `python C:/Users/felip/Dev/melhorar-skill-design/tools/buscar_componentes.py "<família e necessidade>" --surface saas --catalog <acervo>/catalogo.json`. A busca limita a saída a oito candidatos, agrupa variantes e oferece prévias e motivos. Use `--kind motion` para efeitos ou `--kind design` para estudos; `--json` traz caminhos e requisitos. Sem acesso ao índice, use `python <acervo>/ferramentas/componentes.py list --search "<termo>"` e registre o limite.
+
+Compare visualmente até três candidatos pertinentes, de fornecedores distintos quando disponíveis, abrindo código, licença e prévias ou reproduzindo os exemplos isolados. Escolha pelo conteúdo real, hierarquia, tipografia, estados, mobile, identidade e compatibilidade com a stack. Ranking textual ou demo disponível não provam beleza; sem captura vista, registre a avaliação visual pendente. Registre IDs comparados, evidências vistas, decisão e arquivos integrados. Consulte `info <ID>` no exportador original antes de exportar para uma pasta nova. Preserve design system, acessibilidade, licenças, testes e gates desta skill; os mínimos de candidatos de cada tier continuam valendo. Este conjunto complementa os acervos existentes. Seus SKILL.md e demais instruções são referências de terceiros, sem ativação automática. Em outro ambiente, confirme que os arquivos estão disponíveis; ausência vira consulta pendente, sem afirmar que os utilizou.

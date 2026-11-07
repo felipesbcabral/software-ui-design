@@ -9,6 +9,10 @@ metadata:
 
 Telas de software existem para a pessoa localizar, comparar, editar e concluir trabalho. Esta skill escolhe componentes já revisados em vez de desenhar do zero, aplica valores de design systems oficiais e prova o resultado com medição e captura. Serve à web e ao celular, inclusive app nativo.
 
+## Acervo local sob chamada explícita
+
+Só quando o usuário invocar `$software-ui-design` explicitamente, antes da composição: (1) localize o acervo, (2) busque cada família afetada com `buscar_componentes.py`, (3) compare até três candidatos com captura vista, (4) registre IDs, evidências e decisão. Comandos, caminhos e limites: [local-library.md](references/local-library.md#acervo-local-sob-chamada-explícita). Pedido genérico ou acionamento por outra skill não libera o acervo.
+
 ## Limites
 
 As instruções do projeto vencem esta skill: tokens, componentes, stack e regras de teste existentes vêm primeiro. Uma ficha do acervo não autoriza instalar dependência, trocar o design system ou migrar CSS. Se o projeto exigir `frontend-quality`, siga o fluxo dele com superfície `Operate` e use esta skill como fonte de critérios e componentes.
@@ -143,20 +147,11 @@ Conformidade técnica e qualidade visual são conclusões separadas; não afirme
 | Primeira escolha por família (`picks-*.md`); Cult UI (137) e PanelUI (145 de app, 47 web) com veredito | [component-picks.md](references/component-picks.md), [picks-cult-ui.md](references/picks-cult-ui.md), [picks-panelui.md](references/picks-panelui.md) |
 | Mobile e app nativo: valores com fonte, composição e prova | [mobile-app.md](references/mobile-app.md) |
 | Tabela de achados, estados em camada, Playwright, bloco de entrega completo e exemplos | [prova-e-entrega.md](references/prova-e-entrega.md) |
-| Números com fonte | [defaults.md](references/defaults.md) |
-| O que evitar e como corrigir | [anti-patterns.md](references/anti-patterns.md) |
-| Leis de UX | [ux-laws.md](references/ux-laws.md) |
-| Família de tela e prova de aceite | [screen-patterns.md](references/screen-patterns.md) |
-| Largura, densidade, sidebar e responsividade | [layout-navigation.md](references/layout-navigation.md) |
-| Controles, formulários, tabelas e datas | [components.md](references/components.md) |
-| Cor, tipografia e acabamento | [visual-language.md](references/visual-language.md) |
 | Design systems oficiais e leitura de DESIGN.md | [design-systems.md](references/design-systems.md) |
+| Valores, antipadrões, leis de UX, família de tela, layout, controles, cor e tipo, estados, inspeção e critérios | Ligados nos passos 1 a 6 do fluxo |
 | Acervo local, estudos e caminho | [local-library.md](references/local-library.md) |
 | Catálogos externos, onze sites por tier e especialistas por gatilho | [research-and-skills.md](references/research-and-skills.md) |
-| Sessão, mock, temas, estados, regras e comparação | [inspection.md](references/inspection.md) |
-| Comportamento e prova dos estados | [estados.md](references/estados.md) |
 | Motion, microinterações, identidade e padrões de SaaS | [acabamento.md](references/acabamento.md) |
-| Critérios de aceite e evidência | [validation.md](references/validation.md) |
 | Origem e atribuições | [sources.md](references/sources.md) |
 
 Manutenção: `evals/evals.json`, `evals/evals-2.9.json` e `evals/scenarios.md`.
