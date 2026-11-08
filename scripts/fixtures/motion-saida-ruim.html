@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Contas a pagar</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px/20px Arial,sans-serif;color:#111827;background:#fff}
+header{display:flex;align-items:center;gap:8px;padding:12px 24px;border-bottom:1px solid #d1d5db;position:relative}
+h1{font-size:18px;line-height:24px;margin:0 auto 0 0}
+button{font:inherit;height:36px;padding:0 14px;border:1px solid #6b7280;border-radius:6px;background:#fff;color:#111827}
+.painel{position:absolute;top:56px;right:24px;width:280px;padding:16px;border:1px solid #d1d5db;border-radius:8px;background:#fff;box-shadow:0 8px 24px rgba(17,24,39,.12);transition:opacity 160ms ease,transform 160ms ease}
+.painel h2{font-size:14px;margin:0 0 8px}
+.painel label{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.painel.saindo{opacity:0;transform:translateY(-4px)}
+main{padding:24px}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid #e5e7eb}
+</style></head>
+<body>
+<header>
+  <h1>Contas a pagar</h1>
+  <button type="button">Exportar</button>
+  <div class="painel" role="dialog" aria-label="Filtros" id="painel">
+    <h2>Filtrar por situação</h2>
+    <label><input type="checkbox" checked> Vencidas</label>
+    <label><input type="checkbox"> A vencer</label>
+    <button type="button" id="acionar">Aplicar filtros</button>
+  </div>
+</header>
+<main>
+  <table>
+    <thead><tr><th>Fornecedor</th><th>Vencimento</th><th>Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Energia Sul</td><td>02/11/2026</td><td>R$ 3.410,00</td></tr>
+      <tr><td>Locadora Ponto</td><td>05/11/2026</td><td>R$ 920,00</td></tr>
+      <tr><td>Gráfica Rápida</td><td>06/11/2026</td><td>R$ 275,50</td></tr>
+    </tbody>
+  </table>
+</main>
+<script>
+// Seeded defect: the panel unmounts at once, so its declared 160 ms exit never plays.
+document.getElementById('acionar').addEventListener('click', () => {
+  document.getElementById('painel').remove();
+});
+</script>
+</body></html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Relatórios</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px/20px Arial,sans-serif;color:#111827;background:#f3f4f6}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:#fff;border-bottom:1px solid #d1d5db}
+h1{font-size:18px;line-height:24px;margin:0}
+main{padding:24px;max-width:720px}
+.card{background:#fff;border:1px solid #d1d5db;border-radius:8px;padding:16px;margin-bottom:16px}
+.card h2{font-size:16px;line-height:24px;margin:0 0 8px}
+.card p{margin:0 0 8px}
+button{font:inherit;padding:8px 14px;border:1px solid #6b7280;border-radius:6px;background:#fff;color:#111827}
+.primario{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
+/* Seeded defect: the date field is 240px wide inside a 160px slot and runs into the next filter. */
+.filtros{display:flex;gap:16px}
+.slot{width:160px}
+.slot input{width:240px;font:inherit;padding:6px 8px;border:1px solid #6b7280;border-radius:6px}
+</style></head>
+<body>
+<header>
+  <h1>Relatórios</h1>
+  <button type="button" class="primario">Exportar</button>
+</header>
+<main>
+  <section class="card">
+    <h2>Filtros</h2>
+    <div class="filtros">
+      <div class="slot"><label for="i">Início</label><input id="i" value="01/10/2026"></div>
+      <div class="slot"><label for="f">Fim</label><input id="f" value="31/10/2026"></div>
+    </div>
+  </section>
+</main>
+</body></html>

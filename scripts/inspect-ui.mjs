@@ -17,7 +17,8 @@
 //   tooltips       icon-only controls whose tooltip appears on hover but not on keyboard focus
 //   contrast       sampled text below WCAG 1.4.3 (4.5:1 normal text, 3:1 large text)
 // Findings are evidence to look at, not an automatic verdict: always view the screenshot too.
-// Candidates (layout-*, icon-*: inspect-layout.mjs, inspect-icons.mjs) go to runs[].candidates, never to findings or exit.
+// Candidates (layout-*, icon-*, spacing-*: inspect-layout/icons/spacing.mjs) go to runs[].candidates, never to findings or exit.
+// --motion <ms> records a trigger's motion (inspect-motion.mjs, motion-* candidates, metrics.motion_frames); opt-in.
 // Exit: 0 ran (may have findings), 1 findings with --fail-on-findings, 2 usage, 3 no Playwright, 4 failed run.
 
 import { createRequire } from 'node:module';
@@ -30,9 +31,11 @@ import { options, inspectExtras, compareScreenshot, writeGallery } from './inspe
 import { collectPageMetrics, measureFocus } from './inspect-measure.mjs';
 import { inspectLayout } from './inspect-layout.mjs';
 import { inspectIcons } from './inspect-icons.mjs';
+import { inspectSpacing } from './inspect-spacing.mjs';
+import { inspectMotion } from './inspect-motion.mjs';
 
 const args = process.argv.slice(2);
-const usage='usage: node inspect-ui.mjs <url> [url2 ...] [--out dir] [--widths 1440,768,390] [--height 900] [--tabs 25] [--wait 1500] [--storage-state auth.json] [--mock mock.mjs] [--color-scheme light,dark] [--states default,loading,empty,error,long] [--rules ui-rules.json] [--ready selector] [--expect selector] [--timeout 5000] [--reduced-motion no-preference,reduce] [--compare old-dir] [--data-screen] [--full-page] [--fail-on-findings] [--json]';
+const usage='usage: node inspect-ui.mjs <url> [url2 ...] [--out dir] [--widths 1440,768,390] [--height 900] [--tabs 25] [--wait 1500] [--storage-state auth.json] [--mock mock.mjs] [--color-scheme light,dark] [--states default,loading,empty,error,long] [--rules ui-rules.json] [--ready selector] [--expect selector] [--timeout 5000] [--reduced-motion no-preference,reduce] [--compare old-dir] [--motion 600] [--motion-root body] [--motion-trigger selector] [--data-screen] [--full-page] [--fail-on-findings] [--json]';
 let config;
 try {config=await options(args);} catch(error) {console.error(error.message);console.error(usage);process.exit(2);}
 if(config.help){console.log(usage);process.exit(0);}
@@ -129,6 +132,8 @@ try {
     await page.waitForTimeout(definition.captureAfter??setup.captureAfter??wait);
     if(expect)try{await page.locator(expect).first().waitFor({state:'visible'});}catch(error){expectationError=error.message.split('\n')[0];}
     // Never wait for API/network idle: that would skip a loading state under test.
+    // Opt-in: record the trigger (mock states.X.trigger or --motion-trigger) at 0.25x before the capture; pops only without reduce.
+    const motion=config.motion?await inspectMotion(page,{ms:config.motion,root:config['motion-root'],trigger:definition.trigger??setup.trigger??config['motion-trigger'],pops:reducedMotion==='no-preference',context,state}):null;
     const legacy=config.urls.length===1&&config.themes.length===1&&colorScheme==='light'&&config.states.length===1&&state==='default'&&config.motions.length===1&&reducedMotion==='no-preference';
     const shot = join(outDir, legacy?`screen-${width}.jpg`:`screen-${key}.jpg`);
     await page.screenshot({ path: shot, type: 'jpeg', quality: 75, fullPage:config['full-page']||false });
@@ -137,8 +142,9 @@ try {
 
     Object.assign(metrics,await inspectExtras(page,config.rules));
     // Candidate detectors (Stageshow port): reported apart, never in findings nor in the exit code until promoted.
-    const layout=await inspectLayout(page),icons=await inspectIcons(page);
-    const candidateList=[...layout.candidates,...icons.candidates],candidateEvidence={layout:layout.evidence,icons:icons.evidence};
+    const layout=await inspectLayout(page),icons=await inspectIcons(page),spacing=await inspectSpacing(page);
+    const candidateList=[...layout.candidates,...icons.candidates,...spacing.candidates,...(motion?motion.candidates:[])],candidateEvidence={layout:layout.evidence,icons:icons.evidence,spacing:spacing.evidence};
+    if(motion){candidateEvidence.motion=motion.evidence;metrics.motion_frames=motion.evidence.frames;}
     const fingerprint=createHash('sha256').update(metrics.main_text).digest('hex');
     delete metrics.main_text;
     const fingerprintKey=`${width}-${colorScheme}-${state}-${reducedMotion}-${fingerprint}`;

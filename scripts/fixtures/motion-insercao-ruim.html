@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Fila de atendimento</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px/20px Arial,sans-serif;color:#111827;background:#fff}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #d1d5db}
+h1{font-size:18px;line-height:24px;margin:0}
+button{font:inherit;height:36px;padding:0 14px;border:1px solid #6b7280;border-radius:6px;background:#fff;color:#111827}
+main{padding:24px}
+.fila{height:360px;overflow:auto;border:1px solid #d1d5db;border-radius:8px;margin:0;padding:0;list-style:none}
+.fila li{display:flex;justify-content:space-between;height:48px;align-items:center;padding:0 16px;border-bottom:1px solid #e5e7eb;background:#fff}
+.fila li.novo{animation:entra 200ms ease}
+@keyframes entra{from{opacity:0}}
+.tempo{color:#4b5563}
+</style></head>
+<body>
+<header>
+  <h1>Fila de atendimento</h1>
+  <button type="button" id="acionar">Chamar próximo</button>
+</header>
+<main>
+  <ul class="fila" id="fila">
+    <li><span>Chamado 4471 · Impressora do 2º andar</span><span class="tempo">há 12 min</span></li>
+    <li><span>Chamado 4468 · Acesso ao ERP</span><span class="tempo">há 25 min</span></li>
+    <li><span>Chamado 4466 · Troca de monitor</span><span class="tempo">há 40 min</span></li>
+    <li><span>Chamado 4463 · VPN instável</span><span class="tempo">há 1 h</span></li>
+    <li><span>Chamado 4460 · Licença do editor</span><span class="tempo">há 2 h</span></li>
+  </ul>
+</main>
+<script>
+// Seeded defect: the new row fades in, but every row below is shoved 48px down in one frame.
+document.getElementById('acionar').addEventListener('click', () => {
+  const li = document.createElement('li');
+  li.className = 'novo';
+  li.innerHTML = '<span>Chamado 4475 · Senha expirada</span><span class="tempo">agora</span>';
+  document.getElementById('fila').prepend(li);
+});
+</script>
+</body></html>

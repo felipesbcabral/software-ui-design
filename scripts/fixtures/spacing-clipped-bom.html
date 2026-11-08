@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Clientes</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px/20px Arial,sans-serif;color:#111827;background:#f3f4f6}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:#fff;border-bottom:1px solid #d1d5db}
+h1{font-size:18px;line-height:24px;margin:0}
+main{padding:24px;max-width:720px}
+.card{background:#fff;border:1px solid #d1d5db;border-radius:8px;padding:16px;margin-bottom:16px}
+.card h2{font-size:16px;line-height:24px;margin:0 0 8px}
+.card p{margin:0 0 8px}
+button{font:inherit;padding:8px 14px;border:1px solid #6b7280;border-radius:6px;background:#fff;color:#111827}
+.primario{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
+/* Fix: the strip grows with its tags. */
+.etiquetas{display:flex;align-items:flex-start;gap:8px;overflow:hidden}
+.selo{padding:6px 8px;border-radius:4px;background:#e0e7ff;color:#3730a3}
+</style></head>
+<body>
+<header>
+  <h1>Clientes</h1>
+  <button type="button" class="primario">Novo cliente</button>
+</header>
+<main>
+  <section class="card">
+    <h2>Mercado Vila Nova</h2>
+    <p>CNPJ 12.345.678/0001-95</p>
+    <div class="etiquetas"><span class="selo">Varejo</span><span class="selo">Inadimplente</span></div>
+  </section>
+</main>
+</body></html>

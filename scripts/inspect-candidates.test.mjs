@@ -26,7 +26,8 @@ function inspect(names, extra = []) {
 
 let pairRuns;
 const pairs = () => pairRuns === undefined ? (pairRuns = inspect(CANDIDATES.flatMap((c) => [`${c}-ruim`, `${c}-bom`]))) : pairRuns;
-const rulesOf = (run) => run.candidates.map((c) => c.split(':')[0]);
+// Scoped to this family: spacing-* has its own test, and layout-bottom-ruim also fires spacing-padding (same defect).
+const rulesOf = (run) => run.candidates.map((c) => c.split(':')[0]).filter((r) => CANDIDATES.includes(r));
 
 for (const [i, name] of CANDIDATES.entries()) {
   test(`${name}: the bad fixture fires only ${name}`, (t) => {
@@ -54,5 +55,5 @@ test('candidates stay out of findings and out of the --fail-on-findings exit cod
   // The bad fixtures have no regular finding, so a strict gate must still exit 0 with candidates present.
   const strict = inspect(CANDIDATES.map((c) => `${c}-ruim`), ['--fail-on-findings']);
   assert.equal(strict.length, CANDIDATES.length);
-  assert.ok(strict.every((run) => run.candidates.length === 1 && run.findings.length === 0));
+  assert.ok(strict.every((run) => rulesOf(run).length === 1 && run.findings.length === 0));
 });

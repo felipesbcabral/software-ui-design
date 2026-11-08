@@ -12,6 +12,7 @@ export async function options(args) {
     'color-scheme':{type:'string',default:'light'},states:{type:'string',default:'default'},
     'reduced-motion':{type:'string',default:'no-preference'},ready:{type:'string'},expect:{type:'string'},
     'fail-on-findings':{type:'boolean'},'full-page':{type:'boolean'},help:{type:'boolean'},
+    motion:{type:'string'},'motion-root':{type:'string',default:'body'},'motion-trigger':{type:'string'},
   }});
   if(values.help) return {help:true};
   if(!positionals.length) throw Error('Provide at least one http(s) or file:// URL');
@@ -23,6 +24,11 @@ export async function options(args) {
     values[key]=Number(values[key]);
     if(!Number.isInteger(values[key])||values[key]<0||(key==='height'||key==='timeout')&&values[key]===0) throw Error(`${key} must be a valid integer`);
   }
+  // --motion <ms> is opt-in: a recording window in product time, recorded at 0.25x (so it lasts 4x longer per run).
+  if(values.motion!==undefined) {
+    values.motion=Number(values.motion);
+    if(!Number.isInteger(values.motion)||values.motion<100||values.motion>10000) throw Error('motion must be an integer from 100 to 10000 ms');
+  } else if(values['motion-trigger']||values['motion-root']!=='body') throw Error('--motion-trigger and --motion-root require --motion <ms>');
   const themes=list(values['color-scheme']),states=list(values.states),motions=list(values['reduced-motion']);
   if(themes.some(x=>!['light','dark'].includes(x))) throw Error('color-scheme must be light,dark');
   if(motions.some(x=>!['reduce','no-preference'].includes(x))) throw Error('reduced-motion must be reduce,no-preference');
@@ -33,6 +39,7 @@ export async function options(args) {
   for(const entry of Object.values(mock?.states||{})) {
     if(entry.captureAfter!==undefined&&(!Number.isFinite(entry.captureAfter)||entry.captureAfter<0)) throw Error('captureAfter must be a nonnegative number');
     if(entry.expect!==undefined&&typeof entry.expect!=='string') throw Error('state expect must be a selector');
+    if(entry.trigger!==undefined&&!['function','string'].includes(typeof entry.trigger)) throw Error('state trigger must be a function or a selector');
   }
   const rules=values.rules?JSON.parse(readFileSync(resolve(values.rules),'utf8')):{version:1,rules:[]};
   if(rules.version!==1||!Array.isArray(rules.rules)) throw Error('rules require version:1 and rules:[]');

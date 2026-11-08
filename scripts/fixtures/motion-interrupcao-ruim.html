@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Escala de plantões</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px/20px Arial,sans-serif;color:#111827;background:#fff}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #d1d5db}
+h1{font-size:18px;line-height:24px;margin:0}
+.segmentos{position:relative;display:flex;padding:4px;border-radius:8px;background:#e5e7eb}
+.segmentos button{position:relative;z-index:1;width:96px;height:32px;border:0;background:none;font:inherit;color:#111827}
+.marcador{position:absolute;left:4px;top:4px;width:96px;height:32px;border-radius:6px;background:#fff;box-shadow:0 1px 2px rgba(17,24,39,.2);pointer-events:none;transition:transform 200ms ease}
+main{padding:24px}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid #e5e7eb}
+</style></head>
+<body>
+<header>
+  <h1>Escala de plantões</h1>
+  <div class="segmentos" role="group" aria-label="Período">
+    <span class="marcador" id="marcador"></span>
+    <button type="button" data-i="0" aria-pressed="true">Dia</button>
+    <button type="button" data-i="1" id="semana">Semana</button>
+    <button type="button" data-i="2" id="mes">Mês</button>
+  </div>
+</header>
+<main>
+  <table>
+    <thead><tr><th>Profissional</th><th>Setor</th><th>Turno</th></tr></thead>
+    <tbody>
+      <tr><td>Dra. Helena Prado</td><td>Emergência</td><td>07h às 19h</td></tr>
+      <tr><td>Dr. Rafael Nunes</td><td>UTI adulto</td><td>19h às 07h</td></tr>
+      <tr><td>Enf. Paula Reis</td><td>Pediatria</td><td>07h às 13h</td></tr>
+    </tbody>
+  </table>
+</main>
+<script>
+// Seeded defect: every change re-keys the highlight from "Dia", so a second click mid-move snaps it back to the start.
+const marcador = document.getElementById('marcador');
+document.querySelector('.segmentos').addEventListener('click', (e) => {
+  const b = e.target.closest('button');
+  if (!b) return;
+  marcador.style.transition = 'none';
+  marcador.style.transform = 'translateX(0)';
+  marcador.offsetWidth;
+  marcador.style.transition = '';
+  marcador.style.transform = `translateX(${b.dataset.i * 96}px)`;
+});
+</script>
+</body></html>

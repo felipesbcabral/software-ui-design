@@ -91,7 +91,7 @@ As métricas de animação verificam estilos e animações ativas na captura. Ho
 
 ## Candidatos (fora do gate)
 
-Sete detectores portados do Stageshow rodam em toda execução e saem em `runs[].candidates`, com a evidência em `runs[].candidate_evidence` e a seção "candidatos" no console. Não entram em `findings`, na galeria nem no código de saída de `--fail-on-findings` até passarem pelo replay com denominador (meta: no máximo 1 achado em 10 telas boas). Medem só o que está na viewport.
+Quinze detectores portados do Stageshow (mais os `motion-*`, só com `--motion`; veja a seção seguinte) rodam em toda execução e saem em `runs[].candidates`, com a evidência em `runs[].candidate_evidence` e a seção "candidatos" no console. Não entram em `findings`, na galeria nem no código de saída de `--fail-on-findings` até passarem pelo replay com denominador (meta: no máximo 1 achado em 10 telas boas). Medem só o que está na viewport.
 
 | Nome | Mede | Correção |
 |---|---|---|
@@ -102,5 +102,36 @@ Sete detectores portados do Stageshow rodam em toda execução e saem em `runs[]
 | `icon-emoji` | emoji no lugar de ícone ao lado de texto | ícone desenhado do conjunto da tela |
 | `icon-clipped` | SVG que desenha além do próprio `viewBox` e corta o traço | caber o desenho no `viewBox` ou trocar o ícone |
 | `icon-translucent` | traço ou preenchimento com alfa em ícone de duas ou mais formas, que escurecem onde se cruzam | cor opaca; para atenuar, `opacity` no `svg` inteiro |
+| `spacing-inset` | texto a menos de 8px da lateral do card que o contém | recuo de 12px (8px em lista densa) |
+| `spacing-control` | botão pintado a menos de 8px do campo, fio ou borda acima | 8px ou mais entre campo e ação |
+| `spacing-stack` | duas linhas de estilos diferentes com menos de 3px ou mais de 10px de tinta | 4 a 6px de tinta: line-height 1,3 e gap de 2px |
+| `spacing-touching` | texto a menos de 5px de uma caixa na mesma linha (2px entre palavras soltas) | `gap` fixo de 8 a 12px |
+| `spacing-padding` | topo ou base do card menor que o recuo lateral | mesmo padding em volta, rodapé incluído |
+| `spacing-squeezed` | selo ou avatar encolhido pela linha flex | `flex: none` no selo, `min-width: 0` no texto |
+| `spacing-spill` | controle que passa 3px ou mais do espaço reservado | `width: 100%` ou `minmax(0, 1fr)` no espaço |
+| `spacing-clipped` | texto, ponto ou ícone cortado por `overflow: hidden` | altura que cresce com o conteúdo |
 
-Proveniência: `scripts/inspect-layout.mjs` porta `auditLayout` (`layout-core.mjs:3-135,159-164`) sem `nested-composition-crop`; `scripts/inspect-icons.mjs` porta quatro checagens de `film-checks.mjs`. Origem: benjitaylor/skills stageshow@299140f, MIT, aviso em `references/stageshow-LICENSE.txt`. Seletores `.ss-*` viraram exclusões genéricas (logo, marca, avatar, spinner, switch, checkbox, chat). A escala de miniatura de 14px do Stageshow não vale aqui. Os pares `scripts/fixtures/<nome>-ruim.html` e `<nome>-bom.html` mostram cada defeito e a correção.
+Proveniência: `scripts/inspect-layout.mjs` porta `auditLayout` (`layout-core.mjs:3-135,159-164`) sem `nested-composition-crop`; `scripts/inspect-icons.mjs` porta quatro checagens de `film-checks.mjs`. Origem: benjitaylor/skills stageshow@299140f, MIT, aviso em `references/stageshow-LICENSE.txt`. Seletores `.ss-*` viraram exclusões genéricas (logo, marca, avatar, spinner, switch, checkbox, chat). A escala de miniatura de 14px do Stageshow não vale aqui. `scripts/inspect-spacing.mjs` porta oito checagens de `film-checks.mjs`, com limiares iguais às regras A1, A3, A5 e A8 de [componentes-bonitos.md](componentes-bonitos.md); `lopsided`, `uneven inset` e um ramo de `spills` ficaram de fora (falso positivo sem acerto). `layout-bottom` e `spacing-padding` acusam o mesmo defeito de base; o registro de regras decide qual fica. Os pares `scripts/fixtures/<nome>-ruim.html` e `<nome>-bom.html` mostram cada defeito e a correção.
+
+## Movimento gravado (opcional, `--motion`)
+
+`--motion <ms>` grava o que acontece entre os quadros depois de um gatilho e devolve candidatos `motion-*`. Sem esse flag nada é gravado e o tempo de execução não muda. O gatilho vem, nesta ordem, de `states.<estado>.trigger` no mock (função `async ({page, context, state, rate})` ou seletor clicado), de um `trigger` devolvido pelo hook ou de `--motion-trigger <seletor>`. Sem gatilho, a janela é gravada parada (serve para animação automática). `--motion-root <seletor>` limita a gravação (padrão `body`).
+
+```sh
+node <skill-dir>/scripts/inspect-ui.mjs http://localhost:3000/console/pedidos   --storage-state playwright/.auth/user.json --widths 1440 --motion 600 --motion-trigger '[data-sidebar-toggle]'   --reduced-motion no-preference,reduce --out proof/motion
+```
+
+O gatilho roda depois de `captureAfter` e de `--expect`, antes da captura; a captura e as métricas mostram o estado final. A linha do tempo de CSS e WAAPI roda a 0,25x por CDP (`Animation.setPlaybackRate`), restaurada ao fim, para que uma transição de 160 a 200 ms renda quadros suficientes. A janela é em tempo do produto: `--motion 600` grava 2,4 s por combinação, mais cerca de 0,3 s de preparo. Interrupção (dois cliques seguidos) exige a função no mock, com `page.waitForTimeout` entre os cliques. `report.json` ganha `metrics.motion_frames` e `candidate_evidence.motion` (cobertura, achados com a trilha de posições em volta do salto, tempos em segundos desde o gatilho).
+
+| Nome | Mede | Correção |
+|---|---|---|
+| `motion-jump` | caixa que anda ou muda de tamanho mais de 2px num quadro, com quadros calmos em volta | animar o espaço (altura do trilho, FLIP) ou o rótulo num slot de largura fixa |
+| `motion-drift` | dois vizinhos empilhados que mantêm o tamanho e deslizam fora de passo | mesma duração e curva para a coluna inteira |
+| `motion-anchor` | diálogo, menu, listbox ou popover aberto que muda de altura sem segurar nem o topo nem a base | prender pela borda de onde abriu; a lista cresce a partir dela |
+| `motion-pop` | elemento que surge ou some inteiro num quadro, sem animação nele nem nos ancestrais | manter montado até a saída terminar (`transitionend`, `animationend`) |
+| `motion-settle` | elemento que para depois de animar e salta de novo sem nada rodando | terminar a animação exatamente na posição final |
+| `motion-coverage` | quadros poucos, esparsos ou gatilho que falhou: inconclusivo, não é defeito | repetir com a máquina livre ou corrigir o gatilho |
+
+`motion-pop` só é julgado com `reduced_motion: no-preference`: sob `reduce`, entrar e sair sem animação é o correto. Animação feita em JavaScript fora da WAAPI (rAF, GSAP, caminho sem WAAPI do Framer Motion) não desacelera nem aparece em `getAnimations()`, então pode gerar `motion-pop` ou `motion-settle` falso; o mesmo vale para `setTimeout` que desmonta depois da duração do CSS, que dispara cedo contra a saída desacelerada. Leia a trilha antes de corrigir.
+
+Proveniência: `scripts/inspect-motion.mjs` (análise) e `scripts/inspect-motion-record.mjs` (gravador no navegador) portam `record`/`analyse` (`jumps-core.mjs:13-176`), `coverage` (`verification.mjs:48-63`) e pops e settle (`motion-watch.mjs:184-454`) de benjitaylor/skills stageshow@299140f, MIT, aviso em `references/stageshow-LICENSE.txt`. `.ss-stage` virou um seletor raiz qualquer, a regex de âncora virou seletores de papel ARIA, `[popover]` e invólucros Radix e cmdk, e o cabeçalho de `inspect-motion.mjs` lista cada desvio. Os pares `scripts/fixtures/motion-<nome>-ruim.html` e `-bom.html` mostram cada defeito e a correção (`motion-mock.mjs` traz o gatilho de interrupção).

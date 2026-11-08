@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Agenda da clínica</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px/20px Arial,sans-serif;color:#111827;background:#f3f4f6}
+header{padding:12px 24px;border-bottom:1px solid #d1d5db;background:#fff}
+h1{font-size:18px;line-height:24px;margin:0}
+button{font:inherit;height:36px;padding:0 14px;border:1px solid #6b7280;border-radius:6px;background:#fff;color:#111827}
+/* Fix: the palette is pinned by its top edge; the list grows downward from it. */
+.paleta{position:fixed;left:50%;top:15vh;width:480px;transform:translateX(-50%);padding:12px;border:1px solid #d1d5db;border-radius:10px;background:#fff;box-shadow:0 12px 32px rgba(17,24,39,.16)}
+.paleta input{width:100%;height:36px;padding:0 10px;border:1px solid #9ca3af;border-radius:6px;font:inherit}
+.lista{margin:8px 0;padding:0;list-style:none;max-height:96px;overflow:hidden;transition:max-height 200ms ease}
+.lista.toda{max-height:288px}
+.lista li{height:48px;display:flex;align-items:center;padding:0 8px;border-bottom:1px solid #e5e7eb}
+</style></head>
+<body>
+<header><h1>Agenda da clínica</h1></header>
+<div class="paleta" role="dialog" aria-label="Buscar paciente">
+  <label>Buscar paciente <input value="Silva"></label>
+  <ul class="lista" id="lista">
+    <li>Ana Silva · prontuário 1032</li>
+    <li>Bruno Silva · prontuário 1187</li>
+    <li>Carla Silva · prontuário 1204</li>
+    <li>Diego Silva · prontuário 1311</li>
+    <li>Elisa Silva · prontuário 1356</li>
+    <li>Fábio Silva · prontuário 1402</li>
+  </ul>
+  <button type="button" id="acionar">Ver todos os resultados</button>
+</div>
+<script>
+document.getElementById('acionar').addEventListener('click', () => {
+  document.getElementById('lista').classList.add('toda');
+});
+</script>
+</body></html>

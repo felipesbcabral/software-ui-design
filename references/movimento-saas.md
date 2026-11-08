@@ -86,4 +86,4 @@ Vídeo de fundo, entrada coreografada da página, título palavra por palavra, e
 
 ## 8. Prova
 
-`inspect-ui` com `--reduced-motion no-preference,reduce` (`motion-duration`, `motion-layout`, `motion-reduced`). À mão: abrir e fechar a camada duas vezes rápido (interrupção), Tab não sai da gaveta aberta, Esc devolve o foco ao botão, 390 px com rolagem só no painel, zoom de 200%.
+`inspect-ui` com `--reduced-motion no-preference,reduce` (`motion-duration`, `motion-layout`, `motion-reduced`). A medida do que acontece entre os quadros, inclusive a interrupção com dois cliques no gatilho do mock, é `--motion` (`references/inspection.md`, candidatos `motion-*`). À mão: abrir e fechar a camada duas vezes rápido (interrupção), Tab não sai da gaveta aberta, Esc devolve o foco ao botão, 390 px com rolagem só no painel, zoom de 200%.

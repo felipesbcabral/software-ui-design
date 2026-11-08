@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Nota fiscal NF-2231</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px/20px Arial,sans-serif;color:#111827;background:#fff}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #d1d5db}
+h1{font-size:18px;line-height:24px;margin:0}
+.acoes{display:flex;gap:8px}
+button{font:inherit;height:36px;padding:0 14px;border:1px solid #6b7280;border-radius:6px;background:#fff;color:#111827}
+.primario{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
+main{padding:24px}
+dl{display:grid;grid-template-columns:160px 1fr;gap:8px 16px;margin:0}
+dt{color:#4b5563}
+dd{margin:0}
+</style></head>
+<body>
+<header>
+  <h1>Nota fiscal NF-2231</h1>
+  <div class="acoes">
+    <!-- Seeded defect: the label is replaced in place and the auto-width button snaps to the new width in one frame. -->
+    <button type="button" class="primario" id="acionar">Aprovar</button>
+    <button type="button">Baixar PDF</button>
+  </div>
+</header>
+<main>
+  <dl>
+    <dt>Fornecedor</dt><dd>Papelaria Central Ltda.</dd>
+    <dt>Emissão</dt><dd>04/11/2026</dd>
+    <dt>Valor</dt><dd>R$ 1.284,90</dd>
+    <dt>Centro de custo</dt><dd>Administrativo</dd>
+  </dl>
+</main>
+<script>
+document.getElementById('acionar').addEventListener('click', (e) => {
+  e.currentTarget.textContent = 'Aprovada e enviada ao financeiro';
+});
+</script>
+</body></html>

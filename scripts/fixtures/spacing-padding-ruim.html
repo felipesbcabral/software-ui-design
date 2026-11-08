@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Notas fiscais</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:14px/20px Arial,sans-serif;color:#111827;background:#f3f4f6}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:#fff;border-bottom:1px solid #d1d5db}
+h1{font-size:18px;line-height:24px;margin:0}
+main{padding:24px;max-width:720px}
+.card{background:#fff;border:1px solid #d1d5db;border-radius:8px;padding:16px;margin-bottom:16px}
+.card h2{font-size:16px;line-height:24px;margin:0 0 8px}
+.card p{margin:0 0 8px}
+button{font:inherit;padding:8px 14px;border:1px solid #6b7280;border-radius:6px;background:#fff;color:#111827}
+.primario{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
+/* Seeded defect: the card footer keeps only 4px under the action against 16px at the sides and top. */
+.rodape-curto{padding-bottom:4px}
+</style></head>
+<body>
+<header>
+  <h1>Notas fiscais</h1>
+  <button type="button" class="primario">Emitir nota</button>
+</header>
+<main>
+  <section class="card rodape-curto">
+    <h2>NF 10.482</h2>
+    <p>Destinatário: Laticínios Serra Azul</p>
+    <p>Valor: R$ 7.940,00, vencimento em 20/11/2026.</p>
+    <button type="button">Baixar XML</button>
+  </section>
+</main>
+</body></html>
